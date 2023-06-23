@@ -1,0 +1,35 @@
+@font-face {
+  font-family: Pretendard;
+  font-weight: 800;
+  src: url("../../assets/fonts/Pretendard-ExtraBold.woff") format("woff");
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 700;
+  src: url("../../assets/fonts/Pretendard-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 600;
+  src: url("../../assets/fonts/Pretendard-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 400;
+  src: url("../../assets/fonts/Pretendard-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 300;
+  src: url("../../assets/fonts/Pretendard-Light.woff") format("woff");
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 200;
+  src: url("../../assets/fonts/Pretendard-ExtraLight.woff") format("woff");
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 100;
+  src: url("../../assets/fonts/Pretendard-Thin.woff") format("woff");
+}
