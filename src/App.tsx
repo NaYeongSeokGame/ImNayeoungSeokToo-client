@@ -1,7 +1,9 @@
+import Home from "./pages/Home.tsx";
+
 function App() {
   return (
     <div>
-      <p>I'm Na Yeong Seok Too Project Setting</p>
+      <Home />
     </div>
   );
 }
