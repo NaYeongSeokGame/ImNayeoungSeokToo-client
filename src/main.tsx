@@ -7,12 +7,20 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import '@/assets/fonts/font.css';
 
 import App from './App.tsx';
+import CreateQuiz from "./pages/CreateQuiz.tsx";
+import PrepareQuiz from "./pages/PrepareQuiz.tsx";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  },
+  }, {
+    path: '/quiz/create',
+    element: <CreateQuiz />
+  }, {
+    path: '/quiz/:id',
+    element: <PrepareQuiz />
+  }
 ]);
 
 const queryClient = new QueryClient({
