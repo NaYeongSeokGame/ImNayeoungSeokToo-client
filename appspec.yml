@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/imnayeongseoktoo-deploy
+    overwrite: yes
+permissions:
+  - object: /home/ubuntu/imnayeongseoktoo-deploy
+    owner: root
+    group: root
+    mode: 755
+hooks:
+  AfterInstall:
+    - location: deploy.sh
+      timeout: 1000
+      runas: root
