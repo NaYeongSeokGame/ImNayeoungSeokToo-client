@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import QuizAnswer from './QuizAnswer';
+import QuizResult from './QuizListResult';
 
 const Container = styled.div`
   display: flex;
@@ -75,6 +76,13 @@ const QuizAnswerButton = () => {
     setIsMomentAnswerButtonClicked(true);
   };
 
+  const handleHomeButtonClick = (): void => {
+    alert('홈으로 이동');
+    setIndex(0);
+    setScore(0);
+    setIsAnswerButtonClicked(false);
+  };
+
   if (isAnswerButtonClicked || isMomentAnswerButtonClicked) {
     return (
       <QuizAnswer
@@ -86,6 +94,16 @@ const QuizAnswerButton = () => {
         preset={preset}
         isMomentAnswerButtonClicked={isMomentAnswerButtonClicked}
         setIsMomentAnswerButtonClicked={setIsMomentAnswerButtonClicked}
+      />
+    );
+  }
+
+  if (index === preset.quizList.length) {
+    return (
+      <QuizResult
+        score={score}
+        totalQuiz={preset.quizList.length}
+        handleHomeButtonClick={handleHomeButtonClick}
       />
     );
   }
