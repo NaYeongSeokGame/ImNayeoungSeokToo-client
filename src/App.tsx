@@ -1,14 +1,7 @@
-
-import CommonLayout from './components/CommonLayout.tsx';
-import Ready from './components/Ready'
+import CommonLayout from '@/components/CommonLayout.tsx';
 
 function App() {
-  return (
-    <>
-    <CommonLayout />
-    <Ready />
-    </>
-  )
+  return <CommonLayout />;
 }
 
 export default App;

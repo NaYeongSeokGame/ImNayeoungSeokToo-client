@@ -1,40 +1,26 @@
-import React from 'react';
-import { styled } from 'styled-components';
+import React, { PropsWithChildren } from 'react';
+import styled from 'styled-components';
 
-import ModalPortal from '@/components/Portal';
-
-interface Modal {
-  children: React.ReactNode;
-  isOpen: boolean;
-  onClose: () => void;
+interface ModalDefaultType {
+  onClickToggleModal: () => void;
 }
 
-const Modal = ({ children, isOpen, onClose }: Modal) => {
-  return (
-    isOpen && (
-      <ModalPortal>
-        <Overlay onClick={onClose} />
-        <ModalContent>{children}</ModalContent>
-      </ModalPortal>
-    )
-  );
-};
+function Modal({
+  onClickToggleModal,
+  children,
+}: PropsWithChildren<ModalDefaultType>) {
+  return <ModalContainer></ModalContainer>;
+}
 
-export default Modal;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: red;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  position: fixed;
 `;
 
-const ModalContent = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-`;
+export default Modal;

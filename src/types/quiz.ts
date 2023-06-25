@@ -1,15 +1,11 @@
-export interface Preset {
-  presetPin: string;
+export type Preset = {
+  presetPin: number;
   isPrivate: boolean;
   title: string;
-  quizzes: Quiz[];
-}
+  quizList: Quiz[]
+};
 
-export interface Quiz {
+export type Quiz = {
   imageUrl: string;
   answer: string;
-}
-
-export interface ChangedQuizTimer {
-  getTimer: () => number;
 }
