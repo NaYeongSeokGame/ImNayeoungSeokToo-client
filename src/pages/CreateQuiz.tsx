@@ -4,7 +4,7 @@ import UploadModal from '@/components/UploadModal';
 import { QuizFileAndAnswer } from '@/types/imageUploadmodal';
 
 const CreateQuiz = () => {
-  const [quizPreset, setQuizPreset] = useState<QuizFileAndAnswer[]>([]);
+  const [, setQuizPreset] = useState<QuizFileAndAnswer[]>([]);
   return (
     <div>
       <h1>create Quiz</h1>
