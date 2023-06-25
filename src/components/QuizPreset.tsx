@@ -1,8 +1,9 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, useContext, useRef } from 'react';
 import { css, styled } from 'styled-components';
 
-import QuizTimerButton from '@/components/QuizTimerButton';
+import QuizTimerButton, { QuizTimer } from '@/components/QuizTimerButton';
 import { DefaultButtonStyle, MediumText, SmallText2 } from '@/styles/Common';
+import { QuizSetStateContext } from '@/utils/QuizContext';
 
 interface QuizPresetProps {
   title: string;
@@ -10,7 +11,10 @@ interface QuizPresetProps {
 }
 
 const QuizPreset = ({ title, imgUrl }: QuizPresetProps) => {
+  const { setTimer } = useContext(QuizSetStateContext);
+  const timerRef = useRef<QuizTimer>(null);
   const onStartQuiz = () => {
+    timerRef.current && setTimer && setTimer(timerRef.current.getTimer());
     // TODO: 시작 페이지로 이동
   };
 
@@ -36,7 +40,7 @@ const QuizPreset = ({ title, imgUrl }: QuizPresetProps) => {
           </VStack>
           <VStack style={{ gap: '8px' }}>
             <SmallText2>타이머 설정</SmallText2>
-            <QuizTimerButton />
+            <QuizTimerButton ref={timerRef} />
           </VStack>
         </VStack>
       </QuizPresetContainer>

@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { ForwardedRef, forwardRef, useImperativeHandle, useState } from 'react';
 import { styled } from 'styled-components';
 
 import minusIcon from '@/assets/icons/minus.svg';
 import plusIcon from '@/assets/icons/plus.svg';
 import { DefaultButtonStyle, QCountText } from '@/styles/Common';
 
-const QuizTimerButton = () => {
+type QuizTimerButtonProps = unknown;
+
+export interface QuizTimer {
+  getTimer: () => number;
+}
+
+const QuizTimerButton = (
+  _: QuizTimerButtonProps,
+  ref: ForwardedRef<QuizTimer>,
+) => {
   const [timer, setTimer] = useState(3);
 
   const minusSeconds = () => {
@@ -16,22 +25,28 @@ const QuizTimerButton = () => {
     setTimer((timer) => (timer ? timer + 1 : 3));
   };
 
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        getTimer() {
+          return timer;
+        },
+      };
+    },
+    [timer],
+  );
+
   return (
     <TimerContainer>
-      <TimerChangeButton
-        imgUrl={minusIcon}
-        onClick={minusSeconds}
-      ></TimerChangeButton>
+      <TimerChangeButton imgUrl={minusIcon} onClick={minusSeconds} />
       <QCountText>{timer}</QCountText>
-      <TimerChangeButton
-        imgUrl={plusIcon}
-        onClick={plusSeconds}
-      ></TimerChangeButton>
+      <TimerChangeButton imgUrl={plusIcon} onClick={plusSeconds} />
     </TimerContainer>
   );
 };
 
-export default QuizTimerButton;
+export default forwardRef(QuizTimerButton);
 
 const TimerContainer = styled.div`
   display: flex;
