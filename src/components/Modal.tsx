@@ -1,6 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
+import ModalPortal from '@/components/Portal';
+
 interface Modal {
   children: React.ReactNode;
   isOpen: boolean;
@@ -10,10 +12,10 @@ interface Modal {
 const Modal = ({ children, isOpen, onClose }: Modal) => {
   return (
     isOpen && (
-      <div>
+      <ModalPortal>
         <Overlay onClick={onClose} />
         <ModalContent>{children}</ModalContent>
-      </div>
+      </ModalPortal>
     )
   );
 };
