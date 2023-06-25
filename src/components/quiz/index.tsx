@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 
 import QuizImg from '@/components/quiz/QuizImg.tsx';
 import { Quiz } from '@/types/Quiz.ts';
@@ -21,7 +20,7 @@ const QuizContent = ({
     }
     if (!isNext) return;
     setCurrentIdx(currentIdx + 1);
-  }, [isNext]);
+  }, [currentIdx, isLastIdx, isNext, isTimeout, setGameEnd]);
 
   return (
     <>
@@ -43,7 +42,3 @@ type QuizProps = {
   isShowAnswer: boolean;
   setGameEnd: (isEnd: boolean) => void;
 };
-
-const QuizContentWrapper = styled.div`
-  margin: 0 auto;
-`;
