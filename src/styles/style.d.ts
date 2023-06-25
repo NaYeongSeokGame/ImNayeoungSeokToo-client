@@ -1,18 +1,11 @@
 import 'styled-components';
 
+import { COLORS } from './colors';
+import { FONT_STYLE_PC } from './fonts';
+
 declare module 'styled-components' {
   export interface DefaultTheme {
-    color: {
-      primaryPurple: string;
-      primaryRed: string;
-      black: string;
-    };
-    size: {
-      small: '1rem';
-      small2: '1.125rem';
-      medium: '2rem';
-      title: '6rem';
-      qCount: '2.625rem';
-    };
+    colors: typeof COLORS;
+    fonts: typeof FONT_STYLE_PC;
   }
 }

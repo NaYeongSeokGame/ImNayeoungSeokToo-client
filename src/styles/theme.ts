@@ -1,16 +1,9 @@
-import { DefaultTheme } from 'styled-components';
+import { COLORS } from './colors';
+import { FONT_STYLE_PC } from './fonts';
 
-export const theme: DefaultTheme = {
-  color: {
-    primaryPurple: '#7443FF',
-    primaryRed: '#FF0000',
-    black: '#000000',
-  },
-  size: {
-    small: '1rem',
-    small2: '1.125rem',
-    medium: '2rem',
-    title: '6rem',
-    qCount: '2.625rem',
-  },
+export const theme = {
+  colors: COLORS,
+  fonts: FONT_STYLE_PC,
 };
+
+export type ThemeType = typeof theme;

@@ -1,30 +1,42 @@
 import { createGlobalStyle } from 'styled-components';
-
-import Reset from './resetStyle';
+import { reset } from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
-${Reset};
 
+${reset}
 
-body {
-  font-family: 'Spoqa Han Sans Neo',-apple-system,'BlinkMacSystemFont',
-  'Apple SD Gothic Neo','Inter','Segoe UI',sans-serif,'Apple Color Emoji',
-  'Segoe UI Emoji','Segoe UI Symbol';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-* {
-  box-sizing:border-box;
-}
+html,
+  body {
+    padding: 0;
+    margin: 0;
+    min-width: 375px;
+    font-family: 'LOTTERIADDAG';
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  *,
+  *:before,
+  *:after {
+    font-family: SUIT;
+    box-sizing: border-box;
+  }
 
-img, image, svg {
-  vertical-align: middle;
-}
+  :focus {
+    outline: none;
+    border: none;
+  }
+
+  button {
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 `;
 

@@ -6,14 +6,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import '@/assets/fonts/font.css';
+import GlobalStyle from '@/styles/globalStyle';
+import { theme } from '@/styles/theme';
 
 import App from './App.tsx';
-import CreateQuiz from './pages/CreateQuiz.tsx';
-import Home from './pages/Home.tsx';
-import { NotFound } from './pages/NotFound.tsx';
-import PrepareQuiz from './pages/PrepareQuiz.tsx';
-import GlobalStyle from './styles/globalStyle.ts';
-import { theme } from './styles/theme.ts';
 
 const router = createBrowserRouter([
   {
@@ -23,15 +19,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <div />,
       },
       {
         path: '/quiz/create',
-        element: <CreateQuiz />,
+        element: <div />,
       },
       {
         path: '/quiz/:id',
-        element: <PrepareQuiz />,
+        element: <div />,
       },
     ],
   },
