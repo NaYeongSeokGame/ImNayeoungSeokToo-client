@@ -12,16 +12,16 @@ const CreateQuiz = () => {
   const [fileAndAnswer, setFileAndAnswer] = useState<QuizFileAndAnswer[]>([]);
 
   useEffect(() => {
-    renderQuizButton(count);
-  }, []);
-
-  const renderQuizButton = (count: number) => {
-    setCount(count); //데이터 입력 중에 추가했을 때는?
     const temp = [];
     for (let i: number = 0; i < count; i++) {
       temp.push({ answer: '' });
     }
     setFileAndAnswer(temp);
+  }, []);
+
+  const renderQuizButton = (count: number) => {
+    setCount(count); //데이터 입력 중에 추가했을 때는?
+    
   };
 
   const handleInputText = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,15 +29,20 @@ const CreateQuiz = () => {
   };
 
   const onPlusClicked = () => {
-    if(count >8){
+    if(count >8) {
       alert("문제는 최대 9개까지 생성할 수 있습니다");
     }
-    renderQuizButton(count + 1);
+    setCount(count + 1);
+    setFileAndAnswer([...fileAndAnswer, {answer: ""}])
   };
 
   const onMinusClicked = () => {
-    if (count > 4) {
+    if (count > 3) {
       renderQuizButton(count - 1);
+      setCount(count -1);
+      const n_arr = [...fileAndAnswer];
+      n_arr.pop();
+      setFileAndAnswer(n_arr);
     } else {
       alert('3개 이상 문제를 만들어주세요. ');
     }
