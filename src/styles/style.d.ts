@@ -7,6 +7,12 @@ declare module 'styled-components' {
       primaryRed: string;
       black: string;
     };
-    size: {};
+    size: {
+      small: '1rem';
+      small2: '1.125rem';
+      medium: '2rem';
+      title: '6rem';
+      qCount: '2.625rem';
+    };
   }
 }

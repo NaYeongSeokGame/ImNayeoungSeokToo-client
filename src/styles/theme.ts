@@ -6,5 +6,11 @@ export const theme: DefaultTheme = {
     primaryRed: '#FF0000',
     black: '#000000',
   },
-  size: {},
+  size: {
+    small: '1rem',
+    small2: '1.125rem',
+    medium: '2rem',
+    title: '6rem',
+    qCount: '2.625rem',
+  },
 };

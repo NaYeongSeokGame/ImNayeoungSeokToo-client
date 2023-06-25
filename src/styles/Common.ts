@@ -8,21 +8,21 @@ export const DefaultButtonStyle = css`
 `;
 
 export const SmallText1 = styled.span`
-  font-size: 1rem;
+  font-size: ${({ theme: { size } }) => size.small2};
 `;
 
 export const SmallText2 = styled.span`
-  font-size: 1.125rem;
+  font-size: ${({ theme: { size } }) => size.small2};
 `;
 
 export const MediumText = styled.span`
-  font-size: 2rem;
+  font-size: ${({ theme: { size } }) => size.medium};
 `;
 
 export const TitleText = styled.span`
-  font-size: 6rem;
+  font-size: ${({ theme: { size } }) => size.title};
 `;
 
 export const QCountText = styled.span`
-  font-size: 2.625rem;
+  font-size: ${({ theme: { size } }) => size.qCount};
 `;
