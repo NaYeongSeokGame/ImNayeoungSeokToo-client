@@ -2,7 +2,6 @@ import { env } from 'process';
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-import AddQuizButton from '@/components/AddQuizButton';
 import AddQuizButtonGrid from '@/components/AddQuizButtonGrid';
 import { QuizFileAndAnswer } from '@/types/interfaces';
 
@@ -19,11 +18,6 @@ const CreateQuiz = () => {
     setFileAndAnswer(temp);
   }, []);
 
-  const renderQuizButton = (count: number) => {
-    setCount(count); //데이터 입력 중에 추가했을 때는?
-    
-  };
-
   const handleInputText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
@@ -38,7 +32,6 @@ const CreateQuiz = () => {
 
   const onMinusClicked = () => {
     if (count > 3) {
-      renderQuizButton(count - 1);
       setCount(count -1);
       const n_arr = [...fileAndAnswer];
       n_arr.pop();
@@ -47,14 +40,17 @@ const CreateQuiz = () => {
       alert('3개 이상 문제를 만들어주세요. ');
     }
   };
+
   const addContent = (event: React.MouseEvent<HTMLElement>) => {
     const id = event.currentTarget.id; //index 값
     console.log(id);
     //모달오픈
   };
+
   const uploadNewQuiz = () => {
     //api에 업로드
   };
+
   return (
     <CreateQuizLayout>
       <QuizTitleLayout>
