@@ -1,5 +1,5 @@
 export interface Preset {
-  presetPin: number;
+  presetPin: string;
   isPrivate: boolean;
   title: string;
   quizzes: Quiz[];
