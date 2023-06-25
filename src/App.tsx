@@ -1,11 +1,7 @@
-import Home from "./pages/Home.tsx";
+import CommonLayout from './components/CommonLayout.tsx';
 
 function App() {
-  return (
-    <div>
-      <Home />
-    </div>
-  );
+  return <CommonLayout />;
 }
 
 export default App;
