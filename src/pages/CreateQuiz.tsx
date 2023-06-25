@@ -8,14 +8,13 @@ import { QuizFileAndAnswer } from '@/types/interfaces';
 const CreateQuiz = () => {
   const [count, setCount] = useState<number>(3);
   const [title, setTitle] = useState<string>('');
-  const [fileAndAnswer, setFileAndAnswer] = useState<QuizFileAndAnswer[]>([]);
-
+  const [quizPreset, setQuizPreset] = useState<QuizFileAndAnswer[]>([]);
   useEffect(() => {
     const temp = [];
     for (let i: number = 0; i < count; i++) {
       temp.push({ answer: '' });
     }
-    setFileAndAnswer(temp);
+    setQuizPreset(temp);
   }, []);
 
   const handleInputText = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,15 +26,15 @@ const CreateQuiz = () => {
       alert("문제는 최대 9개까지 생성할 수 있습니다");
     }
     setCount(count + 1);
-    setFileAndAnswer([...fileAndAnswer, {answer: ""}])
+    setQuizPreset([...quizPreset, {answer: ""}])
   };
 
   const onMinusClicked = () => {
     if (count > 3) {
       setCount(count -1);
-      const n_arr = [...fileAndAnswer];
+      const n_arr = [...quizPreset];
       n_arr.pop();
-      setFileAndAnswer(n_arr);
+      setQuizPreset(n_arr);
     } else {
       alert('3개 이상 문제를 만들어주세요. ');
     }
@@ -69,7 +68,7 @@ const CreateQuiz = () => {
 
 
       <AddQuizButtonGrid
-        fileAndAnswer={fileAndAnswer}
+        fileAndAnswer={quizPreset}
         addContent={addContent}
       />
       <button>홈 화면으로 돌아가기</button>
