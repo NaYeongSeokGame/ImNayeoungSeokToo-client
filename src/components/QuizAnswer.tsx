@@ -61,7 +61,7 @@ const QuizAnswer = ({
       <AnswerText>{currentQuiz.answer}</AnswerText>
       <ButtonContainer>
         {isMomentAnswerButtonClicked ? (
-          <Button>뒤로가기</Button>
+          <Button onClick={handleGoBack}>뒤로가기</Button>
         ) : (
           <>
             <Button onClick={() => handleAnswer(true)}>O</Button>
