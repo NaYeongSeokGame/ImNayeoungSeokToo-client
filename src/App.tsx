@@ -1,7 +1,8 @@
-import MainScreen from './Components/Home/MainScreen';
+
+import CommonLayout from './components/CommonLayout.tsx';
 
 function App() {
-  return <MainScreen />;
+  return <CommonLayout />;
 }
 
 export default App;
