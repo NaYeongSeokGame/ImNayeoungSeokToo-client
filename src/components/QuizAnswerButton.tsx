@@ -105,15 +105,15 @@ const QuizAnswerButton = () => {
     );
   }
 
-  if (index === preset.quizList.length) {
-    return (
-      <QuizResult
-        score={score}
-        totalQuiz={preset.quizList.length}
-        handleHomeButtonClick={handleHomeButtonClick}
-      />
-    );
-  }
+  // if (index === preset.quizList.length) {
+  //   return (
+  //     <QuizResult
+  //       score={score}
+  //       totalQuiz={preset.quizList.length}
+  //       handleHomeButtonClick={handleHomeButtonClick}
+  //     />
+  //   );
+  // }
 
   return (
     <Container>
