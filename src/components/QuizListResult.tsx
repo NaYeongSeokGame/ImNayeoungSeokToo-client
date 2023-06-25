@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+interface QuizListResultProps {
+  score: number;
+  totalQuiz: number;
+  handleHomeButtonClick: () => void;
+}
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,16 +15,18 @@ const Container = styled.div`
 `;
 
 const ScoreContainer = styled.div`
-  border: 3px solid black;
-  width: 300px;
-  height: 360px;
-  border-radius: 8px;
-  font-size: 50px;
-  font-weight: 700;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 18.75rem;
+  height: 23rem;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 5px solid #000;
+  background: #fff;
+  box-shadow: 1px 4px 2px 0px rgba(0, 0, 0, 0.1);
+  font-size: 5rem;
+  font-weight: 700;
 `;
 
 const CorrectScore = styled.div`
@@ -26,21 +34,21 @@ const CorrectScore = styled.div`
 `;
 
 const Button = styled.button`
-  height: 70px;
-  width: 200px;
+  width: 13.75rem;
+  height: 4rem;
+  flex-shrink: 0;
   color: #7443ff;
   background-color: white;
-  border: 3px solid black;
-  border-radius: 8px;
+  border: 5px solid black;
+  border-radius: 20px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.125rem;
+  margin-top: 1.25rem;
 `;
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
-  width: 300px;
 `;
 const QuizResult = ({
   score,
@@ -51,9 +59,6 @@ const QuizResult = ({
     <ScoreContainer>
       <CorrectScore>{score}</CorrectScore>/{totalQuiz}
     </ScoreContainer>
-    <ButtonContainer>
-      <Button onClick={handleHomeButtonClick}>돌아가기</Button>
-    </ButtonContainer>
   </Container>
 );
 
