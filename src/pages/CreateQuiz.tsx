@@ -46,8 +46,16 @@ const CreateQuiz = () => {
     //api에 업로드
   };
   return (
-    <div>
       <CreateQuizLayout>
+        <QuizTitleLayout>
+
+        <QuizTitleInput
+          type="text"
+          placeholder="퀴즈 이름을 입력해주세요 "
+          onChange={handleInputText}
+          value={title}
+        ></QuizTitleInput>
+        </QuizTitleLayout>
         <QuizCounter>
           <button onClick={onMinusClicked}>-</button>
           {count}
@@ -59,15 +67,8 @@ const CreateQuiz = () => {
           fileAndAnswer={fileAndAnswer}
           addContent={addContent}
         />
-        <input
-          type="text"
-          placeholder="퀴즈 이름을 입력해주세요 "
-          onChange={handleInputText}
-          value={title}
-        ></input>
         <button>홈 화면으로 돌아가기</button>
       </CreateQuizLayout>
-    </div>
   );
 };
 
@@ -79,6 +80,9 @@ const CreateQuizLayout = styled.div`
   height: 100vh;
   background-color: grey;
 `;
+
+const QuizTitleInput = styled.input``;
+const QuizTitleLayout = styled.div`margin: 0 auto`;
 
 const QuizCounter = styled.div``;
 
