@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/imnayeongseoktoo-deploy
+    destination: /home/ubuntu/client-build
     overwrite: yes
 permissions:
-  - object: /home/ubuntu/imnayeongseoktoo-deploy
+  - object: /home/ubuntu/client-build
     owner: root
     group: root
     mode: 755
