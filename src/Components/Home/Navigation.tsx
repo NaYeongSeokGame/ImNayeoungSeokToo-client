@@ -42,9 +42,8 @@ function Navigation(): JSX.Element {
   return (
     <NavigationContainer>
       <ConfigButton>
-        {isOpenModal && <Modal />}
+        {isOpenModal && <Modal onClickToggleModal={onClickToggleModal} />}
         <DialogButton onClick={onClickToggleModal}>
-          {' '}
           <ConfigImage
             src="https://i.pinimg.com/564x/23/8b/7f/238b7f2849994039b217c3eeb3706001.jpg"
             alt="설정"
