@@ -9,3 +9,7 @@ export interface Quiz {
   imageUrl: string;
   answer: string;
 }
+
+export interface ChangedQuizTimer {
+  getTimer: () => number;
+}

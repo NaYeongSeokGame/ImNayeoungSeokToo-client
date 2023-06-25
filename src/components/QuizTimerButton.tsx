@@ -4,16 +4,13 @@ import { styled } from 'styled-components';
 import minusIcon from '@/assets/icons/minus.svg';
 import plusIcon from '@/assets/icons/plus.svg';
 import { DefaultButtonStyle, QCountText } from '@/styles/Common';
+import { ChangedQuizTimer } from '@/types/quiz';
 
 type QuizTimerButtonProps = unknown;
 
-export interface QuizTimer {
-  getTimer: () => number;
-}
-
 const QuizTimerButton = (
   _: QuizTimerButtonProps,
-  ref: ForwardedRef<QuizTimer>,
+  ref: ForwardedRef<ChangedQuizTimer>,
 ) => {
   const [timer, setTimer] = useState(3);
 
