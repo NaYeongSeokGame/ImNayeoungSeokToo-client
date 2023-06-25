@@ -7,6 +7,7 @@ const CreateQuiz = () => {
   const [quizPreset, setQuizPreset] = useState<QuizFileAndAnswer[]>([]);
   return (
     <div>
+      <h1>create Quiz</h1>
       <UploadModal setQuizPreset={setQuizPreset} />
     </div>
   );

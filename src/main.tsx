@@ -3,24 +3,38 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'jotai';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import '@/assets/fonts/font.css';
 
 import App from './App.tsx';
-import CreateQuiz from "./pages/CreateQuiz.tsx";
-import PrepareQuiz from "./pages/PrepareQuiz.tsx";
+import CreateQuiz from './pages/CreateQuiz.tsx';
+import Home from './pages/Home.tsx';
+import { NotFound } from './pages/NotFound.tsx';
+import PrepareQuiz from './pages/PrepareQuiz.tsx';
+import GlobalStyle from './styles/globalStyle.ts';
+import { theme } from './styles/theme.ts';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  }, {
-    path: '/quiz/create',
-    element: <CreateQuiz />
-  }, {
-    path: '/quiz/:id',
-    element: <PrepareQuiz />
-  }
+    errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/quiz/create',
+        element: <CreateQuiz />,
+      },
+      {
+        path: '/quiz/:id',
+        element: <PrepareQuiz />,
+      },
+    ],
+  },
 ]);
 
 const queryClient = new QueryClient({
@@ -37,7 +51,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
     <Provider>
-      <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </Provider>
   </QueryClientProvider>,
 );
