@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as url from 'url';
 
 import { Quiz } from '@/types/Quiz.ts';
 
