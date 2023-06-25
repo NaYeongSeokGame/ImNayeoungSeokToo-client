@@ -1,10 +1,17 @@
-import React from "react";
+import Modal from '@/components/Modal';
+import QuizPreset from '@/components/QuizPreset';
+import useModal from '@/hooks/useModal';
 
 const PrepareQuiz = () => {
+  const { isOpen, onClose, onOpen } = useModal();
+
   return (
-    <div>
-      
-    </div>
+    <>
+      <button onClick={onOpen}>click</button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <QuizPreset title={'title'} imgUrl="" />
+      </Modal>
+    </>
   );
 };
 
