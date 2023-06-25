@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import QuizAnswer from './QuizAnswer';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,6 +74,21 @@ const QuizAnswerButton = () => {
   const handleMomentAnswerButtonClick = (): void => {
     setIsMomentAnswerButtonClicked(true);
   };
+
+  if (isAnswerButtonClicked || isMomentAnswerButtonClicked) {
+    return (
+      <QuizAnswer
+        index={index}
+        setIndex={setIndex}
+        setIsAnswerButtonClicked={setIsAnswerButtonClicked}
+        score={score}
+        setScore={setScore}
+        preset={preset}
+        isMomentAnswerButtonClicked={isMomentAnswerButtonClicked}
+        setIsMomentAnswerButtonClicked={setIsMomentAnswerButtonClicked}
+      />
+    );
+  }
 
   return (
     <Container>
