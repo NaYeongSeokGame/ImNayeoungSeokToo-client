@@ -1,5 +1,5 @@
 const PrepareQuiz = () => {
-  return <div></div>;
+  return <div>prepareQuiz</div>;
 };
 
 export default PrepareQuiz;
