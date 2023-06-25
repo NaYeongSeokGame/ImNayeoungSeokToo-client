@@ -35,6 +35,13 @@ const Button = styled.button`
   font-weight: 700;
   font-size: 20px;
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 300px;
+`;
 const QuizResult = ({
   score,
   totalQuiz,
@@ -44,6 +51,9 @@ const QuizResult = ({
     <ScoreContainer>
       <CorrectScore>{score}</CorrectScore>/{totalQuiz}
     </ScoreContainer>
+    <ButtonContainer>
+      <Button onClick={handleHomeButtonClick}>돌아가기</Button>
+    </ButtonContainer>
   </Container>
 );
 
