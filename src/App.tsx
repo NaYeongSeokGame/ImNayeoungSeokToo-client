@@ -1,9 +1,7 @@
+import MainScreen from './Components/Home/MainScreen';
+
 function App() {
-  return (
-    <div>
-      <p>I'm Na Yeong Seok Too Project Setting</p>
-    </div>
-  );
+  return <MainScreen />;
 }
 
 export default App;
