@@ -2,7 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import QuizAnswer from './QuizAnswer';
-import QuizResult from './QuizListResult';
+
+// import QuizResult from './QuizListResult';
 
 const Container = styled.div`
   display: flex;
