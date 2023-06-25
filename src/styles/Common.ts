@@ -8,21 +8,21 @@ export const DefaultButtonStyle = css`
 `;
 
 export const SmallText1 = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 export const SmallText2 = styled.span`
-  font-size: 18px;
+  font-size: 1.125rem;
 `;
 
 export const MediumText = styled.span`
-  font-size: 32px;
+  font-size: 2rem;
 `;
 
 export const TitleText = styled.span`
-  font-size: 96px;
+  font-size: 6rem;
 `;
 
 export const QCountText = styled.span`
-  font-size: 42px;
+  font-size: 2.625rem;
 `;
