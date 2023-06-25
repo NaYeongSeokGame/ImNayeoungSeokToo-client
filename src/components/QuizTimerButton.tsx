@@ -8,10 +8,10 @@ import { ChangedQuizTimer } from '@/types/quiz';
 
 type QuizTimerButtonProps = unknown;
 
-const QuizTimerButton = (
+const QuizTimerButton = forwardRef(function (
   _: QuizTimerButtonProps,
   ref: ForwardedRef<ChangedQuizTimer>,
-) => {
+) {
   const [timer, setTimer] = useState(3);
 
   const minusSeconds = () => {
@@ -41,9 +41,9 @@ const QuizTimerButton = (
       <TimerChangeButton imgUrl={plusIcon} onClick={plusSeconds} />
     </TimerContainer>
   );
-};
+});
 
-export default forwardRef(QuizTimerButton);
+export default QuizTimerButton;
 
 const TimerContainer = styled.div`
   display: flex;
