@@ -14,9 +14,11 @@ import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
 import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
+import QuizResult from '@/components/pages/QuizResult';
 import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
+import { QuizStateProvider } from '@/utils/QuizContext';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
         element: <QuizAnswer answer="dsd" />,
       },
       {
+        path: '/quiz/:presetPin/result',
+        element: <QuizResult />,
+      },
+      {
         path: 'test',
         element: <TestAPI />,
       },
@@ -68,6 +74,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <ModalPortal />
+        <QuizStateProvider>
+          <RouterProvider router={router} />
+        </QuizStateProvider>
         <ToastContainer
           position="top-right"
           autoClose={1500}
