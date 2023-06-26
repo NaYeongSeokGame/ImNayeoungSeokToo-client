@@ -5,7 +5,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
  * baseURL, responseType 같은 공용 속성을 일괄적으로 적용
  */
 const API = axios.create({
-  baseURL: process.env.VITE_SERVER_URL,
+  baseURL: import.meta.env.VITE_SERVER_URL,
 });
 
 /**

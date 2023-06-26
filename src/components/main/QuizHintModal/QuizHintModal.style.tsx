@@ -1,15 +1,5 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 700px;
-  margin: auto;
-
-  box-shadow: 0px 0px 5px rgba(165, 165, 165, 0.25);
-`;
-
 export const HintSection = styled.section`
   ${({ theme }) => {
     return css`

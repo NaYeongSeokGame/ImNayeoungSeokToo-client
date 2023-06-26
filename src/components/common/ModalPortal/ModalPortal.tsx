@@ -12,8 +12,6 @@ const ModalPortal = () => {
   const [{ isOpen, content }] = useAtom(modalStateAtom);
   const { closeModal } = useModal();
 
-  console.log(isOpen, content);
-
   if (isOpen) {
     // 만약 mount 되기 전이라면, window 객체의 정보가 없으므로 false를 return 하게 됨.
     const modalRoot =

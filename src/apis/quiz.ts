@@ -1,6 +1,7 @@
 import {
+  CreatePresetType,
   GetQuizListOutput,
-  PostCreateNewPresetInput,
+  QuizPresetPinType,
   QuizTypeWithPin,
 } from '@/types/quiz';
 
@@ -37,14 +38,14 @@ class QuizRepository {
     isPrivate,
     images,
     answers,
-  }: PostCreateNewPresetInput) {
+  }: CreatePresetType) {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
 
-    const response = await postAsync<Pick<QuizTypeWithPin, 'presetPin'>>(
+    const response = await postAsync<QuizPresetPinType, FormData>(
       '/quiz/create',
       formData,
     );
@@ -52,7 +53,7 @@ class QuizRepository {
   }
 
   static async deletePresetAsync(presetId: string) {
-    const response = deleteAsync('/quiz/remove', {
+    const response = deleteAsync<undefined>('/quiz/remove', {
       params: {
         presetId,
       },

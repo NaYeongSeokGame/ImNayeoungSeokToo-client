@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import '@/assets/fonts/font.css';
 import BasicLayout from '@/components/common/BasicLayout';
 import ModalPortal from '@/components/common/ModalPortal';
+import CreateQuiz from '@/components/pages/CreateQuiz';
 import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
 import QuizAnswer from '@/components/pages/QuizAnswer';
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/quiz/create',
-        element: <div />,
+        element: <CreateQuiz />,
       },
       {
         path: '/quiz/:id',
