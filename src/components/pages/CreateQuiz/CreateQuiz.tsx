@@ -35,6 +35,13 @@ const CreateQuiz = () => {
     }));
   };
 
+  const handlePresetTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPresetData((prev) => ({
+      ...prev,
+      title: e.target.value,
+    }));
+  };
+
   const removeCurrentQuiz = (index: number) => {
     setPresetData((prev) => ({
       ...prev,
@@ -70,7 +77,7 @@ const CreateQuiz = () => {
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
 
-    if (!isEmpty && isNotSame) return;
+    if (!isEmpty && isNotSame && !title) return;
 
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
@@ -99,7 +106,11 @@ const CreateQuiz = () => {
   return (
     <>
       <styles.Title />
-      <styles.PresetNameInput placeholder="퀴즈 이름" />
+      <styles.PresetNameInput
+        placeholder="퀴즈 이름"
+        value={presetData.title}
+        onChange={handlePresetTitleInput}
+      />
       <styles.QuizAmountCounter>
         <PlusIconSvg onClick={() => handleQuizAmount(1)} />
         {quizAmount}
