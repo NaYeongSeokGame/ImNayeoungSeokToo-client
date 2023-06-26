@@ -16,6 +16,7 @@ import QuizPlay from '@/components/pages/QuizPlay';
 import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
+import { QuizStateProvider } from '@/utils/QuizContext';
 
 const router = createBrowserRouter([
   {
@@ -37,11 +38,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/quiz/:presetPin/:seq',
-        element: <QuizPlay />,
+        element: (
+          <QuizStateProvider>
+            <QuizPlay />
+          </QuizStateProvider>
+        ),
       },
       {
         path: '/quiz/:presetPin/:seq/answer',
-        element: <QuizAnswer answer="dsd" />,
+        element: (
+          <QuizStateProvider>
+            <QuizAnswer answer="dsd" />
+          </QuizStateProvider>
+        ),
       },
       {
         path: 'test',
