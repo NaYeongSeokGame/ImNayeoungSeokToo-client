@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 
 import AddQuizButtonGrid from '@/components/AddQuizButtonGrid';
 import Logo from '@/components/Logo';
+import UploadModal from '@/components/UploadModal';
 import { QuizFileAndAnswer } from '@/types/interfaces';
 
 import plusLogo from '../assets/icons/+_black.svg';
@@ -73,6 +74,7 @@ const CreateQuiz = () => {
         <AddQuizButtonGrid fileAndAnswer={quizPreset} addContent={addContent} />
       </QuizGridLayout>
       <CreateQuizButton>CREATE QUIZ</CreateQuizButton>
+      <UploadModal setQuizPreset={setQuizPreset} />
     </CreateQuizLayout>
   );
 };

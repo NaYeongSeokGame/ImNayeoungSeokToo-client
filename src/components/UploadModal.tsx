@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { QuizFileAndAnswer } from '@/types/imageUploadmodal';
+import { QuizFileAndAnswer } from '@/types/interfaces';
 import previewImage from '@/utils/previewImage';
 
 type UploadModalProps = {
@@ -45,23 +45,28 @@ const UploadModal = ({ setQuizPreset }: UploadModalProps) => {
   return (
     <ModalContainer>
       <Form onSubmit={handleSubmit}>
-        {!preview && (
-          <ImageLabel htmlFor="imageUploader">
-            출제할 인물을 업로드 해주세요
-          </ImageLabel>
-        )}
-        {preview ? (
-          <img src={preview} />
-        ) : (
-          <ImageUploader
-            id="imageUploader"
-            type="file"
-            accept=".jpg,.png,.jpeg"
-            onChange={handleUploadImage}
-          />
-        )}
-        <AnswerInput type="text" placeholder="정답" ref={answerRef} />
-        <SubmitButton>저장</SubmitButton>
+        <InputContainer>
+          {!preview && (
+            <ImageLabel htmlFor="imageUploader">이미지 추가하기</ImageLabel>
+          )}
+          {preview ? (
+            <PreviewImage src={preview} />
+          ) : (
+            <ImageUploader
+              id="imageUploader"
+              type="file"
+              accept=".jpg,.png,.jpeg"
+              onChange={handleUploadImage}
+            />
+          )}
+        </InputContainer>
+        <AnswerLabel>정답란 입력하기</AnswerLabel>
+        <AnswerInput
+          type="text"
+          placeholder="정답을 입력해주세요"
+          ref={answerRef}
+        />
+        <SubmitButton>완료</SubmitButton>
       </Form>
     </ModalContainer>
   );
@@ -69,14 +74,84 @@ const UploadModal = ({ setQuizPreset }: UploadModalProps) => {
 
 export default UploadModal;
 
-const ModalContainer = styled.div``;
+const ModalContainer = styled.div`
+  width: 300px;
+  height: 376px;
+  border-radius: 20px;
+  border: 5px solid #000;
+  background-color: #fff;
+`;
 
-const Form = styled.form``;
+const Form = styled.form`
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
-const ImageLabel = styled.label``;
+const ImageLabel = styled.label`
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400px;
+  font-family: LOTTERIA CHAB;
+`;
 
-const ImageUploader = styled.input``;
+const ImageUploader = styled.input`
+  width: 240px;
+  height: 144px;
+  margin-bottom: 1rem;
 
-const AnswerInput = styled.input``;
+  &::file-selector-button {
+    width: 240px;
+    height: 144px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 4px;
+    color: #333;
+  }
+`;
 
-const SubmitButton = styled.button``;
+const AnswerLabel = styled(ImageLabel)`
+  width: 100%;
+`;
+
+const AnswerInput = styled.input`
+  width: 240px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 5px solid black;
+  text-align: center;
+
+  &::placeholder::focus {
+    color: transparent;
+  }
+`;
+
+const SubmitButton = styled.button`
+  width: 160px;
+  height: 64px;
+  margin-top: 1rem;
+  color: ${({ theme }) => theme.color.primaryPurple};
+  font-size: 32px;
+  font-weight: 400;
+  border-radius: 20px;
+  border: 5px solid black;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+`;
+
+const PreviewImage = styled.img`
+  display: block;
+  width: 240px;
+  height: 144px;
+  margin-bottom: 1rem;
+`;
