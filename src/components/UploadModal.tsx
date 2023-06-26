@@ -6,14 +6,14 @@ import previewImage from '@/utils/previewImage';
 
 type UploadModalProps = {
   setQuizPreset: React.Dispatch<React.SetStateAction<QuizFileAndAnswer[]>>;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UploadModal = ({ setQuizPreset }: UploadModalProps) => {
-  const [quizImage, setQuizImage] = useState<File>();
+const UploadModal = ({ setQuizPreset, setIsModalOpen }: UploadModalProps) => {
+  const [quizImage, setQuizImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-
-  const answerRef = useRef<HTMLInputElement | null>(null);
-  const answer = answerRef.current?.value;
+  const [answer, setAnswer] = useState<string>('');
+  const [isSubmitEnabled, setIsSubmitEnabled] = useState<boolean>(false);
 
   const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -23,6 +23,18 @@ const UploadModal = ({ setQuizPreset }: UploadModalProps) => {
 
     const previewURL = await previewImage(file);
     setPreview(previewURL);
+
+    if (quizImage && answer.trim().length !== 0) {
+      setIsSubmitEnabled(true);
+    }
+  };
+
+  const handleAnswer = (e: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.target.value);
+
+    if (quizImage && answer.trim().length !== 0) {
+      setIsSubmitEnabled(true);
+    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -34,39 +46,41 @@ const UploadModal = ({ setQuizPreset }: UploadModalProps) => {
       return;
     }
 
-    if (answer?.trim() === '') {
+    if (answer.trim().length === 0) {
       console.log('정답을 확인해주세요');
       return;
     }
 
-    answer && setQuizPreset((prev) => [...prev, { file: quizImage, answer }]);
+    setQuizPreset((prev) => [...prev, { file: quizImage, answer }]);
+    setIsModalOpen(false);
   };
 
   return (
     <ModalContainer>
       <Form onSubmit={handleSubmit}>
-        <InputContainer>
-          {!preview && (
-            <ImageLabel htmlFor="imageUploader">이미지 추가하기</ImageLabel>
-          )}
-          {preview ? (
-            <PreviewImage src={preview} />
-          ) : (
-            <ImageUploader
-              id="imageUploader"
-              type="file"
-              accept=".jpg,.png,.jpeg"
-              onChange={handleUploadImage}
-            />
-          )}
-        </InputContainer>
+        {!preview && (
+          <ImageLabel htmlFor="imageUploader">이미지 추가하기</ImageLabel>
+        )}
+        {preview ? (
+          <PreviewImage src={preview} />
+        ) : (
+          <ImageUploader
+            id="imageUploader"
+            type="file"
+            accept=".jpg,.png,.jpeg"
+            onChange={handleUploadImage}
+            required
+          />
+        )}
         <AnswerLabel>정답란 입력하기</AnswerLabel>
         <AnswerInput
           type="text"
           placeholder="정답을 입력해주세요"
-          ref={answerRef}
+          value={answer}
+          onChange={handleAnswer}
+          required
         />
-        <SubmitButton>완료</SubmitButton>
+        <SubmitButton disabled={!isSubmitEnabled}>완료</SubmitButton>
       </Form>
     </ModalContainer>
   );
@@ -75,15 +89,24 @@ const UploadModal = ({ setQuizPreset }: UploadModalProps) => {
 export default UploadModal;
 
 const ModalContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 800px;
+  background-color: #97979780;
+  position: fixed;
+  top: 0;
+`;
+
+const Form = styled.form`
+  position: relative;
   width: 300px;
   height: 376px;
   border-radius: 20px;
   border: 5px solid #000;
   background-color: #fff;
-`;
-
-const Form = styled.form`
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -106,11 +129,11 @@ const ImageUploader = styled.input`
   &::file-selector-button {
     width: 240px;
     height: 144px;
-    padding: 10px;
-    background-color: #f1f1f1;
-    border: none;
-    border-radius: 4px;
-    color: #333;
+    border-radius: 20px;
+    border: 5px solid black;
+    cursor: pointer;
+    background-color: #fff;
+    box-sizing: border-box;
   }
 `;
 
@@ -133,6 +156,8 @@ const AnswerInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  position: absolute;
+  bottom: -6rem;
   width: 160px;
   height: 64px;
   margin-top: 1rem;
@@ -141,12 +166,7 @@ const SubmitButton = styled.button`
   font-weight: 400;
   border-radius: 20px;
   border: 5px solid black;
-`;
-
-const InputContainer = styled.div`
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
+  cursor: pointer;
 `;
 
 const PreviewImage = styled.img`

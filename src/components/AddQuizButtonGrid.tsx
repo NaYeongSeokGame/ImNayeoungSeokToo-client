@@ -28,4 +28,5 @@ const QuizGridLayout = styled.div`
   justify-content: space-evenly;
   flex-wrap: wrap; // 복수의 행
   margin: 0 1rem 0 1rem;
+  cursor: pointer;
 `;

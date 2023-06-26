@@ -12,6 +12,8 @@ import plusLogo from '../assets/icons/+_black.svg';
 const CreateQuiz = () => {
   const [count, setCount] = useState<number>(3);
   const [title, setTitle] = useState<string>('퀴즈이름');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const [quizPreset, setQuizPreset] = useState<QuizFileAndAnswer[]>([]);
   useEffect(() => {
     const temp = [];
@@ -48,6 +50,7 @@ const CreateQuiz = () => {
     const id = event.currentTarget.id; //index 값
     console.log(id);
     //모달오픈
+    setIsModalOpen(true);
   };
 
   const uploadNewQuiz = () => {
@@ -74,7 +77,12 @@ const CreateQuiz = () => {
         <AddQuizButtonGrid fileAndAnswer={quizPreset} addContent={addContent} />
       </QuizGridLayout>
       <CreateQuizButton>CREATE QUIZ</CreateQuizButton>
-      <UploadModal setQuizPreset={setQuizPreset} />
+      {isModalOpen && (
+        <UploadModal
+          setQuizPreset={setQuizPreset}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </CreateQuizLayout>
   );
 };
@@ -82,6 +90,7 @@ const CreateQuiz = () => {
 export default CreateQuiz;
 
 const CreateQuizLayout = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,10 +131,12 @@ const QuizGridLayout = styled.div`
 const CounterPlus = styled.p`
   width: 1.90906rem;
   height: 1.875rem;
+  cursor: pointer;
 `;
 const CounterMinus = styled.p`
   width: 1.90906rem;
   height: 1.875rem;
+  cursor: pointer;
 `;
 const Count = styled.p`
   font-size: 2.625rem;
@@ -144,4 +155,5 @@ const CreateQuizButton = styled.button`
   margin-top: 1.75rem;
   font-size: 1.125rem;
   font-family: LOTTERIA CHAB;
+  cursor: pointer;
 `;
