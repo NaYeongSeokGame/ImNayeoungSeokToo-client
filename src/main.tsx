@@ -74,10 +74,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <ModalPortal />
-        <QuizStateProvider>
-          <RouterProvider router={router} />
-        </QuizStateProvider>
         <ToastContainer
           position="top-right"
           autoClose={1500}
@@ -90,7 +86,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           pauseOnHover
           theme="dark"
         />
-        <RouterProvider router={router} />
+        <QuizStateProvider>
+          <RouterProvider router={router} />
+        </QuizStateProvider>
       </ThemeProvider>
     </Provider>
   </QueryClientProvider>,

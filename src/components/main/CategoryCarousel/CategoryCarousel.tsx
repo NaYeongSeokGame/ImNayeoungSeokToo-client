@@ -1,4 +1,5 @@
 import useModal from '@/hooks/useModal';
+import { QuizType } from '@/types/quiz';
 
 import GameStartModal from '../GameStartModal';
 import * as styles from './CategoryCarousel.style';
@@ -69,7 +70,11 @@ const EXAMPLE_CATEGORY_ELEMENT: CategoryElementProps[] = [
   },
 ];
 
-const CategoryCarousel = () => {
+interface CategoryCarouselProps {
+  presetList: QuizType[];
+}
+
+const CategoryCarousel = ({ presetList }: CategoryCarouselProps) => {
   const { openModal } = useModal();
 
   const handleGoToQuizPreset = (presetPin: string) => {

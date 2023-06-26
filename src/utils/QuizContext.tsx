@@ -1,19 +1,33 @@
 import { Dispatch, createContext, useReducer } from 'react';
 
+import { QuizType } from '@/types/quiz';
+
+type QuizStateType = {
+  timer: number;
+  scoreCorrect: number;
+  scoreIncorrect: number;
+  quizData: QuizType[];
+};
+
+type QuizAction = {
+  quizData: QuizType[];
+  type:
+    | 'setTimer'
+    | 'addScoreCorrect'
+    | 'addScoreIncorrect'
+    | 'scoreInit'
+    | 'updateQuizData';
+  count: number;
+};
+
 const initQuizState = {
   timer: 3,
   scoreCorrect: 0,
   scoreIncorrect: 0,
+  quizData: [],
 };
 
-type QuizStateType = typeof initQuizState;
-
-type QuizAction = {
-  type: 'setTimer' | 'addScoreCorrect' | 'addScoreIncorrect' | 'scoreInit';
-  count: number;
-};
-
-export const QuizStateContext = createContext(initQuizState);
+export const QuizStateContext = createContext<QuizStateType>(initQuizState);
 
 export const QuizDispatchContext = createContext<Dispatch<QuizAction> | null>(
   null,
@@ -29,6 +43,8 @@ const reducer = (state: QuizStateType, action: QuizAction): QuizStateType => {
       return { ...state, scoreCorrect: state.scoreCorrect + 1 };
     case 'addScoreIncorrect':
       return { ...state, scoreIncorrect: state.scoreIncorrect + 1 };
+    case 'updateQuizData':
+      return { ...state, quizData: action.quizData };
   }
 };
 
