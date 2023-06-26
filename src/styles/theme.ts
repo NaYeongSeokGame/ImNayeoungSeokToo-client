@@ -13,4 +13,7 @@ export const theme: DefaultTheme = {
     title: '6rem',
     qCount: '2.625rem',
   },
+  fonts: {
+    primary: 'LOTTERIACHAB, sans-serif',
+  },
 };

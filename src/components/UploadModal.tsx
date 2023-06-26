@@ -47,6 +47,7 @@ const UploadModal = ({ setQuizPreset, setIsModalOpen }: UploadModalProps) => {
     }
 
     if (answer.trim().length === 0) {
+      // TODO: toast 같은 안내 메시지 처리
       console.log('정답을 확인해주세요');
       return;
     }
@@ -72,14 +73,16 @@ const UploadModal = ({ setQuizPreset, setIsModalOpen }: UploadModalProps) => {
             required
           />
         )}
-        <AnswerLabel>정답란 입력하기</AnswerLabel>
-        <AnswerInput
-          type="text"
-          placeholder="정답을 입력해주세요"
-          value={answer}
-          onChange={handleAnswer}
-          required
-        />
+        <div>
+          <AnswerLabel>정답란 입력하기</AnswerLabel>
+          <AnswerInput
+            type="text"
+            placeholder="정답을 입력해주세요"
+            value={answer}
+            onChange={handleAnswer}
+            required
+          />
+        </div>
         <SubmitButton disabled={!isSubmitEnabled}>완료</SubmitButton>
       </Form>
     </ModalContainer>
@@ -109,6 +112,7 @@ const Form = styled.form`
   padding: 1.5rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 `;
 
@@ -118,7 +122,7 @@ const ImageLabel = styled.label`
   text-align: center;
   font-size: 18px;
   font-weight: 400px;
-  font-family: LOTTERIA CHAB;
+  font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
 const ImageUploader = styled.input`
@@ -139,6 +143,7 @@ const ImageUploader = styled.input`
 
 const AnswerLabel = styled(ImageLabel)`
   width: 100%;
+  margin-bottom: 0.5rem;
 `;
 
 const AnswerInput = styled.input`

@@ -14,5 +14,8 @@ declare module 'styled-components' {
       title: '6rem';
       qCount: '2.625rem';
     };
+    fonts: {
+      primary: string;
+    };
   }
 }
