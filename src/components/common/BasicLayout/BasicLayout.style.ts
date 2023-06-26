@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
+
 export const Wrapper = styled.div`
   ${({ theme }) => {
     return css`
@@ -18,7 +20,7 @@ export const Background = styled.main`
   height: 50rem;
 
   margin: auto;
-  background-image: url(/src/assets/images/background.svg);
+  background-image: url(${getCloudFrontUrl('/static/background.png')});
   background-size: cover;
 
   display: flex;

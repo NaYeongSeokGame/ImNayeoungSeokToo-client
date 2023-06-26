@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   width: 22.5rem;
   overflow-x: auto;
-  margin-left: 0.5rem;
+  padding-left: 0.5rem;
 
   display: flex;
   justify-content: start;

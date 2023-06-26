@@ -18,36 +18,27 @@ export const Wrapper = styled.div`
   }}
 `;
 
-export const SettingBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  font-size: 2rem;
-`;
-
-export const SoundOptionBox = styled.div`
+export const StartDelayCounter = styled.div`
   ${({ theme }) => {
     return css`
       display: flex;
       justify-content: space-between;
-      gap: 0.5rem;
-      margin: 0.5rem auto 0;
 
-      font-size: 3rem;
+      width: 14rem;
+      padding: 0.25rem 1.25rem;
+      margin: 0 auto;
 
-      & .selected {
-        color: ${theme.colors.purple};
+      background-color: ${theme.colors.white};
+      border: 0.25rem solid ${theme.colors.black};
+      border-radius: 1rem;
+
+      font-size: 2.625rem;
+      font-family: 'Pretendard';
+      font-weight: 700;
+
+      & > svg {
+        margin: auto 0;
       }
     `;
   }}
-`;
-
-export const QuitOptionBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  margin: 1.875rem auto 0;
-
-  font-size: 2rem;
 `;

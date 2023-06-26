@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ReactComponent as CircleIconSvg } from '@/assets/icons/CircleIcon.svg';
 import { ReactComponent as XIconSvg } from '@/assets/icons/XIcon.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
