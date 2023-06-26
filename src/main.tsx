@@ -8,7 +8,8 @@ import { ThemeProvider } from 'styled-components';
 import '@/assets/fonts/font.css';
 import BasicLayout from '@/components/common/BasicLayout';
 import ModalPortal from '@/components/common/ModalPortal';
-import Home from '@/components/pages/Home/Home';
+import Home from '@/components/pages/Home';
+import Landing from '@/components/pages/Landing';
 import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/loading',
+        element: <Landing />,
       },
       {
         path: '/quiz/create',
