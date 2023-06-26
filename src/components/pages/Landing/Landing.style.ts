@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { ReactComponent as LandingImageSvg } from '@/assets/images/landingImage.svg';
 import { ReactComponent as LandingTextSvg } from '@/assets/images/landingText.svg';

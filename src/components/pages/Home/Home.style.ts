@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as TitleTextSvg } from '@/assets/icons/titleText.svg';
 import { ReactComponent as MainImageSvg } from '@/assets/images/mainImage.svg';
+import { ReactComponent as TitleTextSvg } from '@/assets/images/titleText.svg';
 
 export const Wrapper = styled.div`
   display: flex;

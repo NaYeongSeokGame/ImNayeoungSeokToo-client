@@ -18,7 +18,7 @@ export const Background = styled.main`
   height: 50rem;
 
   margin: auto;
-  background-image: url(/images/background.png);
+  background-image: url(/src/assets/images/background.svg);
   background-size: cover;
 
   display: flex;
