@@ -18,7 +18,7 @@ const QuizPlay = () => {
   const navigation = useNavigate();
   const quizAnswerUrl = `/quiz/${presetPin}/${seq}/answer`;
 
-  const [currentCount, setCurrentCount] = useState(3000);
+  const [currentCount, setCurrentCount] = useState(3800);
   const { isOpen } = useAtomValue(modalStateAtom);
   const { openModal } = useModal();
   const [gameState, setGameState] = useState<GameType>('playing');
