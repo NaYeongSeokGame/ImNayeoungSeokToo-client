@@ -12,17 +12,15 @@ interface QuizAnswerProps {
 }
 
 // FIXME : 테스트를 위한 임시 props 삽입
-const QuizAnswer = ({ answer = '송민호' }: QuizAnswerProps) => {
+const QuizAnswer = ({ answer }: QuizAnswerProps) => {
   const { presetPin, seq } = useParams();
   const navigation = useNavigate();
   const quizState = useQuizState();
 
-  console.log(quizState.quizData);
-
   const { quizData } = quizState;
   const { addScore } = useQuizDispatch();
   const nextRoundUrl =
-    quizData.length < Number(seq) + 1
+    quizData.length > Number(seq) + 1
       ? `/quiz/${presetPin}/${Number(seq) + 1}`
       : `/quiz/${presetPin}/result`;
 

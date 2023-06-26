@@ -1,5 +1,6 @@
 import useModal from '@/hooks/useModal';
 import { QuizType } from '@/types/quiz';
+import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
 
 import GameStartModal from '../GameStartModal';
 import * as styles from './CategoryCarousel.style';
@@ -14,71 +15,49 @@ interface CategoryElementProps {
 const EXAMPLE_CATEGORY_ELEMENT: CategoryElementProps[] = [
   {
     imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
+      'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499921cda2ab71457cff4f3/8c884b422460c98c.jpeg',
+    category: '스포츠',
     isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
+    presetPin: '649991e4da2ab71457cff4e7',
   },
   {
     imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
+      'http://d2e2zp9buqlqpp.cloudfront.net/preset/64999226da2ab71457cff4ff/이강인.jpg',
+    category: '축구선수',
     isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
+    presetPin: '64999226da2ab71457cff4ff',
   },
   {
     imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
+      'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499927bda2ab71457cff527/c39374225f7a80a0a9dcc2066eedc3de.jpg',
+    category: '남자연예인',
     isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
+    presetPin: '6499927bda2ab71457cff527',
   },
   {
     imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
+      'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499921cda2ab71457cff4f3/8c884b422460c98c.jpeg',
+    category: '여자연예인',
     isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
-  },
-  {
-    imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
-    isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
-  },
-  {
-    imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
-    isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
-  },
-  {
-    imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
-    isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
-  },
-  {
-    imageUrl:
-      'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
-    category: '운동선수',
-    isSelected: false,
-    presetPin: '6499412328938fad80d8c534',
+    presetPin: '649993fbda2ab71457cff55f',
   },
 ];
 
-interface CategoryCarouselProps {
-  presetList: QuizType[];
-}
-
-const CategoryCarousel = ({ presetList }: CategoryCarouselProps) => {
+const CategoryCarousel = () => {
   const { openModal } = useModal();
 
-  const handleGoToQuizPreset = (presetPin: string) => {
-    openModal(<GameStartModal presetPin={presetPin} />);
+  const handleGoToQuizPreset = (
+    presetPin: string,
+    imageUrl: string,
+    title: string,
+  ) => {
+    openModal(
+      <GameStartModal
+        presetPin={presetPin}
+        thumbnailUrl={imageUrl}
+        title={title}
+      />,
+    );
   };
 
   return (
@@ -94,7 +73,9 @@ const CategoryCarousel = ({ presetList }: CategoryCarouselProps) => {
             <styles.Image
               imageUrl={imageUrl}
               isSelected={isSelected}
-              onClick={() => handleGoToQuizPreset(presetPin)}
+              onClick={() =>
+                handleGoToQuizPreset(presetPin, imageUrl, category)
+              }
             >
               <styles.CategoryText>{category}</styles.CategoryText>
             </styles.Image>

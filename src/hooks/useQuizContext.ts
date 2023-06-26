@@ -31,5 +31,13 @@ export const useQuizDispatch = () => {
     dispatch({ type: 'updateQuizData', count: 0, quizData });
   };
 
-  return { addScore, setTimer, fetchQuizData };
+  const resetScore = () => {
+    dispatch({
+      type: 'scoreInit',
+      count: 0,
+      quizData: [],
+    });
+  };
+
+  return { addScore, setTimer, fetchQuizData, resetScore };
 };
