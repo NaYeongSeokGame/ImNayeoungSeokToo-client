@@ -9,7 +9,7 @@ html,
   body {
     padding: 0;
     margin: 0;
-    min-width: 375px;
+    min-width: 360px;
     font-family: 'LOTTERIADDAG';
   }
 

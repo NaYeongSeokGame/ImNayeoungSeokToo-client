@@ -6,20 +6,22 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import '@/assets/fonts/font.css';
+import BasicLayout from '@/components/common/BasicLayout';
+import ModalPortal from '@/components/common/ModalPortal';
+import Home from '@/components/pages/Home/Home';
+import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
-
-import App from './App.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    errorElement: <NotFound />,
+    element: <BasicLayout />,
+    errorElement: <div>오류</div>,
     children: [
       {
         index: true,
-        element: <div />,
+        element: <Home />,
       },
       {
         path: '/quiz/create',
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/quiz/:id',
         element: <div />,
+      },
+      {
+        path: 'test',
+        element: <TestAPI />,
       },
     ],
   },
@@ -49,6 +55,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <ModalPortal />
         <RouterProvider router={router} />
       </ThemeProvider>
     </Provider>

@@ -1,10 +1,24 @@
-import { useCallback, useState } from 'react';
+import { useAtom } from 'jotai';
+import type { ReactNode } from 'react';
+
+import { handleModalAtom } from '@/stores/actions';
 
 const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onOpen = useCallback(() => setIsOpen(true), []);
-  const onClose = useCallback(() => setIsOpen(false), []);
-  return { isOpen, onOpen, onClose };
+  const [modalState, setModalState] = useAtom(handleModalAtom);
+
+  const openModal = (newContent: ReactNode) => {
+    setModalState({
+      isOpen: true,
+      content: [...modalState.content, newContent],
+    });
+  };
+
+  const closeModal = () => {
+    if (!modalState.content.length) return;
+    setModalState({ isOpen: false, content: [...modalState.content.slice(1)] });
+  };
+
+  return { openModal, closeModal };
 };
 
 export default useModal;
