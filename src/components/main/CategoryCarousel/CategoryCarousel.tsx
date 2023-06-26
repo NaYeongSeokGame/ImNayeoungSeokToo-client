@@ -15,56 +15,56 @@ const EXAMPLE_CATEGORY_ELEMENT: CategoryElementProps[] = [
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
   {
     imageUrl:
       'https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif',
     category: '운동선수',
     isSelected: false,
-    presetPin: '',
+    presetPin: '6499412328938fad80d8c534',
   },
 ];
 
@@ -72,7 +72,7 @@ const CategoryCarousel = () => {
   const navigate = useNavigate();
 
   const handleGoToQuizPreset = (presetPin: string) => {
-    navigate(`/quiz/${presetPin}`);
+    navigate(`/quiz/${presetPin}/loading`);
   };
 
   return (

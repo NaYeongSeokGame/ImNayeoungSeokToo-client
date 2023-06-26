@@ -92,7 +92,7 @@ const CreateQuiz = () => {
         title,
         isPrivate,
       });
-      navigate(`/quiz/${presetPin}`);
+      navigate(`/quiz/${presetPin}/loading`);
     } catch (error) {
       console.error(error);
     }

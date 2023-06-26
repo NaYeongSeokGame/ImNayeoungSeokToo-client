@@ -28,19 +28,19 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/loading',
-        element: <Landing />,
-      },
-      {
         path: '/quiz/create',
         element: <CreateQuiz />,
       },
       {
-        path: '/quiz/:id',
+        path: 'quiz/:presetPin/loading',
+        element: <Landing />,
+      },
+      {
+        path: '/quiz/:presetPin/:seq',
         element: <QuizPlay />,
       },
       {
-        path: '/quiz/:id/answer',
+        path: '/quiz/:presetPin/:seq/answer',
         element: <QuizAnswer answer="dsd" />,
       },
       {
