@@ -1,13 +1,16 @@
+import { useQuery } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import QuizRepository from '@/apis/quiz';
 import { ReactComponent as PauseButtonSvg } from '@/assets/images/pauseButton.svg';
 import { ReactComponent as QuestionButtonSvg } from '@/assets/images/questionButton.svg';
 import { ReactComponent as StopButtonSvg } from '@/assets/images/stopButton.svg';
 import QuizHintModal from '@/components/main/QuizHintModal';
 import useModal from '@/hooks/useModal';
 import { modalStateAtom } from '@/stores/atoms';
+import { GetQuizListOutput } from '@/types/quiz';
 
 import * as styles from './QuizPlay.style';
 
@@ -16,6 +19,13 @@ type GameType = 'playing' | 'paused' | 'stopped';
 const QuizPlay = () => {
   const { presetPin, seq } = useParams();
   const navigation = useNavigate();
+
+  const { data, isLoading } = useQuery(['Quiz', presetPin], () =>
+    QuizRepository.getQuizByPinAsync(presetPin ?? ''),
+  );
+
+  const quizList = data ? (data as GetQuizListOutput).quizList : [];
+
   const quizAnswerUrl = `/quiz/${presetPin}/${seq}/answer`;
 
   const [currentCount, setCurrentCount] = useState(3800);
@@ -27,7 +37,7 @@ const QuizPlay = () => {
 
   const openHintModal = () => {
     setGameState('paused');
-    openModal(<QuizHintModal answer="test" />);
+    openModal(<QuizHintModal answer={quizList[Number(seq)]?.answer} />);
   };
 
   const countTimer = () => {
@@ -38,16 +48,18 @@ const QuizPlay = () => {
   };
 
   useEffect(() => {
-    const countdown = countTimer();
-    if (displayedCount <= 0 || gameState === 'stopped') {
-      clearInterval(countdown);
-      navigation(quizAnswerUrl);
+    if (!isLoading) {
+      const countdown = countTimer();
+      if (displayedCount <= 0 || gameState === 'stopped') {
+        clearInterval(countdown);
+        navigation(quizAnswerUrl);
+      }
+      if (gameState === 'paused') {
+        clearInterval(countdown);
+      }
+      return () => clearInterval(countdown);
     }
-    if (gameState === 'paused') {
-      clearInterval(countdown);
-    }
-    return () => clearInterval(countdown);
-  }, [displayedCount, gameState, navigation, quizAnswerUrl]);
+  }, [isLoading, displayedCount, gameState, navigation, quizAnswerUrl]);
 
   const onPause = () => {
     setGameState(gameState === 'playing' ? 'paused' : 'playing');
@@ -64,7 +76,7 @@ const QuizPlay = () => {
   return (
     <>
       <styles.Title />
-      <styles.QuestionImage imageUrl="https://nayeongseokgame-s3.s3.ap-northeast-2.amazonaws.com/preset/64984bdcafed34155563ccc1/%EB%82%98%EC%98%81%EC%84%9D.jfif" />
+      <styles.QuestionImage imageUrl={quizList[Number(seq)]?.imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
         <PauseButtonSvg onClick={onPause} />
