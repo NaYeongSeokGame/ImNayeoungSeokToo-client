@@ -13,6 +13,7 @@ import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
 import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
+import QuizResult from '@/components/pages/QuizResult';
 import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
@@ -38,19 +39,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/quiz/:presetPin/:seq',
-        element: (
-          <QuizStateProvider>
-            <QuizPlay />
-          </QuizStateProvider>
-        ),
+        element: <QuizPlay />,
       },
       {
         path: '/quiz/:presetPin/:seq/answer',
-        element: (
-          <QuizStateProvider>
-            <QuizAnswer answer="dsd" />
-          </QuizStateProvider>
-        ),
+        element: <QuizAnswer answer="dsd" />,
+      },
+      {
+        path: '/quiz/:presetPin/result',
+        element: <QuizResult />,
       },
       {
         path: 'test',
@@ -77,7 +74,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <ModalPortal />
-        <RouterProvider router={router} />
+        <QuizStateProvider>
+          <RouterProvider router={router} />
+        </QuizStateProvider>
       </ThemeProvider>
     </Provider>
   </QueryClientProvider>,
