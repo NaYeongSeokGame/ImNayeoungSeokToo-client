@@ -36,14 +36,22 @@ export const MainImage = styled(MainImageSvg)`
   }}
 `;
 
-export const CreatePresetBtn = styled.button`
+export const ButtonSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem 0;
+
+  margin: auto;
+`;
+
+export const OptionButton = styled.button`
   ${({ theme }) => {
     return css`
       background-color: ${theme.colors.white};
       border: 0.25rem solid ${theme.colors.black};
       border-radius: 1rem;
 
-      margin: 1.75rem auto auto;
+      width: 14rem;
       padding: 1rem 2.75rem;
 
       font-size: 1.125rem;

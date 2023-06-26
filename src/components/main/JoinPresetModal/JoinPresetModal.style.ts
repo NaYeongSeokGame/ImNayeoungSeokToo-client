@@ -1,57 +1,36 @@
 import styled, { css } from 'styled-components';
 
-export const Section = styled.section`
+export const Wrapper = styled.div`
   ${({ theme }) => {
     return css`
-      padding: 2rem 1.875rem;
+      padding: 4rem 1.5rem;
 
       display: flex;
       flex-direction: column;
-      gap: 1.875rem 0;
+      gap: 3.75rem 0;
 
+      border-radius: 0.8rem;
       background-color: ${theme.colors.white};
-      border-radius: 1rem;
+
+      background-image: url(/src/assets/images/background.svg);
+      background-size: cover;
     `;
   }}
 `;
 
-export const OptionBox = styled.div`
+export const SettingBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem 0;
+  text-align: center;
 
-  & > p {
-    font-size: 1.125rem;
-    text-align: center;
+  font-size: 2rem;
+
+  & > h5 {
+    margin-bottom: 0.5rem;
   }
 `;
 
-export const UploadSection = styled.div`
-  ${({ theme }) => {
-    return css`
-      width: 15rem;
-      height: 9rem;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      background-color: ${theme.colors.white};
-      border: 0.25rem solid ${theme.colors.black};
-      border-radius: 1rem;
-
-      & > svg {
-        margin: 0 auto;
-      }
-
-      & > img {
-        border-radius: 1rem;
-      }
-    `;
-  }}
-`;
-
-export const AnswerInput = styled.input`
+export const PrivatePinInput = styled.input`
   ${({ theme }) => {
     return css`
       max-width: 14rem;
@@ -74,13 +53,11 @@ export const AnswerInput = styled.input`
   }}
 `;
 
-export const SubmitButton = styled.button`
+export const Button = styled.button`
   ${({ theme }) => {
     return css`
       font-family: 'LOTTERIADDAG';
       font-size: 1.125rem;
-      color: ${theme.colors.purple};
-
       padding: 0.5rem 3rem;
       margin: auto auto 0.875rem auto;
 

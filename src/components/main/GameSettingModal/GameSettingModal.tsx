@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import { ReactComponent as CircleIconSvg } from '@/assets/icons/CircleIcon.svg';
 import { ReactComponent as XIconSvg } from '@/assets/icons/XIcon.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
@@ -7,16 +5,15 @@ import useModal from '@/hooks/useModal';
 
 import * as styles from './GameSettingModal.style';
 
-const GameSettingModal = () => {
+const ModalCloseButton = () => {
   const { closeModal } = useModal();
 
-  const ModalCloseButton = useMemo(
-    () => <styles.CloseButton onClick={closeModal}>닫기</styles.CloseButton>,
-    [],
-  );
+  return <styles.CloseButton onClick={closeModal}>닫기</styles.CloseButton>;
+};
 
+const GameSettingModal = () => {
   return (
-    <ModalTemplate title="세팅" button={ModalCloseButton}>
+    <ModalTemplate title="세팅" button={<ModalCloseButton />}>
       <styles.Wrapper>
         <styles.SettingBox>
           <h5>Sound</h5>

@@ -3,6 +3,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'jotai';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from 'styled-components';
 
 import '@/assets/fonts/font.css';
@@ -66,6 +68,18 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <ToastContainer
+          position="top-right"
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <RouterProvider router={router} />
       </ThemeProvider>
     </Provider>

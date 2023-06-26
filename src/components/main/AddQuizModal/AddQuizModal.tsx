@@ -1,4 +1,5 @@
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { ReactComponent as PlusIconSvg } from '@/assets/icons/plusIcon.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
@@ -20,8 +21,6 @@ const AddQuizModal = ({ storeNewQuiz }: AddQuizModalProps) => {
     answer: '',
     imageUrl: '',
   });
-
-  console.log(quizData);
 
   const openFileUploadDialog = () => fileInputRef.current?.click();
 
@@ -54,14 +53,16 @@ const AddQuizModal = ({ storeNewQuiz }: AddQuizModalProps) => {
 
   const verifySubmitQuiz = () => {
     const { image, answer, imageUrl } = quizData;
-    if (!image || !answer || !imageUrl) return;
-
+    if (!image || !answer || !imageUrl) {
+      toast.error('이미지, 정답 모두 업로드 해야 합니다!');
+      return;
+    }
     storeNewQuiz({ image, answer, imageUrl });
     closeModal();
   };
 
   // 제출 완료용 버튼 Components
-  const SubmitQuizButton = useMemo(
+  const SubmitQuizButton = useCallback(
     () => (
       <styles.SubmitButton onClick={verifySubmitQuiz}>완료</styles.SubmitButton>
     ),
@@ -69,7 +70,7 @@ const AddQuizModal = ({ storeNewQuiz }: AddQuizModalProps) => {
   );
 
   return (
-    <ModalTemplate button={SubmitQuizButton}>
+    <ModalTemplate button={<SubmitQuizButton />}>
       <styles.Section>
         <styles.OptionBox>
           <p>이미지 추가하기</p>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
@@ -38,7 +38,7 @@ const GameStartModal = ({
     });
   };
 
-  const StartQuizButton = useMemo(
+  const StartQuizButton = useCallback(
     () => (
       <styles.StartQuizButton onClick={redirectToLandingPage}>
         완료
@@ -48,7 +48,7 @@ const GameStartModal = ({
   );
 
   return (
-    <ModalTemplate title={title || '게임 시작'} button={StartQuizButton}>
+    <ModalTemplate title={title || '게임 시작'} button={<StartQuizButton />}>
       <styles.Wrapper>
         <div>
           <styles.Title>메인 이미지</styles.Title>

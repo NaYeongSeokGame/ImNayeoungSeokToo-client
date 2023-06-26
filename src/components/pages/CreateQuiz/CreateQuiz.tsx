@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
 import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
@@ -8,6 +9,7 @@ import { ReactComponent as PurplePlusIconSvg } from '@/assets/icons/purplePlusIc
 import AddQuizModal from '@/components/main/AddQuizModal';
 import useModal from '@/hooks/useModal';
 import { CreatePresetWithUrlType, CreateQuizWithUrlType } from '@/types/quiz';
+import copyClipboard from '@/utils/copyClipboard';
 
 import * as styles from './CreateQuiz.style';
 
@@ -25,7 +27,10 @@ const CreateQuiz = () => {
 
   const handleQuizAmount = (diff: 1 | -1) => {
     const changedResult = quizAmount + diff;
-    if (changedResult < 1 || changedResult > 9) return;
+    if (changedResult < 1 || changedResult > 9) {
+      toast.error('퀴즈 수량은 1개 이상 9개 이하만 가능합니다.');
+      return;
+    }
     setQuizAmount((prev) => prev + diff);
     setPresetData((prev) => ({
       ...prev,
@@ -59,7 +64,6 @@ const CreateQuiz = () => {
 
   const storeNewQuiz = useCallback(
     ({ answer, image, imageUrl }: CreateQuizWithUrlType) => {
-      console.log('pass');
       if (!answer || !image || !imageUrl) return;
       setPresetData((prev) => ({
         ...prev,
@@ -77,7 +81,15 @@ const CreateQuiz = () => {
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
 
-    if (!isEmpty && isNotSame && !title) return;
+    if (!isEmpty && isNotSame) {
+      toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
+      return;
+    }
+
+    if (!title) {
+      toast.error('퀴즈 프리셋 이름은 반드시 등록해야 합니다.');
+      return;
+    }
 
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
@@ -92,6 +104,8 @@ const CreateQuiz = () => {
         title,
         isPrivate,
       });
+      await copyClipboard(presetPin);
+      toast.success('프리셋을 생성하여 PIN을 복사했습니다.');
       navigate(`/quiz/${presetPin}/loading`);
     } catch (error) {
       console.error(error);
