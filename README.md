@@ -1,18 +1,26 @@
 # 나도 나영석
 
-#### 목차
-- [프로젝트 소개](#지구오락실이-부럽지-않아요)
-- [스프린트 일정](#스프린트-일정)
-    - [Day1](#day01-팀-캔버스)
-    - [Day2](#day02-서비스-맵)
-    - [Day3](#day03-서비스-스케치-및-bddsdd)
-    - [Day4-6](#day0406-mvp-제작-및-데모)
-- [구현 기능](#구현-기능)
-- [개발 환경](#개발-환경)
+📑 Description  
+테오의 스프린트 15기 8조 "나도 나영석" 클라이언트 레포지토리 입니다.
 
+🧱 Dependencies
+Typescript (Programming Language)  
+React (SPA)  
+Jotai (Global State)  
+React-query (Server State Management)  
+Styled-components (Styling)  
+Axios (HTTP Client)
 
-### 지구오락실이 부럽지 않아요!
-회사 워크숍이나 지인들과의 여행에서 **아이스브레이킹**에 적합한 게임을 찾고 계신가요?  더 이상 한땀 한땀 PPT로 퀴즈를 낼 필요가 없어요! ‘**나도 나영석**’을 사용하면 누구나 손쉽게 **직접 자신만의 인물퀴즈**를 만들고 즐길 수 있어요 🙂
+📂 Structure
+/src  
+└─ /apis  
+└─ /assets  
+└─ /components  
+└─ /constants  
+└─ /hooks  
+└─ /pages  
+└─ /stores  
+└─ /utils
 
 한 번의 퀴즈 타임동안 **몇 개의 문제**를 풀지, 문제당 **타이머는 몇 초**로 설정할지 모두 선택할 수 있어요. 순발력 있는 친구들이 많다면 타이머 시간을 좀더 줄여보는 건 어떨까요? 😈  ~~(3, 2, 1 땡!!!)~~
 
