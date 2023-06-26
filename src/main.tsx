@@ -7,7 +7,6 @@ import { ThemeProvider } from 'styled-components';
 
 import '@/assets/fonts/font.css';
 import BasicLayout from '@/components/common/BasicLayout';
-import ModalPortal from '@/components/common/ModalPortal';
 import CreateQuiz from '@/components/pages/CreateQuiz';
 import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
@@ -67,7 +66,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <ModalPortal />
         <RouterProvider router={router} />
       </ThemeProvider>
     </Provider>

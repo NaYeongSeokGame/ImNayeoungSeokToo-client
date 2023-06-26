@@ -51,3 +51,18 @@ export const QuitOptionBox = styled.div`
 
   font-size: 2rem;
 `;
+
+export const CloseButton = styled.button`
+  ${({ theme }) => {
+    return css`
+      font-family: 'LOTTERIADDAG';
+      font-size: 1.125rem;
+      padding: 0.5rem 3rem;
+      margin: auto auto 0.875rem auto;
+
+      background-color: ${theme.colors.white};
+      border: 0.25rem solid ${theme.colors.black};
+      border-radius: 1rem;
+    `;
+  }}
+`;

@@ -18,3 +18,10 @@ export const LandingText = styled(LandingTextSvg)`
 export const LandingImage = styled.img`
   margin: 0 auto auto auto;
 `;
+
+export const Lottie = styled.div`
+  width: 12.5rem;
+  height: 3rem;
+
+  object-fit: cover;
+`;
