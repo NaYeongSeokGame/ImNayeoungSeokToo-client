@@ -172,6 +172,7 @@ const SubmitButton = styled.button`
   border-radius: 20px;
   border: 5px solid black;
   cursor: pointer;
+  font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
 const PreviewImage = styled.img`
