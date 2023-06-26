@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import useModal from '@/hooks/useModal';
 
+import GameStartModal from '../GameStartModal';
 import * as styles from './CategoryCarousel.style';
 
 interface CategoryElementProps {
@@ -69,10 +70,10 @@ const EXAMPLE_CATEGORY_ELEMENT: CategoryElementProps[] = [
 ];
 
 const CategoryCarousel = () => {
-  const navigate = useNavigate();
+  const { openModal } = useModal();
 
   const handleGoToQuizPreset = (presetPin: string) => {
-    navigate(`/quiz/${presetPin}/loading`);
+    openModal(<GameStartModal presetPin={presetPin} />);
   };
 
   return (

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
+
 import * as styles from './Landing.style';
 
 const Landing = () => {
@@ -16,7 +18,7 @@ const Landing = () => {
   return (
     <styles.Wrapper>
       <styles.LandingText />
-      <styles.LandingImage />
+      <styles.LandingImage src={getCloudFrontUrl('/static/landingImage.svg')} />
     </styles.Wrapper>
   );
 };
