@@ -14,6 +14,8 @@ export interface QuizPresetType {
   title: string;
 }
 
+export type QuizPresetTypeWithPin = QuizPresetType & QuizPresetPinType;
+
 export interface CreatePresetType {
   images: File[];
   answers: string[];
@@ -35,3 +37,10 @@ export type CreatePresetWithUrlType = CreatePresetType & {
 export type GetQuizListOutput = QuizTypeWithPin & {
   quizList: QuizType[];
 };
+
+export type PlayableQuizPresetType = QuizPresetType & { quizList: QuizType[] };
+
+export interface PaginationType {
+  limit: number;
+  page: number;
+}

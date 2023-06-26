@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components';
 export const HintSection = styled.section`
   ${({ theme }) => {
     return css`
+      border-radius: 1rem;
       background-color: ${theme.colors.white};
-      padding: 8.5rem 0;
+      padding: 8.25rem 2.5rem;
     `;
   }}
 `;
