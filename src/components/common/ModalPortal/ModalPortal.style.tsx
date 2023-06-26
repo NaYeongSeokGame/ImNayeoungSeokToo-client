@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  overflow-y: scroll;
+  overflow-y: hidden;
   z-index: 999;
   background-color: rgba(151, 151, 151, 0.8);
 `;

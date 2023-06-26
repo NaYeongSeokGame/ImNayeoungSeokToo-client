@@ -10,6 +10,7 @@ import BasicLayout from '@/components/common/BasicLayout';
 import ModalPortal from '@/components/common/ModalPortal';
 import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
+import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
 import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
@@ -34,8 +35,12 @@ const router = createBrowserRouter([
         element: <div />,
       },
       {
-        path: '/quiz',
+        path: '/quiz/:id',
         element: <QuizPlay />,
+      },
+      {
+        path: '/quiz/:id/answer',
+        element: <QuizAnswer answer="dsd" />,
       },
       {
         path: 'test',

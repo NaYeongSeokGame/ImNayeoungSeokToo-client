@@ -28,7 +28,7 @@ export const Image = styled.div<{ imageUrl: string; isSelected: boolean }>`
       width: 120px;
       height: 120px;
 
-      background-image: url(${imageUrl}) ${isSelected && 'lightgray 50%'};
+      background-image: url(${imageUrl});
       background-size: cover;
       border: 0.25rem solid ${theme.colors.black};
       border-radius: 1rem;
