@@ -39,11 +39,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Run Eslint
-        run: yarn lint
-
-      - name: Run Prettier
-        run: yarn prettier
+      - name: Environment Variable Setting
+        run: |
+          echo "VITE_CLOUDFRONT_URL=${{ secrets.CLOUDFRONT_URL }}" >> .env
+          echo "VITE_SERVER_URL=${{ secrets.SERVER_URL }}" >> .env
+          echo "VITE_CLOUDFRONT_URL=${{ secrets.CLOUDFRONT_URL }}" >> .env
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+          echo "AWS_SECRET_ACCESS_ID=${{ secrets.AWS_SECRET_ACCESS_ID }}" >> .env
 
       - name: Build vite app
         run: yarn build

@@ -1,0 +1,12 @@
+<svg width="30" height="20" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 118">
+<g id="Group 119">
+<g id="Group 97">
+<rect id="Rectangle 68" x="10" y="5" width="10" height="10" rx="2" transform="rotate(90 10 5)" fill="black"/>
+</g>
+<path id="Polygon 1" d="M2.93534 10.7715C2.45039 10.3715 2.45039 9.62853 2.93534 9.22855L10.8637 2.68933C11.516 2.15137 12.5 2.61532 12.5 3.46078L12.5 16.5392C12.5 17.3847 11.516 17.8486 10.8637 17.3107L2.93534 10.7715Z" fill="black"/>
+<path id="Vector 1" d="M16 6.99994V6.99994C18.772 8.03944 18.772 11.9604 16 12.9999V12.9999" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+<path id="Vector 2" d="M18 4V4C22.9443 6.47214 22.9443 13.5279 18 16V16" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+</g>
+</svg>
