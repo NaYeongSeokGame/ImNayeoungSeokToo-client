@@ -30,6 +30,8 @@ export const Image = styled.div<{ imageUrl: string; isSelected: boolean }>`
 
       background-image: url(${imageUrl});
       background-size: cover;
+      background-position: center center;
+
       border: 0.25rem solid ${theme.colors.black};
       border-radius: 1rem;
       box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.15);
