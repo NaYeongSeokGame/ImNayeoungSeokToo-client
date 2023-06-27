@@ -1,4 +1,4 @@
-import CommonLayout from '@/components/CommonLayout.tsx';
+import CommonLayout from '@/components/CommonLayout';
 
 function App() {
   return <CommonLayout />;
