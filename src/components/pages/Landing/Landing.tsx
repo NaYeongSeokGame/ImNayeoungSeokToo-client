@@ -31,13 +31,15 @@ const Landing = () => {
   useEffect(() => {
     if (!presetPin) {
       toast.error('게임을 실행하던 중 문제가 발생했습니다.');
-      navigation('/');
+      navigation('/', { replace: true });
       return;
     }
-  
-    const redirectUrl = presetPin ? `/quiz/${presetPin}/0` : '/';
+
     const soundInterval = setInterval(() => playAudioFile(soundFileUrl), 800);
-    const delayTimeout = setTimeout(() => navigation(redirectUrl), delayBeforeStart);
+    const delayTimeout = setTimeout(
+      () => navigation(`/quiz/${presetPin}`, { replace: true }),
+      delayBeforeStart * 1000,
+    );
 
     return () => {
       clearInterval(soundInterval);

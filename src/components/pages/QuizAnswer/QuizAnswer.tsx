@@ -10,21 +10,21 @@ import * as styles from './QuizAnswer.style';
 const QuizAnswer = () => {
   const navigate = useNavigate();
 
-  const { quizList, presetPin } = useAtomValue(quizPlayStateAtom) 
-  const [{ currentIndex, isTerminated }, updateCurrentScore] =
-    useAtom(controlCurrentScoreAtom);
+  const { quizList, presetPin } = useAtomValue(quizPlayStateAtom);
+  const [{ currentIndex, isTerminated }, updateCurrentScore] = useAtom(
+    controlCurrentScoreAtom,
+  );
 
-  const nextRoundUrl =
-    isTerminated
-      ? `/quiz/${presetPin}/result`
-      : `/quiz/${presetPin}/${currentIndex + 1}`
+  const nextRoundUrl = isTerminated
+    ? `/quiz/${presetPin}/result`
+    : `/quiz/${presetPin}`;
 
-  const currentQuizAnswer = quizList[currentIndex].answer || ''
+  const currentQuizAnswer = quizList[currentIndex].answer || '';
 
   const submitQuizResult = (isCorrect: boolean) => {
     updateCurrentScore({ isCorrect, quizIndex: currentIndex });
-    navigate(nextRoundUrl);
-  }
+    navigate(nextRoundUrl, { replace: true });
+  };
 
   return (
     <>

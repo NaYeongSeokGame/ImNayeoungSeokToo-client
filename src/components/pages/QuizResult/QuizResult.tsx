@@ -14,7 +14,7 @@ const QuizResult = () => {
 
   const redirectToLobby = () => {
     terminateQuizGame();
-    navigate('/');
+    navigate('/', { replace: true });
   };
   return (
     <>
