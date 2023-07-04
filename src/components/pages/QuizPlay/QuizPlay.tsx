@@ -1,5 +1,5 @@
-import { useAtom, useAtomValue } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useAtomValue } from 'jotai';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as PauseButtonSvg } from '@/assets/images/pauseButton.svg';
@@ -7,83 +7,52 @@ import { ReactComponent as QuestionButtonSvg } from '@/assets/images/questionBut
 import { ReactComponent as StopButtonSvg } from '@/assets/images/stopButton.svg';
 import QuizHintModal from '@/components/main/QuizHintModal';
 import useModal from '@/hooks/useModal';
+import useTimer from '@/hooks/useTimer';
 import { modalStateAtom } from '@/stores/modal';
-import { controlCurrentScoreAtom, quizPlayStateAtom } from '@/stores/quiz';
+import { quizPlayStateAtom } from '@/stores/quiz';
 
 import * as styles from './QuizPlay.style';
 
-type GameType = 'playing' | 'paused' | 'stopped';
-
 const QuizPlay = () => {
   const { openModal } = useModal();
-  const navigation = useNavigate();
+  const navigate = useNavigate();
+  const { leftSecond, isRunning, start, stop } = useTimer({
+    initTimeLimit: 3,
+    startImmediately: true,
+  });
 
   const { isOpen } = useAtomValue(modalStateAtom);
-  const { quizList, presetPin } = useAtomValue(quizPlayStateAtom) 
-  const [{ currentIndex, isTerminated }, updateCurrentScore] =
-    useAtom(controlCurrentScoreAtom);
-
-  const quizAnswerUrl = `/quiz/${presetPin}/${currentIndex}/answer`;
-
-  const [currentCount, setCurrentCount] = useState(3800);
-  const [gameState, setGameState] = useState<GameType>('playing');
-
-  const displayedCount = Math.floor(currentCount / 1000);
+  const { quizList, presetPin, currentIndex } = useAtomValue(quizPlayStateAtom);
 
   // FIXME : 추후 업데이트 시 정답이 아닌 "힌트" 를 제공하도록 해야 함.
-  const {imageUrl, answer: currentQuizAnswer = ''} = quizList[currentIndex];
+  const { imageUrl, answer: currentQuizAnswer = '' } = quizList[currentIndex];
+  const quizAnswerUrl = `/quiz/${presetPin}/answer`;
 
-  const openHintModal = () => {
-    setGameState('paused');
-    openModal(
-      <QuizHintModal answer={currentQuizAnswer} />,
-    );
-  };
-
-  const countTimer = () => {
-    const countdown = setInterval(() => {
-      setCurrentCount((prev) => prev - 100);
-    }, 100);
-    return countdown;
-  };
+  // FIXME : 추후 업데이트 시 정답이 아닌 "힌트" 를 제공하도록 해야 함.
+  const openHintModal = () =>
+    openModal(<QuizHintModal answer={currentQuizAnswer} />);
 
   useEffect(() => {
-    const countdown = countTimer();
-    if (displayedCount <= 0 || gameState === 'stopped') {
-      clearInterval(countdown);
-      navigation(quizAnswerUrl);
+    if (leftSecond <= 0 && isRunning) {
+      navigate(quizAnswerUrl, { replace: true });
     }
-    if (gameState === 'paused') {
-      clearInterval(countdown);
-    }
-    return () => clearInterval(countdown);
-  }, [displayedCount, gameState, navigation, quizAnswerUrl]);
-
-  const onPause = () => {
-    setGameState(gameState === 'playing' ? 'paused' : 'playing');
-  };
-
-  const onStop = () => {
-    setGameState('stopped');
-  };
+  }, [leftSecond, isRunning]);
 
   useEffect(() => {
-    !isOpen && setGameState('playing');
+    isOpen ? stop() : start();
   }, [isOpen]);
 
   return (
     <>
       <styles.Title />
-      <styles.QuestionImage
-        imageUrl={imageUrl}
-      />
+      <styles.QuestionImage imageUrl={imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
-        <PauseButtonSvg onClick={onPause} />
-        <StopButtonSvg onClick={onStop} />
+        <PauseButtonSvg onClick={stop} />
+        <StopButtonSvg onClick={stop} />
       </styles.ButtonSection>
-      <styles.Countdown currentCount={currentCount}>
-        {displayedCount}
+      <styles.Countdown currentCount={leftSecond}>
+        {leftSecond}
       </styles.Countdown>
     </>
   );
