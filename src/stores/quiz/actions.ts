@@ -46,7 +46,7 @@ export const controlCurrentScoreAtom = atom(
   (get) => {
     const { currentIndex, totalScore, quizList } = get(quizPlayStateAtom);
     // NOTE : 현재 라운드가 마지막임을 알리는 flag isTerminated
-    const isTerminated = quizList.length <= currentIndex;
+    const isTerminated = quizList.length <= currentIndex + 1;
     return { currentIndex, totalScore, isTerminated };
   },
   (get, set, update: UpdateCurrentScoreType) => {
