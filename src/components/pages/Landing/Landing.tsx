@@ -1,25 +1,21 @@
-import { useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useLottie } from 'lottie-react';
 import { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import DotLottie from '@/assets/lotties/dot.json';
-import { controlPlayingStateAtom, initQuizPresetDataAtom } from '@/stores/quiz';
+import { quizPlayStateAtom } from '@/stores/quiz';
 import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
 import playAudioFile from '@/utils/playAudio';
 
 import * as styles from './Landing.style';
 
 const Landing = () => {
-  const { presetPin } = useParams();
   const navigation = useNavigate();
-  const location = useLocation();
-
-  const initQuizPreset = useSetAtom(initQuizPresetDataAtom);
-  const changePlayState = useSetAtom(controlPlayingStateAtom);
-
-  const delay: number = location.state.delay;
+  const { presetPin } = useParams();
+  const { delayBeforeStart } = useAtomValue(quizPlayStateAtom);
+  
   const landingImageUrl = getCloudFrontUrl('/static/landingImage.svg');
   const soundFileUrl = getCloudFrontUrl('/static/timer.mp3');
 
@@ -34,24 +30,17 @@ const Landing = () => {
 
   useEffect(() => {
     const redirectUrl = presetPin ? `/quiz/${presetPin}/0` : '/';
-    const timerSoundInterval = setInterval(
-      () => playAudioFile(soundFileUrl),
-      800,
-    );
-    const delayTimeout = setTimeout(() => {
-      changePlayState(true);
-      navigation(redirectUrl);
-    }, delay);
+    const soundInterval = setInterval(() => playAudioFile(soundFileUrl), 800);
+    const delayTimeout = setTimeout(() => navigation(redirectUrl), delayBeforeStart);
 
     if (!presetPin) {
       toast.error('게임을 실행하던 중 문제가 발생했습니다.');
       navigation('/');
       return;
     }
-    initQuizData(presetPin);
 
     return () => {
-      clearInterval(timerSoundInterval);
+      clearInterval(soundInterval);
       clearTimeout(delayTimeout);
     };
   }, []);
