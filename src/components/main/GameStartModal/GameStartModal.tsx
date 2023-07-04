@@ -41,8 +41,8 @@ const GameStartModal = ({
       quizList,
       thumbnailUrl: '',
       presetPin,
-      delayBeforeStart: delayBeforeStart * 1000,
-      timeToSolveQuiz: 3 * 1000, // FIXME : 추후 문제 별 딜레이 설정 기능도 추가해야 함.
+      delayBeforeStart,
+      timeToSolveQuiz: 3, // FIXME : 추후 문제 별 딜레이 설정 기능도 추가해야 함.
     });
     closeModal();
     navigate(`/quiz/${presetPin}/loading`);
