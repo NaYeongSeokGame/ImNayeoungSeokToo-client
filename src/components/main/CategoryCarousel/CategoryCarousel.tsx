@@ -64,7 +64,6 @@ const CategoryCarousel = () => {
           }: CategoryElementProps) => (
             <styles.Image
               imageUrl={imageUrl}
-              isSelected={isSelected}
               onClick={() =>
                 handleGoToQuizPreset(presetPin, imageUrl, category)
               }

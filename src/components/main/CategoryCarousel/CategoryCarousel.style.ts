@@ -22,8 +22,8 @@ export const Carousel = styled.div`
   gap: 0 0.5rem;
 `;
 
-export const Image = styled.div<{ imageUrl: string; isSelected: boolean }>`
-  ${({ theme, imageUrl, isSelected }) => {
+export const Image = styled.div<{ imageUrl: string }>`
+  ${({ theme, imageUrl }) => {
     return css`
       width: 120px;
       height: 120px;
