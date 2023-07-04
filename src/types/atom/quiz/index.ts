@@ -25,3 +25,7 @@ export interface QuizInfoType {
     // 해당 퀴즈가 속한 퀴즈 프리셋 PIN includedPresetPin
     includedPresetPin: string,
 }
+
+export type UpdateQuizPresetType = Pick<QuizPlayStateType, 'quizList' | 'presetPin' | 'thumbnailUrl'>
+
+export type UpdateCurrentScoreType = { isCorrect: boolean, quizIndex: number }
