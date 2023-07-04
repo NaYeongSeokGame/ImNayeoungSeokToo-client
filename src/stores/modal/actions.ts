@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
 
-import type { ModalStateType } from '@/types/atom/modal';
 import { modalStateAtom } from '@/stores/modal';
+import type { ModalStateType } from '@/types/atom/modal';
 
 export const handleModalAtom = atom(
   (get) => get(modalStateAtom),

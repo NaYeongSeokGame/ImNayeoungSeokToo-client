@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+
 import { QuizPlayStateType } from '@/types/atom/quiz';
 
 export const quizPlayStateAtom = atom<QuizPlayStateType>({
