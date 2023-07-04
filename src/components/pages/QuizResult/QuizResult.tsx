@@ -1,6 +1,7 @@
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
-import { useSetAtom, useAtomValue } from 'jotai';
-import { terminateQuizGameAtom, quizPlayStateAtom } from '@/stores/quiz';
+
+import { quizPlayStateAtom, terminateQuizGameAtom } from '@/stores/quiz';
 
 import * as styles from './QuizResult.style';
 
