@@ -23,7 +23,7 @@ export const startQuizGameAtom = atom(
   },
 );
 
-export const terminateQuizGameAtom = atom(null, (get, set, _) => {
+export const terminateQuizGameAtom = atom(null, (get, set) => {
   const prevAtom = get(quizPlayStateAtom);
 
   if (!prevAtom.isPlaying) {
