@@ -29,10 +29,9 @@ const GameStartModal = ({
 
   const [delayBeforeStart, setDelayBeforeStart] = useState(3);
 
-  const handleDelayBeforeStart = (diff: 1 | -1) => {
+  const handleDelayBeforeStart = (diff: number) => {
     const changedResult = delayBeforeStart + diff;
     if (changedResult < 3 || changedResult > 10) return;
-
     setDelayBeforeStart(changedResult);
   };
 
@@ -42,8 +41,8 @@ const GameStartModal = ({
       quizList,
       thumbnailUrl: '',
       presetPin,
-      delayBeforeStart,
-      timeToSolveQuiz: 3,
+      delayBeforeStart: delayBeforeStart * 1000,
+      timeToSolveQuiz: 3 * 1000, // FIXME : 추후 문제 별 딜레이 설정 기능도 추가해야 함.
     });
     closeModal();
     navigate(`/quiz/${presetPin}/loading`);

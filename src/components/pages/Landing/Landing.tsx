@@ -15,7 +15,7 @@ const Landing = () => {
   const navigation = useNavigate();
   const { presetPin } = useParams();
   const { delayBeforeStart } = useAtomValue(quizPlayStateAtom);
-  
+
   const landingImageUrl = getCloudFrontUrl('/static/landingImage.svg');
   const soundFileUrl = getCloudFrontUrl('/static/timer.mp3');
 
@@ -29,15 +29,15 @@ const Landing = () => {
   });
 
   useEffect(() => {
-    const redirectUrl = presetPin ? `/quiz/${presetPin}/0` : '/';
-    const soundInterval = setInterval(() => playAudioFile(soundFileUrl), 800);
-    const delayTimeout = setTimeout(() => navigation(redirectUrl), delayBeforeStart);
-
     if (!presetPin) {
       toast.error('게임을 실행하던 중 문제가 발생했습니다.');
       navigation('/');
       return;
     }
+  
+    const redirectUrl = presetPin ? `/quiz/${presetPin}/0` : '/';
+    const soundInterval = setInterval(() => playAudioFile(soundFileUrl), 800);
+    const delayTimeout = setTimeout(() => navigation(redirectUrl), delayBeforeStart);
 
     return () => {
       clearInterval(soundInterval);

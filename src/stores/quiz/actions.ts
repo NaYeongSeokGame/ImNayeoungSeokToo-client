@@ -42,10 +42,12 @@ export const terminateQuizGameAtom = atom(null, (get, set, _) => {
   });
 });
 
-export const updateCurrentScoreAtom = atom(
+export const controlCurrentScoreAtom = atom(
   (get) => {
-    const { currentIndex, totalScore } = get(quizPlayStateAtom);
-    return { currentIndex, totalScore };
+    const { currentIndex, totalScore, quizList } = get(quizPlayStateAtom);
+    // NOTE : 현재 라운드가 마지막임을 알리는 flag isTerminated
+    const isTerminated = quizList.length <= currentIndex;
+    return { currentIndex, totalScore, isTerminated };
   },
   (get, set, update: UpdateCurrentScoreType) => {
     const prevAtom = get(quizPlayStateAtom);
