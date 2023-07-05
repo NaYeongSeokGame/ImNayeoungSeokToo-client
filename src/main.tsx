@@ -31,16 +31,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: 'create',
+        element: <CreateQuiz />,
+      },
+      {
         path: 'quiz',
         element: <GameManage />,
         children: [
           {
             path: '',
             element: <QuizPlay />,
-          },
-          {
-            path: 'create',
-            element: <CreateQuiz />,
           },
           {
             path: 'answer',
