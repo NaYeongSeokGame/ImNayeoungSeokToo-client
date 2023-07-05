@@ -1,7 +1,5 @@
-import getCloudFrontUrl from './getCloudFrontUrl';
-
-const playAudioFile = (soundFileKey: string) => {
-  const audio = new Audio(getCloudFrontUrl(soundFileKey));
+const playAudioFile = (soundFileUrl: string) => {
+  const audio = new Audio(soundFileUrl);
   audio.volume = 0.2;
   audio.play();
 };
