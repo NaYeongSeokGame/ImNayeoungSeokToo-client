@@ -45,7 +45,7 @@ const GameStartModal = ({
       timeToSolveQuiz: 3, // FIXME : 추후 문제 별 딜레이 설정 기능도 추가해야 함.
     });
     closeModal();
-    navigate(`/quiz/${presetPin}/loading`);
+    navigate(`/quiz/loading`);
   };
 
   const StartQuizButton = useCallback(

@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
 import { useLottie } from 'lottie-react';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import DotLottie from '@/assets/lotties/dot.json';
@@ -13,8 +13,7 @@ import * as styles from './Landing.style';
 
 const Landing = () => {
   const navigation = useNavigate();
-  const { presetPin } = useParams();
-  const { delayBeforeStart } = useAtomValue(quizPlayStateAtom);
+  const { delayBeforeStart, presetPin } = useAtomValue(quizPlayStateAtom);
 
   const landingImageUrl = getCloudFrontUrl('/static/landingImage.svg');
   const soundFileUrl = getCloudFrontUrl('/static/timer.mp3');
@@ -37,7 +36,7 @@ const Landing = () => {
 
     const soundInterval = setInterval(() => playAudioFile(soundFileUrl), 800);
     const delayTimeout = setTimeout(
-      () => navigation(`/quiz/${presetPin}`, { replace: true }),
+      () => navigation(`/quiz`, { replace: true }),
       delayBeforeStart * 1000,
     );
 

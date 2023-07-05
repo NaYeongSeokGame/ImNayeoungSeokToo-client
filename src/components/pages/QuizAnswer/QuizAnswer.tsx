@@ -10,14 +10,14 @@ import * as styles from './QuizAnswer.style';
 const QuizAnswer = () => {
   const navigate = useNavigate();
 
-  const { quizList, presetPin } = useAtomValue(quizPlayStateAtom);
+  const { quizList } = useAtomValue(quizPlayStateAtom);
   const [{ currentIndex, isTerminated }, updateCurrentScore] = useAtom(
     controlCurrentScoreAtom,
   );
 
   const nextRoundUrl = isTerminated
-    ? `/quiz/${presetPin}/result`
-    : `/quiz/${presetPin}`;
+    ? `/quiz/result`
+    : `/quiz`;
 
   const currentQuizAnswer = quizList[currentIndex].answer || '';
 

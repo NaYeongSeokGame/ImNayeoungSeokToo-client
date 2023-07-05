@@ -22,11 +22,11 @@ const QuizPlay = () => {
   });
 
   const { isOpen } = useAtomValue(modalStateAtom);
-  const { quizList, presetPin, currentIndex } = useAtomValue(quizPlayStateAtom);
+  const { quizList, currentIndex } = useAtomValue(quizPlayStateAtom);
 
   // FIXME : 추후 업데이트 시 정답이 아닌 "힌트" 를 제공하도록 해야 함.
   const { imageUrl, answer: currentQuizAnswer = '' } = quizList[currentIndex];
-  const quizAnswerUrl = `/quiz/${presetPin}/answer`;
+  const quizAnswerUrl = `/quiz/answer`;
 
   // FIXME : 추후 업데이트 시 정답이 아닌 "힌트" 를 제공하도록 해야 함.
   const openHintModal = () =>
