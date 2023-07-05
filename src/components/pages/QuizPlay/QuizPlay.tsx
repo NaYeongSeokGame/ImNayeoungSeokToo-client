@@ -32,9 +32,12 @@ const QuizPlay = () => {
   const openHintModal = () =>
     openModal(<QuizHintModal answer={currentQuizAnswer} />);
 
+  const redirectAnswerPage = () => 
+    navigate(quizAnswerUrl, { replace: true });
+
   useEffect(() => {
     if (leftSecond <= 0 && isRunning) {
-      navigate(quizAnswerUrl, { replace: true });
+      redirectAnswerPage()
     }
   }, [leftSecond, isRunning]);
 
@@ -49,7 +52,7 @@ const QuizPlay = () => {
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
         <PauseButtonSvg onClick={stop} />
-        <StopButtonSvg onClick={stop} />
+        <StopButtonSvg onClick={redirectAnswerPage} />
       </styles.ButtonSection>
       <styles.Countdown currentCount={leftSecond}>
         {leftSecond}
