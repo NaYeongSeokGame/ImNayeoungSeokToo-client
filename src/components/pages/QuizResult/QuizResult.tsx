@@ -14,7 +14,6 @@ const QuizResult = () => {
   const totalQuizAmount = quizList.length;
 
   const redirectToLobby = () => {
-    terminateQuizGame();
     navigate('/', { replace: true });
   };
   return (
