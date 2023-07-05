@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Provider } from 'jotai';
+import { Provider, useAtom } from 'jotai';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -12,6 +12,7 @@ import BasicLayout from '@/components/common/BasicLayout';
 import CreateQuiz from '@/components/pages/CreateQuiz';
 import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
+import GameManage from '@/components/common/GameManage';
 import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
 import QuizResult from '@/components/pages/QuizResult';
@@ -31,31 +32,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'quiz',
+        element: <GameManage />,
         children: [
+          {
+            path: '',
+            element: <QuizPlay />,
+          },
           {
             path: 'create',
             element: <CreateQuiz />,
           },
           {
-            path: ':presetPin',
-            children: [
-              {
-                path: '',
-                element: <QuizPlay />,
-              },
-              {
-                path: 'answer',
-                element: <QuizAnswer />,
-              },
-              {
-                path: 'loading',
-                element: <Landing />,
-              },
-              {
-                path: 'result',
-                element: <QuizResult />,
-              },
-            ],
+            path: 'answer',
+            element: <QuizAnswer />,
+          },
+          {
+            path: 'loading',
+            element: <Landing />,
+          },
+          {
+            path: 'result',
+            element: <QuizResult />,
           },
         ],
       },
