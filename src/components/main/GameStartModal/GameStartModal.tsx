@@ -1,10 +1,13 @@
+import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import QuizRepository from '@/apis/quiz';
 import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
 import { ReactComponent as PlusIconSvg } from '@/assets/icons/plusIcon.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
 import useModal from '@/hooks/useModal';
+import { startQuizGameAtom } from '@/stores/quiz';
 import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
 
 import * as styles from './GameStartModal.style';
@@ -21,21 +24,28 @@ const GameStartModal = ({
   title,
 }: GameStartModalProps) => {
   const navigate = useNavigate();
+  const startQuizGame = useSetAtom(startQuizGameAtom);
   const { closeModal } = useModal();
-  const [delayBeforePlay, setDelayBeforePlay] = useState(3);
 
-  const handleDelayBeforePlay = (diff: 1 | -1) => {
-    const changedResult = delayBeforePlay + diff;
+  const [delayBeforeStart, setDelayBeforeStart] = useState(3);
+
+  const handleDelayBeforeStart = (diff: number) => {
+    const changedResult = delayBeforeStart + diff;
     if (changedResult < 3 || changedResult > 10) return;
-
-    setDelayBeforePlay(changedResult);
+    setDelayBeforeStart(changedResult);
   };
 
-  const redirectToLandingPage = () => {
-    closeModal();
-    navigate(`/quiz/${presetPin}/loading`, {
-      state: { delay: delayBeforePlay * 1000 },
+  const redirectToLandingPage = async () => {
+    const { quizList } = await QuizRepository.getQuizByPinAsync(presetPin);
+    startQuizGame({
+      quizList,
+      thumbnailUrl: '',
+      presetPin,
+      delayBeforeStart,
+      timeToSolveQuiz: 3, // FIXME : 추후 문제 별 딜레이 설정 기능도 추가해야 함.
     });
+    closeModal();
+    navigate(`/quiz/loading`);
   };
 
   const StartQuizButton = useCallback(
@@ -44,7 +54,7 @@ const GameStartModal = ({
         완료
       </styles.StartQuizButton>
     ),
-    [delayBeforePlay],
+    [delayBeforeStart],
   );
 
   return (
@@ -62,9 +72,9 @@ const GameStartModal = ({
         <div>
           <styles.Title>타이머 설정</styles.Title>
           <styles.StartDelayCounter>
-            <PlusIconSvg onClick={() => handleDelayBeforePlay(1)} />
-            {delayBeforePlay}
-            <MinusIconSvg onClick={() => handleDelayBeforePlay(-1)} />
+            <PlusIconSvg onClick={() => handleDelayBeforeStart(1)} />
+            {delayBeforeStart}
+            <MinusIconSvg onClick={() => handleDelayBeforeStart(-1)} />
           </styles.StartDelayCounter>
         </div>
       </styles.Wrapper>

@@ -7,6 +7,7 @@ import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
 import { ReactComponent as PlusIconSvg } from '@/assets/icons/plusIcon.svg';
 import { ReactComponent as PurplePlusIconSvg } from '@/assets/icons/purplePlusIcon.svg';
 import AddQuizModal from '@/components/main/AddQuizModal';
+import GameStartModal from '@/components/main/GameStartModal';
 import useModal from '@/hooks/useModal';
 import { CreatePresetWithUrlType, CreateQuizWithUrlType } from '@/types/quiz';
 import copyClipboard from '@/utils/copyClipboard';
@@ -106,7 +107,15 @@ const CreateQuiz = () => {
       });
       await copyClipboard(presetPin);
       toast.success('프리셋을 생성하여 PIN을 복사했습니다.');
-      navigate(`/quiz/${presetPin}/loading`);
+      // FIXME : 백엔드에서 썸네일 이미지를 받아오는 로직이 추가되면 수정 필요
+      openModal(
+        <GameStartModal
+          presetPin={presetPin}
+          title={title}
+          thumbnailUrl={'test'}
+        />,
+      );
+      navigate(`/`);
     } catch (error) {
       console.error(error);
     }
@@ -158,7 +167,7 @@ const CreateQuiz = () => {
         })}
       </styles.QuizGridSection>
       <styles.CreatePresetBtn onClick={submitQuizData}>
-        CREATE QUIZ
+        퀴즈 생성하기
       </styles.CreatePresetBtn>
     </>
   );

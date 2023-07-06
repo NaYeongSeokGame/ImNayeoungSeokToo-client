@@ -1,48 +1,40 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useAtom, useAtomValue } from 'jotai';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as CorrectButtonSvg } from '@/assets/images/correctButton.svg';
 import { ReactComponent as WrongButtonSvg } from '@/assets/images/wrongButton.svg';
-import { useQuizState } from '@/hooks/useQuizContext';
-import { useQuizDispatch } from '@/hooks/useQuizContext';
+import { controlCurrentScoreAtom, quizPlayStateAtom } from '@/stores/quiz';
 
 import * as styles from './QuizAnswer.style';
 
-interface QuizAnswerProps {
-  answer: string;
-}
+const QuizAnswer = () => {
+  const navigate = useNavigate();
 
-// FIXME : 테스트를 위한 임시 props 삽입
-const QuizAnswer = ({ answer }: QuizAnswerProps) => {
-  const { presetPin, seq } = useParams();
-  const navigation = useNavigate();
-  const quizState = useQuizState();
+  const { quizList } = useAtomValue(quizPlayStateAtom);
+  const [{ currentIndex, isTerminated }, updateCurrentScore] = useAtom(
+    controlCurrentScoreAtom,
+  );
 
-  const { quizData } = quizState;
-  const { addScore } = useQuizDispatch();
-  const nextRoundUrl =
-    quizData.length > Number(seq) + 1
-      ? `/quiz/${presetPin}/${Number(seq) + 1}`
-      : `/quiz/${presetPin}/result`;
+  const nextRoundUrl = isTerminated
+    ? `/quiz/result`
+    : `/quiz`;
 
-  const onCorrectClick = () => {
-    addScore('correct');
-    navigation(nextRoundUrl);
-  };
+  const currentQuizAnswer = quizList[currentIndex].answer || '';
 
-  const onWrongClick = () => {
-    addScore('incorrect');
-    navigation(nextRoundUrl);
+  const submitQuizResult = (isCorrect: boolean) => {
+    updateCurrentScore({ isCorrect, quizIndex: currentIndex });
+    navigate(nextRoundUrl, { replace: true });
   };
 
   return (
     <>
       <styles.Title />
       <styles.QuestionAnswer>
-        <styles.Answer>{quizData[Number(seq)].answer ?? answer}</styles.Answer>
+        <styles.Answer>{currentQuizAnswer}</styles.Answer>
       </styles.QuestionAnswer>
       <styles.ButtonSection>
-        <CorrectButtonSvg onClick={onCorrectClick} />
-        <WrongButtonSvg onClick={onWrongClick} />
+        <CorrectButtonSvg onClick={() => submitQuizResult(true)} />
+        <WrongButtonSvg onClick={() => submitQuizResult(false)} />
       </styles.ButtonSection>
     </>
   );
