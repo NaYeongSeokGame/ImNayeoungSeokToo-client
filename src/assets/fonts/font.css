@@ -55,7 +55,7 @@
   src: url('../../assets/fonts/GmarketSansTTFLight.woff') format('woff');
 }
 @font-face {
-  font-family: NeoDunggeunmoPro;
+  font-family: NeoDunggeunmoPro; 
   font-weight: 400;
-  src: url('../../assets/fonts/NeoDunggeunmoPro.woff') format('woff');
+  src: url('../../assets/fonts/NeoDunggeunmoPro-Regular.woff') format('woff');
 }
