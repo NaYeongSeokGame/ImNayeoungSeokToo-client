@@ -10,13 +10,14 @@ html,
     padding: 0;
     margin: 0;
     min-width: 360px;
-    font-family: 'LOTTERIADDAG';
+    font-family: Gmarketsans;
+    font-weight: 400;
   }
 
   *,
   *:before,
   *:after {
-    font-family: SUIT;
+    font-family: Gmarketsans;
     box-sizing: border-box;
   }
 
