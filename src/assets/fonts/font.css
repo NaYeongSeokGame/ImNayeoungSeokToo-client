@@ -39,3 +39,23 @@
   font-weight: 100;
   src: url('../../assets/fonts/Pretendard-Thin.woff') format('woff');
 }
+@font-face {
+  font-family: Gmarketsans;
+  font-weight: 700;
+  src: url('../../assets/fonts/GmarketSansTTFBold.woff') format('woff');
+}
+@font-face {
+  font-family: Gmarketsans;
+  font-weight: 400;
+  src: url('../../assets/fonts/GmarketSansTTFMedium.woff') format('woff');
+}
+@font-face {
+  font-family: Gmarketsans;
+  font-weight: 300;
+  src: url('../../assets/fonts/GmarketSansTTFLight.woff') format('woff');
+}
+@font-face {
+  font-family: NeoDunggeunmoPro;
+  font-weight: 400;
+  src: url('../../assets/fonts/NeoDunggeunmoPro.woff') format('woff');
+}
