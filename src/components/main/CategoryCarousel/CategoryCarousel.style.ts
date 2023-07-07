@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 22.5rem;
@@ -15,14 +15,29 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const slide = keyframes`
+  0% {
+    margin-left:0%;
+    transform: translateX(00%)
+  }
+  50% {
+    margin-right:0%;
+    transform: translateX(-50%) //Fix: 캐러셀 갯수에 맞게 조정 필요
+  }
+  100%{
+    margin-left:0%;
+    transform: translateX(00%)
+  }
+`
 export const Carousel = styled.div`
   width: 90rem;
 
   display: flex;
   justify-content: center;
   gap: 0 0.5rem;
+  
+  animation:  ${slide} 10s linear infinite;
 `;
-
 
 export const ImageWrapper = styled.div`
   ${({ theme }) => {
