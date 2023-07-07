@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
+
+import QuizRepository from '@/apis/quiz';
 import useModal from '@/hooks/useModal';
-import { QuizType } from '@/types/quiz';
+import { QuizPresetType, QuizType } from '@/types/quiz';
 import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
 
 import GameStartModal from '../GameStartModal';
@@ -12,39 +15,57 @@ interface CategoryElementProps {
   presetPin: string;
 }
 
-const EXAMPLE_CATEGORY_ELEMENT: CategoryElementProps[] = [
-  {
-    imageUrl:
+function getQuizListLocal(){ //Fix : 로컬 테스트용, 서버에 데이터 반영되면 삭제 예정
+  return [ {
+    thumbnailUrl:
       'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499921cda2ab71457cff4f3/8c884b422460c98c.jpeg',
-    category: '스포츠',
-    isSelected: false,
+    title: '스포츠',
+    isPrivate: false,
     presetPin: '649991e4da2ab71457cff4e7',
   },
   {
     imageUrl:
       'http://d2e2zp9buqlqpp.cloudfront.net/preset/64999226da2ab71457cff4ff/이강인.jpg',
-    category: '축구선수',
-    isSelected: false,
+    title: '축구선수',
+    isPrivate: false,
     presetPin: '64999226da2ab71457cff4ff',
   },
   {
     imageUrl:
       'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499927bda2ab71457cff527/c39374225f7a80a0a9dcc2066eedc3de.jpg',
-    category: '남자연예인',
-    isSelected: false,
+    title: '남자연예인',
+    isPrivate: false,
     presetPin: '6499927bda2ab71457cff527',
   },
   {
     imageUrl:
       'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499921cda2ab71457cff4f3/8c884b422460c98c.jpeg',
-    category: '여자연예인',
-    isSelected: false,
+    title: '여자연예인',
+    isPrivate: false,
     presetPin: '649993fbda2ab71457cff55f',
-  },
-];
+  }];
+}
 
 const CategoryCarousel = () => {
+  const [presetList, setPresetList] = useState<QuizPresetType[]>([]);
   const { openModal } = useModal();
+
+  useEffect(() => {
+    const getPresetList = async () => {
+      try {
+        const presetList = await QuizRepository.getQuizListAsync({
+          page: 1,
+          limit: 9,
+        });
+        setPresetList(presetList);
+        console.log(presetList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getPresetList(); 
+  }, []);
 
   const handleGoToQuizPreset = (
     presetPin: string,
@@ -63,22 +84,25 @@ const CategoryCarousel = () => {
   return (
     <styles.Wrapper>
       <styles.Carousel>
-        {EXAMPLE_CATEGORY_ELEMENT.map(
+        {presetList.map(
           ({
-            imageUrl,
-            category,
-            isSelected,
+            isPrivate,
             presetPin,
-          }: CategoryElementProps) => (
-            <styles.Image
-              imageUrl={imageUrl}
-              isSelected={isSelected}
-              onClick={() =>
-                handleGoToQuizPreset(presetPin, imageUrl, category)
-              }
-            >
-              <styles.CategoryText>{category}</styles.CategoryText>
-            </styles.Image>
+            title,
+            thumbnailUrl = 'http://d2e2zp9buqlqpp.cloudfront.net/preset/6499921cda2ab71457cff4f3/8c884b422460c98c.jpeg', //임시 이미지
+          }: QuizPresetType) => (
+            console.log(title),
+            (
+              <styles.Image
+                imageUrl={thumbnailUrl}
+                isSelected={false}
+                onClick={() =>
+                  handleGoToQuizPreset(presetPin, thumbnailUrl, title)
+                }
+              >
+                <styles.CategoryText>{title}</styles.CategoryText>
+              </styles.Image>
+            )
           ),
         )}
       </styles.Carousel>

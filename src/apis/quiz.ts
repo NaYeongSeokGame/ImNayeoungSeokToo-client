@@ -3,6 +3,7 @@ import {
   GetQuizListOutput,
   PaginationType,
   QuizPresetPinType,
+  QuizPresetType,
 } from '@/types/quiz';
 
 import { deleteAsync, getAsync, postAsync } from './API';
@@ -18,7 +19,7 @@ class QuizRepository {
   }
 
   static async getQuizListAsync({ page = 1, limit = 9 }: PaginationType) {
-    const quizPresetList = await getAsync<GetQuizListOutput>('/quiz/list', {
+    const quizPresetList = await getAsync<QuizPresetType[]>('/quiz/list', {
       params: {
         page,
         limit,

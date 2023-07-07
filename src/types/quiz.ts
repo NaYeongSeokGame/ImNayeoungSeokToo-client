@@ -12,6 +12,9 @@ export type QuizTypeWithPin = QuizType & QuizPresetPinType;
 export interface QuizPresetType {
   isPrivate: boolean;
   title: string;
+  presetPin: string;
+  thumbnailUrl?: string; //Fix : 추후 추가되면 ?제거
+  hashtagList?: string[];//Fix : 추후 추가되면 ?제거
 }
 
 export type QuizPresetTypeWithPin = QuizPresetType & QuizPresetPinType;
