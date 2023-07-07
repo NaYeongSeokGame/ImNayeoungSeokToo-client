@@ -11,7 +11,6 @@ html,
     margin: 0;
     min-width: 360px;
     font-family: Gmarketsans;
-    font-weight: 400;
   }
 
   *,
