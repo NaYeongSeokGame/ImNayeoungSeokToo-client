@@ -13,3 +13,5 @@ export type UpdateAudioStateType = Pick<
   AudioStateType,
   'backgroundSound' | 'soundEffect' | 'isMute'
 >;
+
+export type SettingAudioStateType = Pick<AudioStateType, 'backgroundSoundSrc'>;
