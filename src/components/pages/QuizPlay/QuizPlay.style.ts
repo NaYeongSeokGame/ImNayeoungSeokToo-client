@@ -33,7 +33,7 @@ export const Countdown = styled.h5<{ currentCount: number }>`
   ${({ theme, currentCount }) => {
     return css`
       font-size: 6rem;
-      color: ${currentCount < 2 ? theme.color.red : theme.colors.purple};
+      color: ${currentCount < 2 ? theme.colors.red : theme.colors.purple};
       margin: 0 auto auto;
     `;
   }}

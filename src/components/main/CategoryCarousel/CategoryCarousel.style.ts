@@ -62,8 +62,8 @@ export const ImageWrapper = styled.div`
   }}
 `;
 
-export const Image = styled.div<{ imageUrl: string; isSelected: boolean }>`
-  ${({ theme, imageUrl, isSelected }) => {
+export const Image = styled.div<{ imageUrl: string }>`
+  ${({ theme, imageUrl }) => {
     return css`
       width: 110px;
       height: 110px;

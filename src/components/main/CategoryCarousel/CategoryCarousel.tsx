@@ -92,7 +92,6 @@ const CategoryCarousel = () => {
               <styles.ImageWrapper>
                 <styles.Image
                   imageUrl={thumbnailUrl}
-                  isSelected={false}
                   onClick={() =>
                     handleGoToQuizPreset(presetPin, thumbnailUrl, title)
                   }
