@@ -13,7 +13,7 @@ export interface QuizPresetType {
   isPrivate: boolean;
   title: string;
   presetPin: string;
-  thumbnailUrl?: string; //Fix : 추후 추가되면 ?제거
+  thumbnailUrl: string; 
   hashtagList?: string[];//Fix : 추후 추가되면 ?제거
 }
 
