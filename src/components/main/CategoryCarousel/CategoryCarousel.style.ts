@@ -37,7 +37,12 @@ export const Carousel = styled.div`
   gap: 0 0.5rem;
   
   animation:  ${slide} 10s linear infinite;
+  animation-play-state: running;
+  &:hover{  
+    animation-play-state: paused;
+  }
 `;
+
 
 export const ImageWrapper = styled.div`
   ${({ theme }) => {
