@@ -3,7 +3,6 @@ import { UpdateAudioStateType } from 'src/types/atom/audio';
 
 import { controlVolumeAtom } from '@/stores/audio/actions.ts';
 
-
 const useAudioControl = () => {
   const [volume, setVolume] = useAtom(controlVolumeAtom);
 
@@ -11,7 +10,14 @@ const useAudioControl = () => {
     setVolume(newAudioState);
   };
 
-  return { volume, onChange };
+  const onMute = (mute: boolean) => {
+    setVolume({
+      ...volume,
+      mute: mute,
+    });
+  };
+
+  return { volume, onChange, onMute };
 };
 
 export default useAudioControl;
