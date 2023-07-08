@@ -12,7 +12,7 @@ export const controlVolumeAtom = atom(
       ...prevAtom,
       ...update,
       // 소리 조절할 때, 자동으로 mute가 풀리도록 설정
-      mute: false,
+      isMute: false,
     });
   },
 );
