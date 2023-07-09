@@ -43,7 +43,7 @@ const useAudio = ({
     audioRef.current.src = currentAudioSrc;
     audioRef.current.volume = backgroundVolume;
     audioRef.current.loop = isBackgroundMusic;
-  }, [audioRef, currentAudioSrc, backgroundVolume, isBackgroundMusic]);
+  }, [currentAudioSrc, backgroundVolume, isBackgroundMusic]);
 
   useEffect(() => {
     isPlaying && currentAudioSrc
