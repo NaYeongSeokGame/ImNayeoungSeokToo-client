@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
@@ -23,12 +23,12 @@ const GameStartModal = ({
 }: GameStartModalProps) => {
   const navigate = useNavigate();
   const { closeModal } = useModal();
-  const [delayBeforeStart, setDelayBeforeStart] = useState(3);
 
-  const { startQuizGame, handleDelayBeforeStart } = usePresetSetting({
-    presetPin,
-    thumbnailUrl,
-  });
+  const { delayBeforeStart, startQuizGame, handleDelayBeforeStart } =
+    usePresetSetting({
+      presetPin,
+      thumbnailUrl,
+    });
 
   const redirectToLandingPage = async () => {
     await startQuizGame();

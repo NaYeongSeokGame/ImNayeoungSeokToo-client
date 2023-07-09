@@ -21,10 +21,12 @@ const usePresetSetting = ({
     if (changedResult < 3 || changedResult > 10) return;
     setDelayBeforeStart(changedResult);
   };
+
   const handleTimeToSolveQuiz = (diff: number) => {
     const changeResult = timeToSolveQuiz + diff;
     setTimeToSolveQuiz(changeResult);
   };
+
   const startQuizGame = async () => {
     if (!presetData) return;
     // 추가로 리액트 쿼리로 고치면
@@ -37,7 +39,13 @@ const usePresetSetting = ({
     });
   };
 
-  return { handleDelayBeforeStart, handleTimeToSolveQuiz, startQuizGame };
+  return {
+    delayBeforeStart,
+    timeToSolveQuiz,
+    handleDelayBeforeStart,
+    handleTimeToSolveQuiz,
+    startQuizGame,
+  };
 };
 
 export default usePresetSetting;
