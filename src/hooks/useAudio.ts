@@ -3,22 +3,23 @@ import { useEffect, useState } from 'react';
 
 import { audioStateAtom } from '@/stores/audio/atoms';
 
-
 interface UseAudioProps {
   isBackgroundMusic: boolean;
   initAudioSrc: string | null;
 }
 
 const useAudio = ({
-                    isBackgroundMusic = false,
-                    initAudioSrc = null,
-                  }: UseAudioProps) => {
+  isBackgroundMusic = false,
+  initAudioSrc = null,
+}: UseAudioProps) => {
   const audioRef = new Audio();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentAudioSrc, setCurrentAudioSrc] = useState<string | null>(
     initAudioSrc,
   );
-  const { backgroundVolume } = useAtomValue(audioStateAtom);
+  const {
+    backgroundSound: { volume: backgroundVolume },
+  } = useAtomValue(audioStateAtom);
 
   const registerSound = (audioUrl: string) => {
     setCurrentAudioSrc(audioUrl);
@@ -42,12 +43,11 @@ const useAudio = ({
     audioRef.src = currentAudioSrc;
     audioRef.volume = backgroundVolume;
     audioRef.loop = isBackgroundMusic;
-
   }, [currentAudioSrc, backgroundVolume, isBackgroundMusic]);
 
   useEffect(() => {
-    (isPlaying && currentAudioSrc) ? audioRef.play() : audioRef.pause();
-  }, [currentAudioSrc, isPlaying])
+    isPlaying && currentAudioSrc ? audioRef.play() : audioRef.pause();
+  }, [currentAudioSrc, isPlaying]);
 
   return { registerSound, removeSound, play, stop };
 };

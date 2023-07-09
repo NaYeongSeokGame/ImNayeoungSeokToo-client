@@ -1,10 +1,17 @@
 import { atom } from 'jotai';
-import { AudioStateType } from 'src/types/atom/audio';
 
+import { AudioStateType } from '@/types/atom/audio';
 
 export const audioStateAtom = atom<AudioStateType>({
-  backgroundSoundSrc: new Audio(),
   isMute: false,
-  backgroundVolume: 1,
-  soundEffectVolume: 1,
+  soundEffect: {
+    src: '',
+    volume: 1,
+    isLoop: false,
+  },
+  backgroundSound: {
+    src: '',
+    volume: 1,
+    isLoop: true,
+  },
 });

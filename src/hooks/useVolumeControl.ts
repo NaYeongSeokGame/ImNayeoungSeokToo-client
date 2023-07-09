@@ -1,16 +1,24 @@
 import { useAtom } from 'jotai';
-import { UpdateAudioStateType } from 'src/types/atom/audio';
 
 import { controlVolumeAtom } from '@/stores/audio/actions.ts';
-
 
 const useVolumeControl = () => {
   const [volume, setVolume] = useAtom(controlVolumeAtom);
 
-  const onChange = (newAudioState: UpdateAudioStateType) => {
+  const onChange = ({
+    backgroundVolume,
+    soundEffectVolume,
+  }: {
+    backgroundVolume?: number;
+    soundEffectVolume?: number;
+  }) => {
     setVolume({
-      ...newAudioState,
-      // 소리 조절할 때, 자동으로 mute가 풀리도록 설정
+      backgroundSound: {
+        volume: backgroundVolume || volume.backgroundSound.volume,
+      },
+      soundEffect: {
+        volume: soundEffectVolume || volume.soundEffect.volume,
+      },
       isMute: false,
     });
   };
