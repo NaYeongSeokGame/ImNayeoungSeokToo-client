@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 
-import QuizRepository from '@/apis/quiz.ts';
+import useGetPresetByPin from '@/hooks/useGetPresetByPin.ts';
 import { startQuizGameAtom } from '@/stores/quiz';
 
 const usePresetSetting = ({
@@ -11,6 +11,7 @@ const usePresetSetting = ({
   thumbnailUrl,
 }: UsePresetSettingProps) => {
   const setStartQuizGame = useSetAtom(startQuizGameAtom);
+  const presetData = useGetPresetByPin(presetPin);
   const [delayBeforeStart, setDelayBeforeStart] =
     useState(initDelayBeforeStart);
   const [timeToSolveQuiz, setTimeToSolveQuiz] = useState(initTimeToSolveQuiz);
@@ -20,17 +21,15 @@ const usePresetSetting = ({
     if (changedResult < 3 || changedResult > 10) return;
     setDelayBeforeStart(changedResult);
   };
-
   const handleTimeToSolveQuiz = (diff: number) => {
     const changeResult = timeToSolveQuiz + diff;
     setTimeToSolveQuiz(changeResult);
   };
-
   const startQuizGame = async () => {
+    if (!presetData) return;
     // 추가로 리액트 쿼리로 고치면
-    const { quizList } = await QuizRepository.getQuizByPinAsync(presetPin);
     setStartQuizGame({
-      quizList,
+      quizList: presetData.quizList,
       presetPin,
       thumbnailUrl,
       delayBeforeStart,
