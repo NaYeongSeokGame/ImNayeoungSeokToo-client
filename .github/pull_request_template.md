@@ -1,4 +1,4 @@
-## Github Issue 번호
+## Jira Issue 번호
 
 ## 작업 내용
 
