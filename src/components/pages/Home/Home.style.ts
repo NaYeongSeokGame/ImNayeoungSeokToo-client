@@ -52,7 +52,7 @@ export const OptionButton = styled.button`
       border-radius: 1rem;
 
       width: 14rem;
-      padding: 1rem 2.75rem;
+      padding: 1rem 1rem;
 
       font-size: 1.125rem;
       font-family: 'LOTTERIADDAG';
