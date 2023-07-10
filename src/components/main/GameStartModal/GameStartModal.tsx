@@ -24,7 +24,7 @@ const GameStartModal = ({
   const navigate = useNavigate();
   const { closeModal } = useModal();
 
-  const { delayBeforeStart, startQuizGame, handleDelayBeforeStart } =
+  const { timeToSolveQuiz, startQuizGame, handleTimeToSolveQuiz } =
     usePresetSetting({
       presetPin,
       thumbnailUrl,
@@ -42,7 +42,7 @@ const GameStartModal = ({
         완료
       </styles.StartQuizButton>
     ),
-    [delayBeforeStart],
+    [timeToSolveQuiz],
   );
 
   return (
@@ -60,9 +60,9 @@ const GameStartModal = ({
         <div>
           <styles.Title>타이머 설정</styles.Title>
           <styles.StartDelayCounter>
-            <PlusIconSvg onClick={() => handleDelayBeforeStart(1)} />
-            {delayBeforeStart}
-            <MinusIconSvg onClick={() => handleDelayBeforeStart(-1)} />
+            <PlusIconSvg onClick={() => handleTimeToSolveQuiz(1)} />
+            {timeToSolveQuiz}
+            <MinusIconSvg onClick={() => handleTimeToSolveQuiz(-1)} />
           </styles.StartDelayCounter>
         </div>
       </styles.Wrapper>

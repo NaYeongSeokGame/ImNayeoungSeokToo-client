@@ -27,7 +27,7 @@ const usePresetSetting = ({
     setTimeToSolveQuiz(changeResult);
   };
 
-  const startQuizGame = async () => {
+  const startQuizGame = () => {
     if (!presetData) return;
 
     setStartQuizGame({
