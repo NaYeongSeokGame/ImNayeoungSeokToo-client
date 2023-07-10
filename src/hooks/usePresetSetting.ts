@@ -29,7 +29,7 @@ const usePresetSetting = ({
 
   const startQuizGame = async () => {
     if (!presetData) return;
-    // 추가로 리액트 쿼리로 고치면
+
     setStartQuizGame({
       quizList: presetData.quizList,
       presetPin,
