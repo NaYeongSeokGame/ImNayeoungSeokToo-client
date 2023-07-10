@@ -7,7 +7,14 @@ import {
 import { audioStateAtom } from '@/stores/audio/atoms.ts';
 
 export const controlVolumeAtom = atom(
-  (get) => get(audioStateAtom),
+  (get) => {
+    const {
+      isMute,
+      backgroundSound: { volume: backgroundVolume },
+      soundEffect: { volume: soundEffectVolume },
+    } = get(audioStateAtom);
+    return {isMute, backgroundVolume, soundEffectVolume}
+  },
   (get, set, update: UpdateAudioStateType) => {
     const prevAtom = get(audioStateAtom);
 
