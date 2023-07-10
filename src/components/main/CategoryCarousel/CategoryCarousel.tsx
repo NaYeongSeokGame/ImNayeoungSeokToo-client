@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react';
 
 import QuizRepository from '@/apis/quiz';
-import useModal from '@/hooks/useModal';
-import { QuizPresetType, QuizType } from '@/types/quiz';
-import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
+import { QuizPresetType} from '@/types/quiz';
 
-import GameStartModal from '../GameStartModal';
 import * as styles from './CategoryCarousel.style';
+import CategoryCarouselImage from './CategoryCarouselImage';
 
 const CategoryCarousel = () => {
   const [presetList, setPresetList] = useState<QuizPresetType[]>([]);
-  const { openModal } = useModal();
-
+ 
   useEffect(() => {
     const getPresetList = async () => {
       try {
@@ -27,44 +24,32 @@ const CategoryCarousel = () => {
     getPresetList();
   }, []);
 
-  const handleGoToQuizPreset = (
-    presetPin: string,
-    imageUrl: string,
-    title: string,
-  ) => {
-    openModal(
-      <GameStartModal
-        presetPin={presetPin}
-        thumbnailUrl={imageUrl}
-        title={title}
-      />,
-    );
-  };
-
   return (
     <styles.Wrapper>
       <styles.Carousel>
-        {presetList.map(
-          ({
-            presetPin,
-            title,
-            thumbnailUrl,
-          }: QuizPresetType) => (
-            (
-              <styles.ImageWrapper>
-                <styles.Image
-                  imageUrl={thumbnailUrl}
-                  onClick={() =>
-                    handleGoToQuizPreset(presetPin, thumbnailUrl, title)
-                  }
-                />
-                <styles.TitleText>{title}</styles.TitleText>
-                <styles.HashtagText>{title}</styles.HashtagText>
-              </styles.ImageWrapper>
-            )
-          ),
-        )}
+        {presetList.map((v) => (
+          <CategoryCarouselImage
+          key={v.presetPin}
+          isPrivate={false}
+            title={v.title}
+            presetPin={v.presetPin}
+            thumbnailUrl={v.thumbnailUrl}
+            hashtagList={v.hashtagList}
+          />
+        ))}
       </styles.Carousel>
+      <styles.CarouselClone>
+        {presetList.map((v) => (
+          <CategoryCarouselImage
+            key={v.presetPin}
+            isPrivate={false}
+            title={v.title}
+            presetPin={v.presetPin}
+            thumbnailUrl={v.thumbnailUrl}
+            hashtagList={v.hashtagList}
+          />
+        ))}
+      </styles.CarouselClone>
     </styles.Wrapper>
   );
 };

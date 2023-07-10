@@ -14,7 +14,7 @@ export interface QuizPresetType {
   title: string;
   presetPin: string;
   thumbnailUrl: string; 
-  hashtagList?: string[];//Fix : 추후 추가되면 ?제거
+  hashtagList?: string[] ;//Fix : 추후 추가되면 ?제거
 }
 
 export type QuizPresetTypeWithPin = QuizPresetType & QuizPresetPinType;
