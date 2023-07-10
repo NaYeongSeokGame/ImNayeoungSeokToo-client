@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
 import QuizRepository from '@/apis/quiz';
-import { QuizPresetType} from '@/types/quiz';
+import { QuizPresetType } from '@/types/quiz';
 
 import * as styles from './CategoryCarousel.style';
 import CategoryCarouselImage from './CategoryCarouselImage';
 
 const CategoryCarousel = () => {
   const [presetList, setPresetList] = useState<QuizPresetType[]>([]);
- 
+
   useEffect(() => {
     const getPresetList = async () => {
       try {
@@ -27,26 +27,26 @@ const CategoryCarousel = () => {
   return (
     <styles.Wrapper>
       <styles.Carousel>
-        {presetList.map((v) => (
+        {presetList.map(({ presetPin, title, thumbnailUrl, hashtagList }) => (
           <CategoryCarouselImage
-          key={v.presetPin}
-          isPrivate={false}
-            title={v.title}
-            presetPin={v.presetPin}
-            thumbnailUrl={v.thumbnailUrl}
-            hashtagList={v.hashtagList}
+            key={presetPin}
+            isPrivate={false}
+            title={title}
+            presetPin={presetPin}
+            thumbnailUrl={thumbnailUrl}
+            hashtagList={hashtagList}
           />
         ))}
       </styles.Carousel>
       <styles.CarouselClone>
-        {presetList.map((v) => (
+        {presetList.map(({ presetPin, title, thumbnailUrl, hashtagList }) => (
           <CategoryCarouselImage
-            key={v.presetPin}
+            key={presetPin}
             isPrivate={false}
-            title={v.title}
-            presetPin={v.presetPin}
-            thumbnailUrl={v.thumbnailUrl}
-            hashtagList={v.hashtagList}
+            title={title}
+            presetPin={presetPin}
+            thumbnailUrl={thumbnailUrl}
+            hashtagList={hashtagList}
           />
         ))}
       </styles.CarouselClone>

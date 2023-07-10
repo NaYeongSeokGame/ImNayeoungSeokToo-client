@@ -37,9 +37,9 @@ const CategoryCarouselImage = ({
         />
         <styles.TitleText>{title}</styles.TitleText>
         <styles.HashtagWrapper>
-          {hashtagList?.map(
-            (v, i) => (i < 2) && <styles.HashtagText>{v}</styles.HashtagText>,
-          )}
+          {hashtagList?.slice(0, 2).map((hashtag) => (
+            <styles.HashtagText>{hashtag}</styles.HashtagText>
+          ))}
         </styles.HashtagWrapper>
       </styles.ImageWrapper>
     </div>

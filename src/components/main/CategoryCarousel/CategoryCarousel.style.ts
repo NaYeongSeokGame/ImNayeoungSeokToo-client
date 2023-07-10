@@ -9,7 +9,8 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-
+  
+  overflow: hidden; 
   &::-webkit-scrollbar {
     display: none;
   }
@@ -52,13 +53,13 @@ export const CarouselClone = styled.div`
 export const ImageWrapper = styled.div`
   ${({ theme }) => {
     return css`
-      width: 128px;
-      height: 170px;
-      padding: 4px;
-      margin-left: 8px;
+      width: 8rem;
+      height: 10.625rem;
+      padding: 0.25rem;
+      margin-left: 0.5rem;
       background-color: grey;
       border-radius: 1rem;
-      box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.15);
+      box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.15);
 
       display: flex;
       flex-direction: column;
@@ -69,13 +70,13 @@ export const ImageWrapper = styled.div`
 export const Image = styled.div<{ imageurl: string }>`
   ${({ theme, imageurl }) => {
     return css`
-      width: 120px;
-      height: 120px;
+      width: 7.5rem;
+      height: 7.5rem;
 
       background-image: url(${imageurl});
       background-size: cover;
       border-radius: 1rem;
-      box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.15);
+      box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.15);
     `;
   }}
 `;
