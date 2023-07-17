@@ -21,8 +21,7 @@ const PresetCard = ({
         <styles.HashtagWrapper>
           {hashtagList?.slice(0, 2).map((hashtag) => (
             <styles.HashtagText> 
-              {/*Fix: 해시태그 배경이미지 잘리는 경우 발생*/}
-              {hashtag }
+              {hashtag}
             </styles.HashtagText>
           ))}
         </styles.HashtagWrapper>

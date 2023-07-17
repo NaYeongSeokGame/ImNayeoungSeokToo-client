@@ -33,11 +33,11 @@ export const TitleText = styled.div`
     return css`
       margin-top: 1.43rem;
 
+      color: ${theme.colors.white};
+      text-align: center;
       font-family: ${theme.fonts.deco3.fontFamily};
       font-size: ${theme.fonts.deco3.fontSize}px;
       font-weight: ${theme.fonts.deco3.fontWeight};
-      color: ${theme.colors.white};
-      text-align: center;
     `;
   }}
 `;
@@ -51,19 +51,20 @@ export const HashtagWrapper = styled.div`
   }}
 `;
 
-export const HashtagText = styled.div`
+export const HashtagText = styled.p`
   ${({ theme }) => {
     return css`
+      min-width: 4rem;
       height: 1rem;
       margin: 1rem auto;
       padding: 0 0.75rem;
+
+      color: ${theme.colors.gray700};
+      text-align: center;
       font-size: ${theme.fonts.deco4.fontSize}px;
       font-family: ${theme.fonts.deco4.fontFamily};
       font-weight: ${theme.fonts.deco4.fontWeight};
       line-height: ${theme.fonts.deco4.lineHeight};
-      color: ${theme.colors.gray700};
-      text-align: center;
-
       background-size: cover;
       background-position: center;
       background-image: url(/src/assets/images/PresetTemplate/PresetHashtag.svg);
