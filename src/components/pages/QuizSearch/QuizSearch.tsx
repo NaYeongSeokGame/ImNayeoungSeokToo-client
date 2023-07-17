@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 import PresetCard from '@/components/common/PresetCard';
 import GameStartModal from '@/components/main/GameStartModal';
 import useGetPresetList from '@/hooks/useGetPresetList';
@@ -8,6 +10,35 @@ import * as styles from './SearchQuiz.style';
 
 const QuizSearch = () => {
   const { openModal } = useModal();
+  const [page, setPage] = useState(1);
+  const limit = 6;
+  const observerTarget = useRef(null);
+  const presetList = useGetPresetList({ page, limit });
+
+  //Fixme : 동작 확인 필요
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (presetList && limit > presetList.length) {
+            setPage(1);
+          } else if (page > 1) {
+            setPage(page + 1);
+          }
+        }
+      },
+      { threshold: 1 },
+    );
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
+      }
+    };
+  }, [observerTarget]);
+
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(
       <GameStartModal
@@ -17,8 +48,8 @@ const QuizSearch = () => {
       />,
     );
   };
+
   const handleSubmit = () => {};
-  const presetList = useGetPresetList({ page: 1, limit: 9 });
 
   return (
     <styles.SearchQuizWrapper>
@@ -26,18 +57,19 @@ const QuizSearch = () => {
         <styles.SearchInput placeholder="#태그를 검색하세요" />
         <styles.SearchButton />
       </styles.SearchForm>
-
       <styles.QuizPresetWrapper>
-        {presetList?.map((preset) => (
-          <styles.QuizPresetCard key={preset.presetPin}>
-            <PresetCard
-              title={preset.title}
-              thumbnailUrl={preset.thumbnailUrl}
-              hashtagList={preset.hashtagList}
-              handleClick={() => handleClick(preset)}
-            />
-          </styles.QuizPresetCard>
-        ))}
+        {presetList &&
+          presetList.map((preset) => (
+            <styles.QuizPresetCard key={preset.presetPin}>
+              <PresetCard
+                title={preset.title}
+                thumbnailUrl={preset.thumbnailUrl}
+                hashtagList={preset.hashtagList}
+                handleClick={() => handleClick(preset)}
+              />
+            </styles.QuizPresetCard>
+          ))}
+        <div ref={observerTarget}></div>
       </styles.QuizPresetWrapper>
     </styles.SearchQuizWrapper>
   );
