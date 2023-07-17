@@ -1,9 +1,28 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as TitleTextSvg } from '@/assets/images/titleText.svg';
+export const Title = styled.h1`
+  display: -webkit-box;
+  width: 12.5rem;
+  margin: 4.25rem 5rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 
-export const Title = styled(TitleTextSvg)`
-  margin: 1.875rem auto 1.25rem;
+  background: linear-gradient(
+    180deg,
+    #ff5912 16.67%,
+    #ffa012 48.96%,
+    #ffe812 84.9%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const QuestionResult = styled.section`
@@ -55,6 +74,18 @@ export const LobbyButton = styled.button`
       background-color: ${theme.colors.white};
       border: 0.25rem solid ${theme.colors.black};
       border-radius: 1rem;
+    `;
+  }}
+`;
+
+export const ShareIcon = styled.button`
+  ${({ theme }) => {
+    return css`
+      width: 2.75rem;
+      height: 2.75rem;
+
+      fill: url('../../../assets/icons/twitterIcon.svg'),
+        lightgray -4.251px -3.52px / 119.322% 119.322% no-repeat;
     `;
   }}
 `;
