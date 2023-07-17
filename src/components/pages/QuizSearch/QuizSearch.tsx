@@ -6,7 +6,7 @@ import { QuizPresetType } from '@/types/quiz';
 
 import * as styles from './SearchQuiz.style';
 
-const SearchQuiz = () => {
+const QuizSearch = () => {
   const { openModal } = useModal();
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(
@@ -43,4 +43,4 @@ const SearchQuiz = () => {
   );
 };
 
-export default SearchQuiz;
+export default QuizSearch;

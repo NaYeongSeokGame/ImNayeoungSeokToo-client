@@ -1,3 +1,3 @@
-import SearchQuiz from "./SearchQuiz";
+import QuizSearch from "./QuizSearch";
 
-export default SearchQuiz;
+export default QuizSearch;

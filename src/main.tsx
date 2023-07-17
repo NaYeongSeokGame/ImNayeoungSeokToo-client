@@ -19,7 +19,7 @@ import QuizResult from '@/components/pages/QuizResult';
 import TestAPI from '@/components/pages/TestAPI';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
-import SearchQuiz from './components/pages/QuizSearch';
+import QuizSearch from './components/pages/QuizSearch';
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'search',
-        element: <SearchQuiz />,
+        element: <QuizSearch />,
       },
       {
         path: 'test',
