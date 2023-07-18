@@ -12,8 +12,8 @@ const BasicLayout = ({ children }: PropsWithChildren) => {
       <ModalPortal />
       <styles.Wrapper>
         <styles.Background>
-          <Navigator />
           {children || <Outlet />}
+          <Navigator />
         </styles.Background>
       </styles.Wrapper>
     </>

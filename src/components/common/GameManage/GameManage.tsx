@@ -1,9 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import ModalPortal from '@/components/common/ModalPortal';
 import { quizPlayStateAtom } from '@/stores/quiz';
 import { terminateQuizGameAtom } from '@/stores/quiz/actions';
+
+import * as styles from './GameManage.style'
 
 const GameManage = () => {
   const { isPlaying } = useAtomValue(quizPlayStateAtom);
@@ -20,7 +24,16 @@ const GameManage = () => {
     };
   }, []);
 
-  return isPlaying ? <Outlet /> : null;
+  return (
+    <>
+      <ModalPortal />
+      <styles.Wrapper>
+        <styles.Background>
+          {isPlaying ? <Outlet /> : null}
+        </styles.Background>
+      </styles.Wrapper>
+    </>
+  );
 };
 
 export default GameManage;

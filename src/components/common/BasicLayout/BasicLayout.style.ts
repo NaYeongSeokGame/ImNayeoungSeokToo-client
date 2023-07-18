@@ -20,7 +20,7 @@ export const Background = styled.main`
   height: 50rem;
 
   margin: auto;
-  background-image: url(${getCloudFrontUrl('/static/background.png')});
+  background-image: url(${getCloudFrontUrl('/static/mainBackground.png')});
   background-size: cover;
 
   display: flex;
