@@ -8,28 +8,31 @@ import GameManage from '@/components/common/GameManage';
 import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
 import QuizResult from '@/components/pages/QuizResult';
-import TestAPI from '@/components/pages/TestAPI';
 
 const router = createBrowserRouter([
     {
       path: '/',
-      element: <BasicLayout />,
       errorElement: <div>오류</div>,
       children: [
         {
-          index: true,
-          element: <Home />,
-        },
-        {
-          path: 'create',
-          element: <CreateQuiz />,
-        },
-        {
-          path: 'quiz',
-          element: <GameManage />,
+          element: <BasicLayout />,
           children: [
             {
-              path: '',
+              index: true,
+              element: <Home />,
+            },
+            {
+              path: 'create',
+              element: <CreateQuiz />,
+            },
+          ]
+        },
+        {
+          element: <GameManage />,
+          path: 'quiz',
+          children: [
+            {
+              index: true,
               element: <QuizPlay />,
             },
             {
@@ -45,10 +48,6 @@ const router = createBrowserRouter([
               element: <QuizResult />,
             },
           ],
-        },
-        {
-          path: 'test',
-          element: <TestAPI />,
         },
       ],
     },
