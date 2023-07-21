@@ -17,10 +17,10 @@ export const Wrapper = styled.div`
 
 export const Background = styled.main`
   width: 22.5rem;
-  height: 50rem;
+  height: 100vh;
 
   margin: auto;
-  background-image: url(${getCloudFrontUrl('/static/background.png')});
+  background-image: url(${getCloudFrontUrl('/static/mainBackground.png')});
   background-size: cover;
 
   display: flex;
