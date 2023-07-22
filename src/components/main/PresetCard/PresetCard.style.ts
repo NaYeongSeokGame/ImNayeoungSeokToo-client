@@ -31,13 +31,12 @@ export const Image = styled.div<{ imageurl: string }>`
 export const TitleText = styled.div`
   ${({ theme }) => {
     return css`
-      margin-top: 1.43rem;
-
+      margin-top: 1.45rem;
       color: ${theme.colors.white};
       text-align: center;
-      font-family: ${theme.fonts.deco3.fontFamily};
-      font-size: ${theme.fonts.deco3.fontSize}px;
-      font-weight: ${theme.fonts.deco3.fontWeight};
+      font-family: ${theme.fonts.deco5.fontFamily};
+      font-size: ${theme.fonts.deco5.fontSize}rem;
+      font-weight: ${theme.fonts.deco5.fontWeight};
     `;
   }}
 `;
@@ -46,7 +45,8 @@ export const HashtagWrapper = styled.div`
   ${({ theme }) => {
     return css`
       display: flex;
-      padding-top: 0.66rem;
+      margin-top: 0.66rem;
+      justify-content: space-evenly;
     `;
   }}
 `;
@@ -56,12 +56,11 @@ export const HashtagText = styled.p`
     return css`
       min-width: 4rem;
       height: 1rem;
-      margin: 1rem auto;
-      padding: 0 0.75rem;
+      // padding: 0.1rem 0.75rem;
 
       color: ${theme.colors.gray700};
       text-align: center;
-      font-size: ${theme.fonts.deco4.fontSize}px;
+      font-size: ${theme.fonts.deco4.fontSize}rem;
       font-family: ${theme.fonts.deco4.fontFamily};
       font-weight: ${theme.fonts.deco4.fontWeight};
       line-height: ${theme.fonts.deco4.lineHeight};

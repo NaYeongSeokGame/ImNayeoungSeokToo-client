@@ -3,7 +3,6 @@ import { css, styled } from 'styled-components';
 export const SearchQuizWrapper = styled.div`
   ${({ theme }) => {
     return css`
-      display: block;
       padding: 1rem;
     `;
   }}
@@ -50,11 +49,11 @@ export const SearchButton = styled.button`
 export const QuizPresetWrapper = styled.div`
   ${({ theme }) => {
     return css`
-      margin-top: 2.12rem;
       display: flex;
+      height: 37.25rem; 
       flex-wrap: wrap;
       justify-content: space-between;
-      height: 37.25rem; 
+      margin-top: 2.12rem;
       overflow-y: auto;  
     `;
   }}

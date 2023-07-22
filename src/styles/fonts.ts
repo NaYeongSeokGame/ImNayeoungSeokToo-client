@@ -101,32 +101,33 @@ export const FONT_STYLE_PC: Record<FontStyleName, FontStyle> = {
   },
   [FONT_STYLE_NAME.deco1]: {
     fontFamily: 'NeoDunggeunmoPro',
-    fontSize: 60,
+    fontSize: 3.75,
     fontWeight: 400,
     lineHeight: `${LINE_HEIGHT_RATIO * 60}px`,
   },
   [FONT_STYLE_NAME.deco2]: {
     fontFamily: 'NeoDunggeunmoPro',
-    fontSize: 28,
+    fontSize: 1.75,
     fontWeight: 400,
     lineHeight: `${LINE_HEIGHT_RATIO * 28}px`,
   },
   [FONT_STYLE_NAME.deco3]: {
     fontFamily: 'NeoDunggeunmoPro',
-    fontSize:  14,
+    fontSize: 1.125,
     fontWeight: 400,
-    lineHeight: `${LINE_HEIGHT_RATIO * 14}px`,
+    lineHeight: `${LINE_HEIGHT_RATIO * 18}px`,
   },
   [FONT_STYLE_NAME.deco4]: {
     fontFamily: 'NeoDunggeunmoPro',
-    fontSize: 12,
-    fontWeight: 400,
-    lineHeight: `${LINE_HEIGHT_RATIO * 12}px`,
-  },
-  [FONT_STYLE_NAME.deco5]: {
-    fontFamily: 'NeoDunggeunmoPro',
-    fontSize: 8,
+    fontSize: 0.5,
     fontWeight: 400,
     lineHeight: `${LINE_HEIGHT_RATIO * 8}px`,
   },
+  [FONT_STYLE_NAME.deco5]: {
+    fontFamily: 'NeoDunggeunmoPro',
+    fontSize: 0.875,
+    fontWeight: 400,
+    lineHeight: `${LINE_HEIGHT_RATIO * 8}px`,
+  },
+  
 };
