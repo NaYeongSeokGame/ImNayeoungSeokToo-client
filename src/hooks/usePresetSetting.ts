@@ -24,6 +24,7 @@ const usePresetSetting = ({
 
   const handleTimeToSolveQuiz = (diff: number) => {
     const changeResult = timeToSolveQuiz + diff;
+    if (changeResult < 3 || changeResult > 99) return;
     setTimeToSolveQuiz(changeResult);
   };
 

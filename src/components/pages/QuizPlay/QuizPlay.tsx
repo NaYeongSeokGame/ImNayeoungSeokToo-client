@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai/index';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,8 +17,9 @@ import * as styles from './QuizPlay.style';
 const QuizPlay = () => {
   const { openModal } = useModal();
   const navigate = useNavigate();
+  const [{ timeToSolveQuiz }] = useAtom(quizPlayStateAtom);
   const { leftSecond, isRunning, start, stop } = useTimer({
-    initTimeLimit: 3,
+    initTimeLimit: timeToSolveQuiz,
     startImmediately: true,
   });
 
