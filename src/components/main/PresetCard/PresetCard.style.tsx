@@ -9,7 +9,7 @@ export const PresetWrapper = styled.div`
       width: 9.75rem;
       height: 14.5rem;
 
-      background-image: url(/src/assets/images/PresetTemplate/PresetCard.svg);
+      background-image: url(/src/assets/images/PresetCard.svg);
     `;
   }}
 `;
@@ -67,7 +67,7 @@ export const HashtagText = styled.p`
       line-height: ${theme.fonts.deco4.lineHeight};
       background-size: cover;
       background-position: center;
-      background-image: url(/src/assets/images/PresetTemplate/PresetHashtag.svg);
+      background-image: url(/src/assets/images/PresetHashtag.svg);
 
       &::before {
         content: '#';
