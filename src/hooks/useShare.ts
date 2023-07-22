@@ -12,7 +12,7 @@ const useShare = ({ title, text, url, option }: shareDataType) => {
     openWindow(`http://www.facebook.com/sharer/sharer.php?u=${sharedLink}`);
   };
 
-  const shareToKakaoTalk = (title: string, url: string) => {
+  const shareToKakaoTalk = () => {
     if (window.Kakao === undefined) {
       return;
     }
@@ -21,7 +21,7 @@ const useShare = ({ title, text, url, option }: shareDataType) => {
 
     // 인증이 안되어 있는 경우, 인증한다.
     if (!kakao.isInitialized()) {
-      kakao.init(import.meta.env.KAKAO_API_KEY);
+      kakao.init(import.meta.env.VITE_KAKAO_KEY);
     }
 
     kakao.Share.sendDefault({
@@ -34,7 +34,7 @@ const useShare = ({ title, text, url, option }: shareDataType) => {
     });
   };
 
-  const shareToNavigator = ({ text, url }: { text: string; url: string }) => {
+  const shareToNavigator = async () => {
     const sharedData = {
       text: text,
       url: url,

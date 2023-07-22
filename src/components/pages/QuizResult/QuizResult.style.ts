@@ -1,44 +1,51 @@
 import styled, { css } from 'styled-components';
 
-export const Title = styled.h1`
-  display: -webkit-box;
-  width: 12.5rem;
-  margin: 4.25rem 5rem;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+export const QuizResultWrapper = styled.section`
+  gap: 2.25rem;
+  margin: auto;
 
-  background: linear-gradient(
-    180deg,
-    #ff5912 16.67%,
-    #ffa012 48.96%,
-    #ffe812 84.9%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  overflow: hidden;
-  text-align: center;
-  text-overflow: ellipsis;
-  font-size: 5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
-export const QuestionResult = styled.section`
+export const QuestionResult = styled.div`
   ${({ theme }) => {
     return css`
-      width: 18.75rem;
-      height: 23rem;
+      margin: 0 auto;
+      gap: 3.375rem;
 
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    `;
+  }}
+`;
 
-      margin: 0 auto;
-      padding: 0.625rem;
-      background-color: ${theme.colors.white};
-      border: 0.25rem solid ${theme.colors.black};
+export const Title = styled.h1`
+  ${({ theme }) => {
+    const { fonts } = theme;
+    return css`
+      width: 12.5rem;
+
+      background: linear-gradient(
+        180deg,
+        #ff5912 16.67%,
+        #ffa012 48.96%,
+        #ffe812 84.9%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      font-size: 5rem;
+      font-family: ${fonts.deco1.fontFamily};
+      font-weight: ${fonts.deco1.fontWeight};
+      line-height: ${fonts.deco1.lineHeight};
     `;
   }}
 `;
@@ -46,46 +53,127 @@ export const QuestionResult = styled.section`
 export const Result = styled.h5`
   ${({ theme }) => {
     return css`
-      color: ${theme.colors.black};
-      text-align: center;
-      font-size: 6rem;
       margin: auto;
+
+      color: ${theme.colors.gray400};
+      text-align: center;
+      font-size: ${theme.fonts.deco1.fontSize}rem;
+      font-weight: ${theme.fonts.deco1.fontWeight};
+      line-height: ${theme.fonts.deco1.lineHeight};
     `;
   }}
 `;
 export const ResultCorrect = styled.span`
   ${({ theme }) => {
+    const { colors } = theme;
     return css`
-      color: ${theme.colors.purple};
+      font-size: 7.5rem;
+
+      background: linear-gradient(
+        180deg,
+        ${colors.magenta500} 0%,
+        ${colors.darkblue700} 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     `;
   }}
 `;
 
-export const LobbyButton = styled.button`
+export const QuizCommentBox = styled.div`
+  ${({ theme }) => {
+    const { colors, fonts } = theme;
+    return css`
+      width: 17.75rem;
+      padding: 0.875rem 0.875rem 1.25rem 0.875rem;
+      gap: 0.5rem;
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      font-size: ${fonts.deco3.fontSize}rem;
+
+      background-color: ${colors.cremewhite};
+      border: 2px solid #000;
+      border-radius: 0.5rem;
+
+      > span {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      > p {
+        text-align: center;
+
+        font-size: ${fonts.deco3.fontSize}rem;
+        font-weight: ${fonts.deco3.fontWeight};
+        line-height: ${fonts.deco3.lineHeight};
+      }
+    `;
+  }}
+`;
+
+export const ShareBox = styled.div`
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      display: flex;
+      width: 17.625rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin: 0 auto;
+
+      > p {
+        color: #fff;
+        font-family: Gmarket Sans TTF;
+        font-size: 0.875rem;
+        font-weight: 300;
+
+        > span {
+          color: ${colors.darkblue400};
+        }
+      }
+
+      > div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 1rem;
+
+        > svg {
+          width: 2.75rem;
+          height: 2.75rem;
+        }
+      }
+    `;
+  }}
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.75rem;
+`;
+
+export const Button = styled.button`
   ${({ theme }) => {
     return css`
-      font-family: 'LOTTERIADDAG';
-      font-size: 1.125rem;
-      color: ${theme.colors.purple};
+      width: 7.5rem;
+      height: 3rem;
+      flex-shrink: 0;
 
-      padding: 0.5rem 3rem;
-      margin: auto auto 0.875rem auto;
+      font-size: 0.875rem;
+      font-weight: 400;
 
       background-color: ${theme.colors.white};
-      border: 0.25rem solid ${theme.colors.black};
-      border-radius: 1rem;
-    `;
-  }}
-`;
-
-export const ShareIcon = styled.button`
-  ${({ theme }) => {
-    return css`
-      width: 2.75rem;
-      height: 2.75rem;
-
-      fill: url('../../../assets/icons/twitterIcon.svg'),
-        lightgray -4.251px -3.52px / 119.322% 119.322% no-repeat;
+      border: 2px solid ${theme.colors.black};
+      border-radius: 0.5rem;
+      box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.1);
     `;
   }}
 `;
