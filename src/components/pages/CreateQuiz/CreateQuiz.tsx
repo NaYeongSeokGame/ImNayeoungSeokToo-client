@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import QuizRepository from '@/apis/quiz';
 import copyClipboard from '@/utils/copyClipboard';
 import GameStartModal from '@/components/main/GameStartModal';
-import HashtagInput from '@/components/main/HastagInput/HashtagInput';
+import HashtagInput from '@/components/main/HastagInput';
 
 const CreateQuiz = () => {
   const navigate = useNavigate();

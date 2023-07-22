@@ -30,9 +30,11 @@ export const HastagInputWrapper = styled.div`
 export const HashtagInner = styled.p`
   ${({ theme }) => {
     return css`
+      display: flex;
       width: auto;
       height: 1.5rem;
       flex-shrink: 0;
+      align-items: center;
       
       font-family: ${theme.fonts.caption.fontFamily};
       font-size: ${theme.fonts.caption.fontSize}px;
@@ -43,7 +45,7 @@ export const HashtagInner = styled.p`
       padding: 0.25rem;
       border-radius: 0.25rem;
       &:after {
-        content: ' x';
+        content: 'x';
         color: ${theme.colors.black};
       }
     `;

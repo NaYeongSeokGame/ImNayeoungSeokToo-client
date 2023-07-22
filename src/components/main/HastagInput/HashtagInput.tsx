@@ -40,7 +40,7 @@ const HashtagInput = ({ hashtag, setHashtag }: HashtagInputType) => {
     <styles.HastagInputWrapper>
         {hashtag &&
           hashtag.map((text, index) => (
-            <styles.HashtagInner onClick={()=>hashtagRemove(index)}>{text}</styles.HashtagInner>
+            <styles.HashtagInner onClick={()=>hashtagRemove(index)}>{text} </styles.HashtagInner>
           ))}
       <styles.HastagInput
         type="text"
