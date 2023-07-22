@@ -35,7 +35,7 @@ export type CreateQuizWithUrlType = CreateQuizType & { imageUrl: string };
 
 export type CreatePresetWithUrlType = CreatePresetType & {
   imageUrls: string[];
-  hashtagLists: string[];
+  hashtagList: string[];
   hintLists: string[];
 };
 

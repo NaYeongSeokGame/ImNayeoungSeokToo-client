@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import QuizRepository from '@/apis/quiz';
 import copyClipboard from '@/utils/copyClipboard';
 import GameStartModal from '@/components/main/GameStartModal';
+import HashtagInput from '@/components/main/HastagInput/HashtagInput';
 
 const CreateQuiz = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const CreateQuiz = () => {
     imageUrls: [],
     answers: [],
     hintLists: [],
-    hashtagLists: [],
+    hashtagList: [],
     title: '',
     isPrivate: false,
   });
@@ -80,6 +81,13 @@ const CreateQuiz = () => {
     setPresetData((prev)=>({...prev, 
       isPrivate : status,
     }))
+  };
+
+  const handleHashtag=(hashtagList : string[])=>{
+    setPresetData((prev)=>({
+      ...prev,
+      hashtagList
+    }));
   }
 
   const submitQuizData = async () => {
@@ -135,7 +143,8 @@ const CreateQuiz = () => {
       <styles.NameLabel>
         퀴즈 이름 <styles.InfoLabel>(최대 50글자)</styles.InfoLabel>
       </styles.NameLabel>
-      <styles.NameInput onChange={handleTitle} value={presetData.title}/>
+      <styles.NameInput onChange={handleTitle} value={presetData.title}>
+      </styles.NameInput>
       <styles.NameLabelWrapper>
         <styles.NameLabel>퀴즈 비공개</styles.NameLabel>
         <ToggleButton
@@ -151,8 +160,7 @@ const CreateQuiz = () => {
       <styles.InfoLabel>
         (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
       </styles.InfoLabel>
-      <styles.NameInput />
-
+      <HashtagInput hashtag={presetData.hashtagList} setHashtag={handleHashtag}/>
       <div>
         <styles.NameLabel>출제 문항</styles.NameLabel>
         <styles.CountLabel> ( {presetData.answers.length} ) </styles.CountLabel>
