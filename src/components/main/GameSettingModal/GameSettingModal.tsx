@@ -1,37 +1,31 @@
-import { ReactComponent as CircleIconSvg } from '@/assets/icons/CircleIcon.svg';
-import { ReactComponent as XIconSvg } from '@/assets/icons/XIcon.svg';
+import { ReactComponent as SoundIcon } from '@/assets/icons/soundIcon.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
+import ModalButton from '@/components/common/buttons/ModalButton/ ModalButton';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './GameSettingModal.style';
 
-const ModalCloseButton = () => {
-  const { closeModal } = useModal();
-
-  return <styles.CloseButton onClick={closeModal}>닫기</styles.CloseButton>;
-};
-
 const GameSettingModal = () => {
+  const { closeModal } = useModal();
   return (
-    <ModalTemplate title="세팅" button={<ModalCloseButton />}>
+    <ModalTemplate
+      buttons={[
+        <ModalButton title="저장" colorScheme="pink" onClick={closeModal} />,
+        <ModalButton
+          title="나가기"
+          colorScheme="darkblue"
+          onClick={closeModal}
+        />,
+      ]}
+    >
       <styles.Wrapper>
+        <h4>설정</h4>
         <styles.SettingBox>
-          <h5>Sound</h5>
+          <h5>사운드</h5>
           <styles.SoundOptionBox>
-            <p className="selected">ON</p>
-            <span>/</span>
-            <p>OFF</p>
+            <SoundOptionBox title="배경음" value={100} />
+            <SoundOptionBox title="효과음" value={80} />
           </styles.SoundOptionBox>
-        </styles.SettingBox>
-        <styles.SettingBox>
-          <h5>
-            게임을 <br />
-            그만 하시겠어요?
-          </h5>
-          <styles.QuitOptionBox>
-            <CircleIconSvg />
-            <XIconSvg />
-          </styles.QuitOptionBox>
         </styles.SettingBox>
       </styles.Wrapper>
     </ModalTemplate>
@@ -39,3 +33,25 @@ const GameSettingModal = () => {
 };
 
 export default GameSettingModal;
+
+interface SoundOptionBoxProps {
+  title: string;
+  value: number;
+}
+
+const SoundOptionBox = ({ title, value }: SoundOptionBoxProps) => {
+  return (
+    <styles.SoundOptionBox>
+      <styles.SoundOptionRow>
+        <span>
+          <h6>{title}</h6>
+          <SoundIcon />
+        </span>
+        <p>{value} %</p>
+      </styles.SoundOptionRow>
+      <styles.SoundOptionRow>
+        <progress value={value} max="100"></progress>
+      </styles.SoundOptionRow>
+    </styles.SoundOptionBox>
+  );
+};
