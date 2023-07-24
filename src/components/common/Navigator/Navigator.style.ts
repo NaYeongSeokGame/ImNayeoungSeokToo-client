@@ -17,7 +17,7 @@ export const Wrapper = styled.nav`
   }}
 `;
 
-export const Section = styled.div<{isSelected?: boolean}>`
+export const Section = styled.div<{ isSelected?: boolean }>`
   ${({ theme, isSelected }) => {
     const { colors, fonts } = theme;
     return css`
@@ -38,7 +38,7 @@ export const Section = styled.div<{isSelected?: boolean}>`
       }
 
       & > svg {
-        color: transparent;
+        color: ${isSelected ? colors.darkblue800 : colors.gray700};
       }
     `;
   }}
