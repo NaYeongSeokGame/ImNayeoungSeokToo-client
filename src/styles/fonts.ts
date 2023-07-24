@@ -14,7 +14,6 @@ export const FONT_STYLE_NAME = {
   deco2: 'deco2',
   deco3: 'deco3',
   deco4: 'deco4',
-  deco5: 'deco5',
 };
 
 export type FontStyleName =
@@ -123,11 +122,4 @@ export const FONT_STYLE_PC: Record<FontStyleName, FontStyle> = {
     fontWeight: 400,
     lineHeight: `${LINE_HEIGHT_RATIO * 8}px`,
   },
-  [FONT_STYLE_NAME.deco5]: {
-    fontFamily: 'NeoDunggeunmoPro',
-    fontSize: 0.875,
-    fontWeight: 400,
-    lineHeight: `${LINE_HEIGHT_RATIO * 8}px`,
-  },
-  
 };
