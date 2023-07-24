@@ -11,6 +11,7 @@ import '@/assets/fonts/font.css';
 import router from '@/routes/router';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
+import QuizSearch from './components/pages/QuizSearch';
 
 
 const queryClient = new QueryClient({
