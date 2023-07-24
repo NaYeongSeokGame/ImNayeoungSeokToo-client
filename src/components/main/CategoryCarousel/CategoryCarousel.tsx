@@ -1,40 +1,59 @@
-import { useEffect, useState } from 'react';
-
-import QuizRepository from '@/apis/quiz';
+import GameStartModal from '@/components/main/GameStartModal';
+import PresetCard from '@/components/main/PresetCard';
 import useGetPresetList from '@/hooks/useGetPresetList';
-import { QuizPresetType } from '@/types/quiz';
+import useModal from '@/hooks/useModal.ts';
+import { QuizPresetType } from '@/types/quiz.ts';
 
 import * as styles from './CategoryCarousel.style';
-import CategoryCarouselImage from './CategoryCarouselImage';
 
 const CategoryCarousel = () => {
   const presetList = useGetPresetList({ page: 1, limit: 9 });
+  const { openModal } = useModal();
+  const handleCardClick = ({
+    presetPin,
+    thumbnailUrl,
+    title,
+  }: QuizPresetType) => {
+    openModal(
+      <GameStartModal
+        presetPin={presetPin}
+        thumbnailUrl={thumbnailUrl}
+        title={title}
+      />,
+    );
+  };
 
   return (
     <styles.Wrapper>
       <styles.Carousel>
-        {presetList && presetList.map(({ presetPin, title, thumbnailUrl, hashtagList }) => (
-          <CategoryCarouselImage
-            key={presetPin}
-            isPrivate={false}
-            title={title}
-            presetPin={presetPin}
-            thumbnailUrl={thumbnailUrl}
-            hashtagList={hashtagList}
-          />
-        ))}
+        {presetList &&
+          presetList.map((preset) => {
+            const { title, thumbnailUrl, hashtagList, presetPin } = preset;
+            return (
+              <PresetCard
+                key={presetPin}
+                title={title}
+                thumbnailUrl={thumbnailUrl}
+                hashtagList={hashtagList}
+                handleClick={() => handleCardClick(preset)}
+              />
+            );
+          })}
       </styles.Carousel>
       <styles.CarouselClone>
-        {presetList && presetList.map(({ presetPin, title, thumbnailUrl, hashtagList }) => (
-          <CategoryCarouselImage
-            key={presetPin}
-            isPrivate={false}
-            title={title}
-            presetPin={presetPin}
-            thumbnailUrl={thumbnailUrl}
-            hashtagList={hashtagList}
-          />
-        ))}
+        {presetList &&
+          presetList.map((preset) => {
+            const { title, thumbnailUrl, hashtagList, presetPin } = preset;
+            return (
+              <PresetCard
+                key={presetPin}
+                title={title}
+                thumbnailUrl={thumbnailUrl}
+                hashtagList={hashtagList}
+                handleClick={() => handleCardClick(preset)}
+              />
+            );
+          })}
       </styles.CarouselClone>
     </styles.Wrapper>
   );
