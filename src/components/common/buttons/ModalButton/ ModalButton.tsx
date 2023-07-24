@@ -8,7 +8,7 @@ interface ModalButtonProps {
 
 const ModalButton = ({ title, onClick, colorScheme }: ModalButtonProps) => {
   return (
-    <styles.ButtonWrapper onClick={onClick} colorScheme={colorScheme}>
+    <styles.ButtonWrapper onClick={onClick} $colorScheme={colorScheme}>
       {title}
     </styles.ButtonWrapper>
   );

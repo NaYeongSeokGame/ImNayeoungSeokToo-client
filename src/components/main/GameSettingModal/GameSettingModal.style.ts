@@ -56,16 +56,30 @@ export const SoundOptionBox = styled.div`
 `;
 
 export const SoundOptionRow = styled.div`
-  gap: 0.5rem;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  span {
-    display: flex;
+  ${({ theme }) => css`
     gap: 0.5rem;
-  }
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    input[type='range'] {
+      border-radius: 10px;
+      height: 2px;
+
+      accent-color: ${theme.colors.darkblue900};
+
+      &::-webkit-slider-thumb {
+        border-radius: 10px;
+        background: ${theme.colors.darkblue900};
+      }
+    }
+  `}
 `;
 
 export const QuitOptionBox = styled.div`

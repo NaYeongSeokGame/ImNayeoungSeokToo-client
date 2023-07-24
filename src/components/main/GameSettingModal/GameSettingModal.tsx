@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import { ReactComponent as MuteIcon } from '@/assets/icons/muteIcon.svg';
 import { ReactComponent as SoundIcon } from '@/assets/icons/soundIcon.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
 import ModalButton from '@/components/common/buttons/ModalButton/ ModalButton';
@@ -40,17 +43,24 @@ interface SoundOptionBoxProps {
 }
 
 const SoundOptionBox = ({ title, value }: SoundOptionBoxProps) => {
+  const [volume, setVolume] = useState(value);
   return (
     <styles.SoundOptionBox>
       <styles.SoundOptionRow>
         <span>
           <h6>{title}</h6>
-          <SoundIcon />
+          {volume === 0 ? <MuteIcon /> : <SoundIcon />}
         </span>
-        <p>{value} %</p>
+        <p>{volume} %</p>
       </styles.SoundOptionRow>
       <styles.SoundOptionRow>
-        <progress value={value} max="100"></progress>
+        <input
+          type="range"
+          defaultValue={volume}
+          onChange={(event) => setVolume(Number(event.target.value))}
+          min="0"
+          max="100"
+        />
       </styles.SoundOptionRow>
     </styles.SoundOptionBox>
   );
