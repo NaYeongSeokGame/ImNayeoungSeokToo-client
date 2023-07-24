@@ -17,7 +17,7 @@ const ModalTemplate = ({ children, buttons }: ModalTemplateProps) => {
           <styles.Article>{children}</styles.Article>
         </styles.Section>
       </styles.SectionWrapper>
-      <styles.ButtonWrapper>{buttons}</styles.ButtonWrapper>
+      <styles.ButtonSection>{buttons}</styles.ButtonSection>
     </styles.Container>
   );
 };
