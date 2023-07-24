@@ -8,19 +8,20 @@ import { QuizPresetType } from '@/types/quiz';
 
 import * as styles from './QuizSearch.style';
 
+const QUIZ_COUNT_LIMIT = 6;
+
 const QuizSearch = () => {
   const { openModal } = useModal();
   const [page, setPage] = useState(1);
-  const limit = 6;
   const observerTarget = useRef(null);
-  const presetList = useGetPresetList({ page, limit });
+  const presetList = useGetPresetList({ page, limit: QUIZ_COUNT_LIMIT });
 
   //Fixme : 동작 확인 필요
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          if (presetList && limit > presetList.length) {
+          if (presetList && QUIZ_COUNT_LIMIT > presetList.length) {
             setPage(1);
           } else if (page > 1) {
             setPage(page + 1);
