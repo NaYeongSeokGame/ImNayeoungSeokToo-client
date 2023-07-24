@@ -36,12 +36,12 @@ export const HashtagInner = styled.p`
       flex-shrink: 0;
       align-items: center;
       
-      font-family: ${theme.fonts.caption.fontFamily};
-      font-size: ${theme.fonts.caption.fontSize}px;
-      font-weight: ${theme.fonts.caption.fontWeight};
+      font-family: ${theme.fonts.body2R.fontFamily};
+      font-size: ${theme.fonts.body2R.fontSize}px;
+      font-weight: ${theme.fonts.body2R.fontWeight};
 
       color: ${theme.colors.white};
-      background-color: ${theme.colors.gray200};
+      background-color: ${theme.colors.darkblue400};
       padding: 0.25rem;
       border-radius: 0.25rem;
       &:after {

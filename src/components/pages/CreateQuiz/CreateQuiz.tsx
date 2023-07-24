@@ -1,19 +1,20 @@
-import {useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import ToggleButton from '@/components/common/ToggleButton/ToggleButton';
+import QuizRepository from '@/apis/quiz';
+import AddQuizModal from '@/components/main/AddQuizModal';
+import CreateQuizImage from '@/components/main/CreateQuizImageView/CreateQuizImage';
+import GameStartModal from '@/components/main/GameStartModal';
+import HashtagInput from '@/components/main/HastagInput';
+import ToggleButton from '@/components/main/ToggleButton/ToggleButton';
 import useModal from '@/hooks/useModal';
 import { theme } from '@/styles/theme';
 import { CreatePresetWithUrlType, CreateQuizWithUrlType } from '@/types/quiz';
+import copyClipboard from '@/utils/copyClipboard';
 
 import * as styles from './CreateQuiz.style';
-import AddQuizModal from '@/components/main/AddQuizModal';
-import CreateQuizImage from '@/components/main/CreateQuizImageView/CreateQuizImage';
-import { toast } from 'react-toastify';
-import QuizRepository from '@/apis/quiz';
-import copyClipboard from '@/utils/copyClipboard';
-import GameStartModal from '@/components/main/GameStartModal';
-import HashtagInput from '@/components/main/HastagInput';
+import AddQuiz from '@/components/main/AddQuizComponent/AddQuiz';
 
 const CreateQuiz = () => {
   const navigate = useNavigate();
@@ -64,34 +65,30 @@ const CreateQuiz = () => {
     console.log(index);
     openModal(<AddQuizModal storeNewQuiz={storeNewQuiz} />);
   };
-  
-  const handleTitle = (event: React.ChangeEvent<HTMLInputElement>)=>{
+
+  const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const title = event.target.value;
-    if(title.length > 50){
-      toast.error("프리셋 제목은 50글자 이상 지정할 수 없습니다. ");
+    if (title.length > 50) {
+      toast.error('프리셋 제목은 50글자 이상 지정할 수 없습니다. ');
       return;
     }
-    setPresetData((prev)=>({...prev, 
-      title : event.target.value,
-    }))
+    setPresetData((prev) => ({ ...prev, title: event.target.value }));
     console.log(presetData);
-  }
-  
-  const handleToggle=(status: boolean)=>{
-    setPresetData((prev)=>({...prev, 
-      isPrivate : status,
-    }))
   };
 
-  const handleHashtag=(hashtagList : string[])=>{
-    setPresetData((prev)=>({
+  const handleToggle = (status: boolean) => {
+    setPresetData((prev) => ({ ...prev, isPrivate: status }));
+  };
+
+  const handleHashtag = (hashtagList: string[]) => {
+    setPresetData((prev) => ({
       ...prev,
-      hashtagList
+      hashtagList,
     }));
-  }
+  };
 
   const submitQuizData = async () => {
-    const { answers, images, title, isPrivate} = presetData;
+    const { answers, images, title, isPrivate } = presetData;
 
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
@@ -121,7 +118,6 @@ const CreateQuiz = () => {
       });
       await copyClipboard(presetPin);
       toast.success('프리셋을 생성하여 PIN을 복사했습니다.');
-      // FIXME : 백엔드에서 썸네일 이미지를 받아오는 로직이 추가되면 수정 필요
       openModal(
         <GameStartModal
           presetPin={presetPin}
@@ -140,43 +136,71 @@ const CreateQuiz = () => {
         <styles.PointTitle>새로운 퀴즈</styles.PointTitle> 만들기
       </styles.Title>
       <styles.GetPresetButton>기존 퀴즈 복사해서 만들기</styles.GetPresetButton>
-      <styles.NameLabel>
-        퀴즈 이름 <styles.InfoLabel>(최대 50글자)</styles.InfoLabel>
-      </styles.NameLabel>
-      <styles.NameInput onChange={handleTitle} value={presetData.title}>
-      </styles.NameInput>
       <styles.NameLabelWrapper>
-        <styles.NameLabel>퀴즈 비공개</styles.NameLabel>
-        <ToggleButton
-          onColor={theme.colors.darkblue400}
-          offColor={theme.colors.gray400}
-          toggleState={handleToggle}
-        />
+        <styles.InputWrapper>
+          <styles.NameLabel>
+            퀴즈 이름 <styles.InfoLabel>(최대 50글자)</styles.InfoLabel>
+          </styles.NameLabel>
+          <styles.NameInput
+            onChange={handleTitle}
+            value={presetData.title}
+          ></styles.NameInput>
+        </styles.InputWrapper>
+
+        <styles.InputWrapper>
+          <styles.PrivateWrapper>
+          <styles.NameLabel>퀴즈 비공개</styles.NameLabel>
+          <ToggleButton
+            onColor={theme.colors.darkblue400}
+            offColor={theme.colors.gray400}
+            toggleState={handleToggle}
+          />
+          </styles.PrivateWrapper>
+          <styles.InfoLabel>
+            (친구들끼리 플레이를 원한다면 비공개를 설정하세요)
+          </styles.InfoLabel>
+        </styles.InputWrapper>
+
+        <styles.InputWrapper>
+          <styles.NameLabel>해시태그</styles.NameLabel>
+          <styles.InfoLabel>
+            (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
+          </styles.InfoLabel>
+          <HashtagInput
+            hashtag={presetData.hashtagList}
+            setHashtag={handleHashtag}
+          />
+          </styles.InputWrapper>
       </styles.NameLabelWrapper>
-      <styles.InfoLabel>
-        (친구들끼리 플레이를 원한다면 비공개를 설정하세요)
-      </styles.InfoLabel>
-      <styles.NameLabel>해시태그</styles.NameLabel>
-      <styles.InfoLabel>
-        (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
-      </styles.InfoLabel>
-      <HashtagInput hashtag={presetData.hashtagList} setHashtag={handleHashtag}/>
+
       <div>
         <styles.NameLabel>출제 문항</styles.NameLabel>
         <styles.CountLabel> ( {presetData.answers.length} ) </styles.CountLabel>
       </div>
       <styles.QuizListWrapper>
-      {presetData.answers &&
-        presetData.answers.map((answer, index) => 
-         <CreateQuizImage key={index} index={index} answer={answer}  url={presetData.imageUrls[index]} hint={presetData.hintLists[index]} removeQuiz={removeCurrentQuiz} modifyQuiz={modifyCurrentQuiz}/>
-      )}
-      <styles.AddQuizWrapper>
-        <styles.UploadText src="/src/assets/images/uploadQuizText.svg" />
-        <styles.ArrowIcon src="/src/assets/icons/arrowIcon.svg" />
-        <styles.UploadQuizButton onClick={openAddQuizModal}>추가하기</styles.UploadQuizButton>
-      </styles.AddQuizWrapper>
+        {presetData.answers &&
+          presetData.answers.map((answer, index) => (
+            <CreateQuizImage
+              key={index}
+              index={index}
+              answer={answer}
+              url={presetData.imageUrls[index]}
+              hint={presetData.hintLists[index]}
+              removeQuiz={removeCurrentQuiz}
+              modifyQuiz={modifyCurrentQuiz}
+            />
+          ))}
+        <styles.AddQuizWrapper>
+          <styles.UploadText src="/src/assets/images/uploadQuizText.svg" />
+          <styles.ArrowIcon src="/src/assets/icons/arrowIcon.svg" />
+          <styles.UploadQuizButton onClick={openAddQuizModal}>
+            추가하기
+          </styles.UploadQuizButton>
+        </styles.AddQuizWrapper>
       </styles.QuizListWrapper>
-      <styles.AddNewQuizButton onClick={submitQuizData}>퀴즈 생성하기</styles.AddNewQuizButton>
+      <styles.AddNewQuizButton onClick={submitQuizData}>
+        퀴즈 생성하기
+      </styles.AddNewQuizButton>
     </styles.CreateQuizWrapper>
   );
 };

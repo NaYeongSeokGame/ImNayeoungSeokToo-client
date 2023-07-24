@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as TitleTextSvg } from '@/assets/images/titleText.svg';
-
 export const CreateQuizWrapper = styled.div`
   ${({ theme }) => {
     return css`
@@ -17,7 +15,7 @@ export const Title = styled.h1`
     return css`
       color: ${theme.colors.white};
       font-family: ${theme.fonts.title.fontFamily};
-      font-size: ${theme.fonts.title.fontSize}px;
+      font-size: ${theme.fonts.title.fontSize}rem;
       font-weight: ${theme.fonts.title.fontWeight};
       line-height: ${theme.fonts.title.lineHeight};
       text-align: center;
@@ -43,19 +41,35 @@ export const GetPresetButton = styled.button`
       border: 1px solid ${theme.colors.white};
 
       color: ${theme.colors.white};
-      font-family: ${theme.fonts.body3.fontFamily};
-      font-size: ${theme.fonts.body3.fontSize}px;
-      font-weight: ${theme.fonts.body3.fontWeight};
+      font-family: ${theme.fonts.body2R.fontFamily};
+      font-size: ${theme.fonts.body2R.fontSize}rem;
+      font-weight: ${theme.fonts.body2R.fontWeight};
     `;
   }}
 `;
 
+export const PrivateWrapper=styled.span`
+${({ theme }) => {
+  return css`
+    display: flex;
+    justify-content: space-between;
+  `;
+}}`;
+export const InputWrapper=styled.div`
+${({ theme }) => {
+  return css`
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+    padding: 0.38rem;
+  `;
+}}`;
 export const NameLabelWrapper = styled.span`
   ${({ theme }) => {
     return css`
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 0.88rem;
     `;
   }}
 `;
@@ -65,9 +79,8 @@ export const NameLabel = styled.label`
     return css`
       color: ${theme.colors.darkblue200};
       font-family: ${theme.fonts.subtitle2B.fontFamily};
-      font-size: ${theme.fonts.subtitle2B.fontSize}px;
+      font-size: ${theme.fonts.subtitle2B.fontSize}rem;
       font-weight: ${theme.fonts.subtitle2B.fontWeight};
-      line-height: ${theme.fonts.subtitle2B.lineHeight};
     `;
   }}
 `;
@@ -76,10 +89,9 @@ export const InfoLabel = styled.span`
   ${({ theme }) => {
     return css`
       color: ${theme.colors.white};
-      font-family: ${theme.fonts.caption.fontFamily};
-      font-size: ${theme.fonts.caption.fontSize}px;
-      font-weight: ${theme.fonts.caption.fontWeight};
-      line-height: ${theme.fonts.caption.lineHeight};
+      font-family: ${theme.fonts.body3.fontFamily};
+      font-size: ${theme.fonts.body3.fontSize}rem;
+      font-weight: ${theme.fonts.body3.fontWeight};
     `;
   }}
 `;
@@ -89,10 +101,10 @@ export const CountLabel = styled.span`
   ${({ theme }) => {
     return css`
       color: ${theme.colors.white};
-      font-family: ${theme.fonts.body3.fontFamily};
-      font-size: ${theme.fonts.body3.fontSize}px;
-      font-weight: ${theme.fonts.body3.fontWeight};
-      line-height: ${theme.fonts.body3.lineHeight};
+      font-family: ${theme.fonts.body2B.fontFamily};
+      font-size: ${theme.fonts.body2B.fontSize}rem;
+      font-weight: ${theme.fonts.body2B.fontWeight};
+      line-height: ${theme.fonts.body2B.lineHeight};
     `;
   }}
 `;
@@ -104,10 +116,10 @@ export const NameInput = styled.input`
       border: 1px solid ${theme.colors.white};
       border-radius: 0.5rem;
 
-      font-family: ${theme.fonts.caption.fontFamily};
-      font-size: ${theme.fonts.caption.fontSize}px;
-      font-weight: ${theme.fonts.caption.fontWeight};
-      line-height: ${theme.fonts.caption.lineHeight};
+      font-family: ${theme.fonts.body3.fontFamily};
+      font-size: ${theme.fonts.body3.fontSize}rem;
+      font-weight: ${theme.fonts.body3.fontWeight};
+      line-height: ${theme.fonts.body3.lineHeight};
       color: ${theme.colors.white};
       background-color: transparent;
 
@@ -149,10 +161,10 @@ export const UploadQuizButton = styled.div`
       align-items: center;
 
       text-align: center;
-      font-family: ${theme.fonts.caption.fontFamily};
-      font-size: ${theme.fonts.caption.fontSize}px;
-      font-weight: ${theme.fonts.caption.fontWeight};
-      line-height: ${theme.fonts.caption.lineHeight};
+      font-family: ${theme.fonts.body2R.fontFamily};
+      font-size: ${theme.fonts.body2R.fontSize}rem;
+      font-weight: ${theme.fonts.body2R.fontWeight};
+      line-height: ${theme.fonts.body2R.lineHeight};
       color: ${theme.colors.white};
       border-radius: 1.5rem;
       border: 1px solid #fff;
@@ -172,7 +184,7 @@ export const AddNewQuizButton = styled.button`
       text-align: center;
 
       font-family: ${theme.fonts.body2B.fontFamily};
-      font-size: ${theme.fonts.body2B.fontSize}px;
+      font-size: ${theme.fonts.body2B.fontSize}rem;
       font-weight: ${theme.fonts.body2B.fontWeight};
       color: ${theme.colors.darkblue400};
     `;
