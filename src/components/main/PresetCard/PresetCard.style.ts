@@ -56,7 +56,6 @@ export const HashtagText = styled.p`
     return css`
       min-width: 4rem;
       height: 1rem;
-      // padding: 0.1rem 0.75rem;
 
       color: ${theme.colors.gray700};
       text-align: center;
