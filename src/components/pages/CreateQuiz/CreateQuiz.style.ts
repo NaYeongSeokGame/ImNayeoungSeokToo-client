@@ -1,15 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export const CreateQuizWrapper = styled.div`
-  ${({ theme }) => {
-    return css`
-      display: flex;
-      flex-direction: column;
-      margin: 1rem;
-      gap: 0.5rem;
-    `;
-  }}
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 0.5rem;
 `;
+
 export const Title = styled.h1`
   ${({ theme }) => {
     return css`
@@ -22,6 +19,7 @@ export const Title = styled.h1`
     `;
   }}
 `;
+
 export const PointTitle = styled.span`
   ${({ theme }) => {
     return css`
@@ -48,30 +46,22 @@ export const GetPresetButton = styled.button`
   }}
 `;
 
-export const PrivateWrapper=styled.span`
-${({ theme }) => {
-  return css`
-    display: flex;
-    justify-content: space-between;
-  `;
-}}`;
-export const InputWrapper=styled.div`
-${({ theme }) => {
-  return css`
-    display: flex;
-    flex-direction: column;
-    gap: 0.38rem;
-    padding: 0.38rem;
-  `;
-}}`;
+export const PrivateWrapper = styled.span`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+  padding: 0.38rem;
+`;
+
 export const NameLabelWrapper = styled.span`
-  ${({ theme }) => {
-    return css`
-      display: flex;
-      flex-direction: column;
-      gap: 0.88rem;
-    `;
-  }}
+  display: flex;
+  flex-direction: column;
+  gap: 0.88rem;
 `;
 
 export const NameLabel = styled.label`
@@ -96,7 +86,6 @@ export const InfoLabel = styled.span`
   }}
 `;
 
-
 export const CountLabel = styled.span`
   ${({ theme }) => {
     return css`
@@ -108,6 +97,7 @@ export const CountLabel = styled.span`
     `;
   }}
 `;
+
 export const NameInput = styled.input`
   ${({ theme }) => {
     return css`
@@ -131,15 +121,11 @@ export const NameInput = styled.input`
 `;
 
 export const QuizListWrapper = styled.section`
-  ${({ theme }) => {
-    return css`
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.62rem;
-      margin : 0 1.06rem;
-      justify-content: space-between;
-    `;
-  }}
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.62rem;
+  margin: 0 1.06rem;
+  justify-content: space-between;
 `;
 export const AddQuizWrapper = styled.div`
   display: flex;

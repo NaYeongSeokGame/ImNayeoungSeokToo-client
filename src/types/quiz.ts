@@ -31,12 +31,12 @@ export interface CreateQuizType {
   answer: string;
 }
 
-export type CreateQuizWithUrlType = CreateQuizType & { imageUrl: string, hint?: string };
+export type CreateQuizWithUrlType = CreateQuizType & { imageUrl: string, hint: string };
 
 export type CreatePresetWithUrlType = CreatePresetType & {
   imageUrls: string[];
   hashtagList: string[];
-  hintLists: string[];
+  hintList: string[];
 };
 
 export type GetQuizListOutput = QuizTypeWithPin & {

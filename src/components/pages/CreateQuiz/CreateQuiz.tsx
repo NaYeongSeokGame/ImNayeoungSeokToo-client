@@ -19,51 +19,35 @@ const CreateQuiz = () => {
   const navigate = useNavigate();
   const { openModal } = useModal();
   const [presetData, setPresetData] = useState<CreatePresetWithUrlType>({
-    images: [],
-    imageUrls: [],
-    answers: [],
-    hintList: [],
+    images: [], //미사용
+    imageUrls: [], //미사용
+    answers: [], //미사용
+    hintList: [], //미사용
     hashtagList: [],
     title: '',
     isPrivate: false,
   });
 
-  const openAddQuizModal = () =>
-    openModal(<AddQuizModal storeNewQuiz={storeNewQuiz} />);
+  const [quizList, setQuizList] = useState<CreateQuizWithUrlType[]>([]);
 
-  const storeNewQuiz = useCallback(
-    ({ answer, image, imageUrl, hint = '' }: CreateQuizWithUrlType) => {
-      if (!answer || !image || !imageUrl) return;
-      setPresetData((prev) => ({
-        ...prev,
-        images: [...prev.images, image],
-        answers: [...prev.answers, answer],
-        imageUrls: [...prev.imageUrls, imageUrl],
-        hintList: [...prev.hintList, hint]
-      }));
-    },
-    [presetData],
-  );
+  const updateQuiz = (data: CreateQuizWithUrlType, index: number) => {
+    const newQuizList = [...quizList];
+    newQuizList[index] = data;
+    setQuizList(newQuizList);
+  };
+
+  const openAddQuizModal = () => {
+    openModal(<AddQuizModal updateQuiz={updateQuiz} index={quizList.length} />);
+  };
+
+  const modifyCurrentQuiz = (index: number) => {
+    openModal(<AddQuizModal updateQuiz={updateQuiz} index={index} initialData={quizList[index]} />);
+  };
 
   const removeCurrentQuiz = (index: number) => {
-    setPresetData((prev) => ({
-      ...prev,
-      images: [...prev.images.slice(0, index), ...prev.images.slice(index + 1)],
-      answers: [
-        ...prev.answers.slice(0, index),
-        ...prev.answers.slice(index + 1),
-      ],
-      imageUrls: [
-        ...prev.imageUrls.slice(0, index),
-        ...prev.imageUrls.slice(index + 1),
-      ],
-    }));
+    setQuizList((prev) => [...prev.slice(0,index), ...prev.slice(index+1)]);
   };
-//Fixme:
-  const modifyCurrentQuiz = (index: number) => {
-    openModal(<AddQuizModal storeNewQuiz={storeNewQuiz} />);
-  };
-
+  
   const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const title = event.target.value;
     if (title.length > 50) {
@@ -85,7 +69,9 @@ const CreateQuiz = () => {
   };
 
   const submitQuizData = async () => {
-    const { answers, images, title, isPrivate } = presetData;
+    const { hashtagList, title, isPrivate } = presetData;
+    const images = quizList.map(value=>value.image);
+    const answers = quizList.map(value=>value.answer);
 
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
@@ -105,8 +91,10 @@ const CreateQuiz = () => {
     answers.map((answer) => formData.append('answers', answer));
     formData.append('title', title);
     formData.append('isPrivate', JSON.stringify(isPrivate));
+    // formData.append('hashtag', JSON.stringify(isPrivate)); //Fixme: 서버 통신방식 확인 후 추가하
+    console.log(JSON.stringify(formData));
 
-    try {
+   try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
         answers,
         images,
@@ -127,6 +115,7 @@ const CreateQuiz = () => {
       console.error(error);
     }
   };
+
   return (
     <styles.CreateQuizWrapper>
       <styles.Title>
@@ -146,12 +135,12 @@ const CreateQuiz = () => {
 
         <styles.InputWrapper>
           <styles.PrivateWrapper>
-          <styles.NameLabel>퀴즈 비공개</styles.NameLabel>
-          <ToggleButton
-            onColor={theme.colors.darkblue400}
-            offColor={theme.colors.gray400}
-            toggleState={handleToggle}
-          />
+            <styles.NameLabel>퀴즈 비공개</styles.NameLabel>
+            <ToggleButton
+              onColor={theme.colors.darkblue400}
+              offColor={theme.colors.gray400}
+              toggleState={handleToggle}
+            />
           </styles.PrivateWrapper>
           <styles.InfoLabel>
             (친구들끼리 플레이를 원한다면 비공개를 설정하세요)
@@ -167,22 +156,22 @@ const CreateQuiz = () => {
             hashtag={presetData.hashtagList}
             setHashtag={handleHashtag}
           />
-          </styles.InputWrapper>
+        </styles.InputWrapper>
       </styles.NameLabelWrapper>
 
       <div>
         <styles.NameLabel>출제 문항</styles.NameLabel>
-        <styles.CountLabel> ( {presetData.answers.length} ) </styles.CountLabel>
+        <styles.CountLabel> ( {quizList.length} ) </styles.CountLabel>
       </div>
       <styles.QuizListWrapper>
-        {presetData.answers &&
-          presetData.answers.map((answer, index) => (
+        {quizList &&
+          quizList.map((quiz, index) => (
             <CreateQuizImage
               key={index}
               index={index}
-              answer={answer}
-              url={presetData.imageUrls[index]}
-              hint={presetData.hintList[index]}
+              answer={quiz.answer}
+              url={quiz.imageUrl}
+              hint={quiz.hint}
               removeQuiz={removeCurrentQuiz}
               modifyQuiz={modifyCurrentQuiz}
             />

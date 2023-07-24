@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const Toggle = styled.input<{ $onColor: string }>`
-  ${({ theme, $onColor }) => {
+export const Toggle = styled.input<{onColor: string }>`
+  ${({onColor }) => {
     return css`
       display: none;
       &:checked + ${Switch} {
-        background: ${$onColor};
+        background: ${onColor};
 
         &:before {
           transform: translate(40px, -50%);
@@ -22,13 +22,13 @@ export const Label = styled.label`
   padding: 0.25rem;
 `;
 
-export const Switch = styled.div<{ $offColor: string; $circleColor: string }>`
-  ${({ $offColor, $circleColor }) => {
+export const Switch = styled.div<{ offColor: string; circleColor: string }>`
+  ${({offColor, circleColor }) => {
     return css`
       position: relative;
       width: 64px;
       height: 24px;
-      background: ${$offColor};
+      background: ${offColor};
       border-radius: 12px;
       transition: 300ms all;
 
@@ -41,7 +41,7 @@ export const Switch = styled.div<{ $offColor: string; $circleColor: string }>`
         border-radius: 10px;
         top: 50%;
         left: 2px;
-        background:  ${$circleColor};
+        background:  ${circleColor};
         transform: translate(0, -50%);
       }
     `;

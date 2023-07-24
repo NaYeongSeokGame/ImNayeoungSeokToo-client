@@ -8,23 +8,28 @@ import previewImage from '@/utils/previewImage';
 import * as styles from './AddQuizModal.style';
 
 interface AddQuizModalProps {
-  storeNewQuiz: ({ answer, image, imageUrl }: CreateQuizWithUrlType) => void;
+  updateQuiz: (
+    { answer, image, imageUrl, hint }: CreateQuizWithUrlType,
+    index: number,
+  ) => void;
+  index: number;
+  initialData?: CreateQuizWithUrlType;
 }
 
-const AddQuizModal = ({ storeNewQuiz }: AddQuizModalProps) => {
+const AddQuizModal = ({
+  updateQuiz,
+  index,
+  initialData,
+}: AddQuizModalProps) => {
   const { closeModal } = useModal();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [quizData, setQuizData] = useState<CreateQuizWithUrlType>({
-    image: null,
-    answer: '',
-    imageUrl: '',
-    hint: '',
-  });
-
+  const [quizData, setQuizData] = useState<CreateQuizWithUrlType>(
+    initialData || { image: null, answer: '', imageUrl: '', hint: '' },
+  );
   const openFileUploadDialog = () => fileInputRef.current?.click();
 
   useEffect(() => {
-    openFileUploadDialog();
+    {!quizData.imageUrl && openFileUploadDialog()} //새로 생셩하는 경우에 진입 시 파일업로드창 표시
   }, []);
 
   const handleUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +70,7 @@ const AddQuizModal = ({ storeNewQuiz }: AddQuizModalProps) => {
       toast.error('이미지, 정답 모두 업로드 해야 합니다!');
       return;
     }
-    storeNewQuiz({ image, answer, imageUrl, hint });
+    updateQuiz(quizData, index);
     closeModal();
   };
 

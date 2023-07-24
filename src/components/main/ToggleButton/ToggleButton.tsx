@@ -21,8 +21,8 @@ const ToggleButton = ({
 
   return (
     <styles.Label>
-      <styles.Toggle $onColor={onColor} checked={checked} onChange={handleChange} type="checkbox" />
-      <styles.Switch $offColor={offColor} $circleColor={circleColor}/>
+      <styles.Toggle onColor={onColor} checked={checked} onChange={handleChange} type="checkbox" />
+      <styles.Switch offColor={offColor} circleColor={circleColor}/>
     </styles.Label>
   );
 };
