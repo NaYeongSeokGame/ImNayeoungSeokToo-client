@@ -3,26 +3,29 @@ import styled, { css } from 'styled-components';
 export const Section = styled.section`
   ${({ theme }) => {
     return css`
+      width: 22.5rem;
+      height: 50rem;
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 22.5rem;
-      height: 50rem;
       margin: auto;
-
+      overflow-x: hidden;
       background-color: ${theme.colors.dark};
     `;
   }}
 `;
 
 export const ButtonWrapper = styled.button`
+  width: 100%;
+  height: 5rem;
   display: flex;
   position: absolute;
   top: 0;
-  right: 0;
+  background: linear-gradient(180deg, #000 0%, rgba(36, 36, 36, 0.00) 100%);
   gap: 0.87rem;
-  margin: 0.87rem;
+  padding: 0.87rem;
+
   justify-content: flex-end;
 `;
 
@@ -37,7 +40,6 @@ export const SettingButton = styled.button`
       font-size: ${theme.fonts.body2R.fontSize}rem;
       font-weight: ${theme.fonts.body2R.fontWeight};
       color: ${theme.colors.white};
-      cursor: pointer;
     `;
   }}
 `;
@@ -62,8 +64,10 @@ export const UploadSection = styled.div`
 export const UploadImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  -webkit-mask-image: linear-gradient(0deg, #000 70%, rgba(36, 36, 36, 0) 100%);
+`;
+export const UploadLinear = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 export const AnswerSection = styled.div`
   display: flex;
@@ -140,6 +144,7 @@ export const SubmitButton = styled.button`
   ${({ theme }) => {
     return css`
       padding: 0.625rem 3.125rem;
+      margin-bottom : 3rem;
       border-radius: 1.5625rem;
       border: 1px solid ${theme.colors.magenta500};
       color: ${theme.colors.magenta500};

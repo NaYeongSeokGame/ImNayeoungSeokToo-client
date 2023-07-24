@@ -12,11 +12,9 @@ const HashtagInput = ({ hashtag, setHashtag }: HashtagInputType) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
-    console.log(event.target.value);
   };
 
   const onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(event.key);
     if (input && event.key == 'Enter') {
       if(hashtag.length > 2){
         toast.error("해시태그는 세 개 이상 설정할 수 없습니다. ");

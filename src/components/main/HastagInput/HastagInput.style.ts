@@ -11,7 +11,7 @@ export const HastagInputWrapper = styled.div`
       overflow-x: auto;
 
       font-family: ${theme.fonts.caption.fontFamily};
-      font-size: ${theme.fonts.caption.fontSize}px;
+      font-size: ${theme.fonts.caption.fontSize}rem;
       font-weight: ${theme.fonts.caption.fontWeight};
       line-height: ${theme.fonts.caption.lineHeight};
      
@@ -37,7 +37,7 @@ export const HashtagInner = styled.p`
       align-items: center;
       
       font-family: ${theme.fonts.body2R.fontFamily};
-      font-size: ${theme.fonts.body2R.fontSize}px;
+      font-size: ${theme.fonts.body2R.fontSize}rem;
       font-weight: ${theme.fonts.body2R.fontWeight};
 
       color: ${theme.colors.white};
@@ -54,12 +54,11 @@ export const HashtagInner = styled.p`
 export const HastagInput = styled.input`
   ${({ theme }) => {
     return css`
-      min-width: 3rem;
       flex-shrink: 0;
 
       border: none;
       font-family: ${theme.fonts.caption.fontFamily};
-      font-size: ${theme.fonts.caption.fontSize}px;
+      font-size: ${theme.fonts.caption.fontSize}rem;
       font-weight: ${theme.fonts.caption.fontWeight};
       line-height: ${theme.fonts.caption.lineHeight};
       color: ${theme.colors.white};

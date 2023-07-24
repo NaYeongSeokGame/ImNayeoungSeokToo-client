@@ -14,7 +14,6 @@ import { CreatePresetWithUrlType, CreateQuizWithUrlType } from '@/types/quiz';
 import copyClipboard from '@/utils/copyClipboard';
 
 import * as styles from './CreateQuiz.style';
-import AddQuiz from '@/components/main/AddQuizComponent/AddQuiz';
 
 const CreateQuiz = () => {
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const CreateQuiz = () => {
     images: [],
     imageUrls: [],
     answers: [],
-    hintLists: [],
+    hintList: [],
     hashtagList: [],
     title: '',
     isPrivate: false,
@@ -33,20 +32,20 @@ const CreateQuiz = () => {
     openModal(<AddQuizModal storeNewQuiz={storeNewQuiz} />);
 
   const storeNewQuiz = useCallback(
-    ({ answer, image, imageUrl }: CreateQuizWithUrlType) => {
+    ({ answer, image, imageUrl, hint = '' }: CreateQuizWithUrlType) => {
       if (!answer || !image || !imageUrl) return;
       setPresetData((prev) => ({
         ...prev,
         images: [...prev.images, image],
         answers: [...prev.answers, answer],
         imageUrls: [...prev.imageUrls, imageUrl],
+        hintList: [...prev.hintList, hint]
       }));
     },
     [presetData],
   );
 
   const removeCurrentQuiz = (index: number) => {
-    console.log(index);
     setPresetData((prev) => ({
       ...prev,
       images: [...prev.images.slice(0, index), ...prev.images.slice(index + 1)],
@@ -60,9 +59,8 @@ const CreateQuiz = () => {
       ],
     }));
   };
-
+//Fixme:
   const modifyCurrentQuiz = (index: number) => {
-    console.log(index);
     openModal(<AddQuizModal storeNewQuiz={storeNewQuiz} />);
   };
 
@@ -73,7 +71,6 @@ const CreateQuiz = () => {
       return;
     }
     setPresetData((prev) => ({ ...prev, title: event.target.value }));
-    console.log(presetData);
   };
 
   const handleToggle = (status: boolean) => {
@@ -185,7 +182,7 @@ const CreateQuiz = () => {
               index={index}
               answer={answer}
               url={presetData.imageUrls[index]}
-              hint={presetData.hintLists[index]}
+              hint={presetData.hintList[index]}
               removeQuiz={removeCurrentQuiz}
               modifyQuiz={modifyCurrentQuiz}
             />
