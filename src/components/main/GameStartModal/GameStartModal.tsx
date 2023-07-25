@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
@@ -36,13 +35,10 @@ const GameStartModal = ({
     navigate(`/quiz/loading`);
   };
 
-  const StartQuizButton = useCallback(
-    () => (
-      <styles.StartQuizButton onClick={redirectToLandingPage}>
-        완료
-      </styles.StartQuizButton>
-    ),
-    [timeToSolveQuiz],
+  const StartQuizButton = () => (
+    <styles.StartQuizButton onClick={redirectToLandingPage}>
+      완료
+    </styles.StartQuizButton>
   );
 
   return (

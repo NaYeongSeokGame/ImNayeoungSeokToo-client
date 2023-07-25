@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as MainImageSvg } from '@/assets/images/mainImage.svg';
-import { ReactComponent as TitleTextSvg } from '@/assets/images/titleText.svg';
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,56 +7,52 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Title = styled(TitleTextSvg)`
-  margin: 1.875rem auto 0;
-`;
-
-export const PickupText = styled.h2`
-  ${({ theme }) => {
-    return css`
-      margin: 1.75rem auto;
-
-      font-size: 3rem;
-      color: ${theme.colors.black};
-      text-align: center;
-    `;
-  }}
-`;
-
-export const MainImage = styled(MainImageSvg)`
-  ${({ theme }) => {
-    return css`
-      & > ellipse {
-        border: 0.25rem solid ${theme.colors.black};
-      }
-    `;
-  }}
-`;
-
 export const ButtonSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem 0;
+  gap: 1.125rem;
 
-  margin: auto;
+  margin: 0 auto 8.25rem;
 `;
 
 export const OptionButton = styled.button`
   ${({ theme }) => {
+    const { colors } = theme;
     return css`
-      background-color: ${theme.colors.white};
-      border: 0.25rem solid ${theme.colors.black};
-      border-radius: 1rem;
+      width: 12.625rem;
+      height: 3rem;
 
-      width: 14rem;
-      padding: 1rem 1rem;
+      color: ${colors.darkblue950};
+      font-size: 1rem;
+      text-align: center;
 
-      font-size: 1.125rem;
-      font-family: 'LOTTERIADDAG';
+      background-color: ${colors.gray100};
+      border: 2px double ${colors.darkblue950};
+      border-radius: 0.375rem;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
       &:active {
         text-decoration: none;
       }
     `;
   }}
+`;
+
+export const Title = styled.h1`
+  margin: 0 auto auto;
+
+  font-size: 3rem;
+  font-family: 'Galmuri11';
+  font-weight: 700;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  background: linear-gradient(
+    180deg,
+    #ff5912 16.67%,
+    #ffa012 48.96%,
+    #ffe812 84.9%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;

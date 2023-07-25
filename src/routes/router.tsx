@@ -8,6 +8,7 @@ import GameManage from '@/components/common/GameManage';
 import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
 import QuizResult from '@/components/pages/QuizResult';
+import QuizSearch from '@/components/pages/QuizSearch';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
               path: 'create',
               element: <CreateQuiz />,
+            },
+            {
+              path: 'search',
+              element: <QuizSearch />,
             },
           ]
         },
