@@ -13,16 +13,16 @@ export const Section = styled.section`
       overflow-x: hidden;
       background-color: ${theme.colors.dark};
     `;
-  }}
+  }}?
 `;
 
 export const ButtonWrapper = styled.button`
+  display: flex;
   width: 100%;
   height: 5rem;
-  display: flex;
   position: absolute;
   top: 0;
-  background: linear-gradient(180deg, #000 0%, rgba(36, 36, 36, 0.00) 100%);
+  background: linear-gradient(180deg, #000 0%, rgba(36, 36, 36, 0) 100%);
   gap: 0.87rem;
   padding: 0.87rem;
 
@@ -32,7 +32,7 @@ export const ButtonWrapper = styled.button`
 export const SettingButton = styled.button`
   ${({ theme }) => {
     return css`
-      padding: 0.625rem 0.91rem;
+      padding: 0.625rem 1rem;
       border-radius: 1.5625rem;
       border: 1px solid #fff;
       box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.25);
@@ -144,7 +144,7 @@ export const SubmitButton = styled.button`
   ${({ theme }) => {
     return css`
       padding: 0.625rem 3.125rem;
-      margin-bottom : 3rem;
+      margin-bottom: 3rem;
       border-radius: 1.5625rem;
       border: 1px solid ${theme.colors.magenta500};
       color: ${theme.colors.magenta500};

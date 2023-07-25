@@ -29,7 +29,9 @@ const AddQuizModal = ({
   const openFileUploadDialog = () => fileInputRef.current?.click();
 
   useEffect(() => {
-    {!quizData.imageUrl && openFileUploadDialog()} //새로 생셩하는 경우에 진입 시 파일업로드창 표시
+    {
+      !quizData.imageUrl && openFileUploadDialog();
+    } //새로 생셩하는 경우에 진입 시 파일업로드창 표시
   }, []);
 
   const handleUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {

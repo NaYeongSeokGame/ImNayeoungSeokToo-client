@@ -41,13 +41,19 @@ const CreateQuiz = () => {
   };
 
   const modifyCurrentQuiz = (index: number) => {
-    openModal(<AddQuizModal updateQuiz={updateQuiz} index={index} initialData={quizList[index]} />);
+    openModal(
+      <AddQuizModal
+        updateQuiz={updateQuiz}
+        index={index}
+        initialData={quizList[index]}
+      />,
+    );
   };
 
   const removeCurrentQuiz = (index: number) => {
-    setQuizList((prev) => [...prev.slice(0,index), ...prev.slice(index+1)]);
+    setQuizList((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
   };
-  
+
   const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const title = event.target.value;
     if (title.length > 50) {
@@ -70,8 +76,8 @@ const CreateQuiz = () => {
 
   const submitQuizData = async () => {
     const { hashtagList, title, isPrivate } = presetData;
-    const images = quizList.map(value=>value.image);
-    const answers = quizList.map(value=>value.answer);
+    const images = quizList.map((value) => value.image);
+    const answers = quizList.map((value) => value.answer);
 
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
@@ -94,7 +100,7 @@ const CreateQuiz = () => {
     // formData.append('hashtag', JSON.stringify(isPrivate)); //Fixme: 서버 통신방식 확인 후 추가하
     console.log(JSON.stringify(formData));
 
-   try {
+    try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
         answers,
         images,

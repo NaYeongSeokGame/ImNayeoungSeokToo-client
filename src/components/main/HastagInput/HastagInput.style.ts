@@ -14,7 +14,7 @@ export const HastagInputWrapper = styled.div`
       font-size: ${theme.fonts.caption.fontSize}rem;
       font-weight: ${theme.fonts.caption.fontWeight};
       line-height: ${theme.fonts.caption.lineHeight};
-     
+
       color: ${theme.colors.white};
       background-color: transparent;
       border: 1px solid ${theme.colors.white};
@@ -35,7 +35,7 @@ export const HashtagInner = styled.p`
       height: 1.5rem;
       flex-shrink: 0;
       align-items: center;
-      
+
       font-family: ${theme.fonts.body2R.fontFamily};
       font-size: ${theme.fonts.body2R.fontSize}rem;
       font-weight: ${theme.fonts.body2R.fontWeight};
