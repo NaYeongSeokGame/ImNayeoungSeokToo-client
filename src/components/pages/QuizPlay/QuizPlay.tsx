@@ -57,13 +57,15 @@ const QuizPlay = () => {
       </styles.Title>
       <styles.QuizGuide>
         시간 내에 <span>정답</span>을 말하세요!
+        <styles.QuizTimerImageBox>
+          <div>{leftSecond}</div>
+        </styles.QuizTimerImageBox>
       </styles.QuizGuide>
 
       <styles.QuizTimerBar
         value={timeToSolveQuiz - leftSecond}
         max={timeToSolveQuiz}
       />
-      <styles.QuizTimerImage>{leftSecond}</styles.QuizTimerImage>
       <styles.QuestionImage imageUrl={imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />

@@ -65,22 +65,29 @@ export const QuizTimerBar = styled.progress`
 `;
 
 // FIXME: 이미지가 figma 스펙과 다르게 나타나는 것 같아서 추후 수정 필요.
-export const QuizTimerImage = styled.div`
-  width: 5.96144rem;
-  height: 5.72225rem;
-  transform: rotate(-5deg) translateX(15.5rem);
-  padding-top: 2.5rem;
-  padding-left: 2.5rem;
+export const QuizTimerImageBox = styled.div`
+  position: relative;
 
-  position: absolute;
-  top: 4rem;
+  > div {
+    width: 5.96144rem;
+    height: 5.72225rem;
+    transform: rotate(-5deg);
+    padding-top: 1rem;
 
-  color: #db0000;
-  font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0.44rem;
+    bottom: 0;
 
-  background-image: url('/src/assets/images/timerImage.png');
-  background-size: cover;
-  background-repeat: no-repeat;
+    color: #db0000;
+    font-size: 1rem;
+
+    background-image: url('/src/assets/images/timerImage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 `;
 
 export const QuestionImage = styled.section<{ imageUrl: string }>`
