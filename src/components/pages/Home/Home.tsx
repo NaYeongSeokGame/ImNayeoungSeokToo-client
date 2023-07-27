@@ -12,20 +12,19 @@ const Home = () => {
   const openJoinPresetModal = () => openModal(<JoinPresetModal />);
   return (
     <>
-      <styles.Title />
       <CategoryCarousel />
       <styles.ButtonSection>
         <styles.OptionButton>
-          <Link to="/create">직접 퀴즈 만들기 </Link>
+        <Link to="/create">직접 퀴즈 만들기</Link>
         </styles.OptionButton>
         <styles.OptionButton onClick={openJoinPresetModal}>
           비공개 PIN 입력하기
         </styles.OptionButton>
-        <styles.OptionButton> 
-          퀴즈목록 보러가기
-        {/* Fix: 퀴즈 목록 페이지로 이동처리 필요 */}
+        <styles.OptionButton>
+          <Link to="/search">퀴즈목록 보러가기</Link>
         </styles.OptionButton>
       </styles.ButtonSection>
+      <styles.Title>나도... 나영석!</styles.Title>
     </>
   );
 };

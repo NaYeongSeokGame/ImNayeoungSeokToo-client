@@ -3,14 +3,14 @@ import styled, { css, keyframes } from 'styled-components';
 export const Wrapper = styled.div`
   width: 22.5rem;
   overflow-x: auto;
-  padding-left: 0.5rem;
-  padding-top: 4rem;
+  margin: 3.56rem 0 3.25rem;
+  gap: 0.875rem;
 
   display: flex;
   justify-content: start;
   align-items: center;
-  
-  overflow: hidden; 
+
+  overflow: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -34,6 +34,8 @@ export const slide2 = keyframes`
 }`;
 
 export const Carousel = styled.div`
+  gap: 0.875rem;
+
   display: flex;
   justify-content: center;
 
@@ -43,6 +45,8 @@ export const Carousel = styled.div`
 
 //끊기지않는 화면을 위한 복제 캐러셀 스타일
 export const CarouselClone = styled.div`
+  gap: 0.875rem;
+
   display: flex;
   justify-content: center;
 
@@ -53,16 +57,11 @@ export const CarouselClone = styled.div`
 export const ImageWrapper = styled.div`
   ${({ theme }) => {
     return css`
-      width: 8rem;
-      height: 10.625rem;
-      padding: 0.25rem;
-      margin-left: 0.5rem;
-      background-color: grey;
-      border-radius: 1rem;
-      box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.15);
+      width: 9.75rem;
+      height: 14.5rem;
+      flex-shrink: 0;
 
-      display: flex;
-      flex-direction: column;
+      background: url('src/assets/images/quizCardFrame.svg');
     `;
   }}
 `;

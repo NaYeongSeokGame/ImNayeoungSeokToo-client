@@ -31,6 +31,10 @@ html,
     border: none;
     cursor: pointer;
   }
+  
+  input {
+    border:none;
+  }
 
   a {
     color: inherit;
