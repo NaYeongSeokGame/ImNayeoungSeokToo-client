@@ -10,7 +10,7 @@ export const Wrapper = styled(styles.Wrapper)`
 
 export const HintSection = styled.section`
   min-width: 8rem;
-  padding: 1.8125rem 1.375rem;
+  padding: 1.8125rem 1rem;
   gap: 1.625rem;
 
   display: flex;
