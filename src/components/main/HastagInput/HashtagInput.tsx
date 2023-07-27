@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {useState } from 'react';
 import { toast } from 'react-toastify';
 
 import * as styles from './HastagInput.style';
@@ -7,6 +7,7 @@ interface HashtagInputType {
   hashtag: string[];
   setHashtag: (newdata: string[]) => void;
 }
+
 const HashtagInput = ({ hashtag, setHashtag }: HashtagInputType) => {
   const [input, setInput] = useState('');
 
@@ -24,15 +25,13 @@ const HashtagInput = ({ hashtag, setHashtag }: HashtagInputType) => {
         toast.error('해시태그는 10글자 이하로 입력해주세요.');
         return;
       }
-      const newHashtag = [...hashtag, input];
-      setHashtag(newHashtag);
+      setHashtag([...hashtag, input]);
       setInput('');
     }
   };
 
   const hashtagRemove = (index: number) => {
-    hashtag.splice(index, 1);
-    setHashtag([...hashtag]);
+    setHashtag(hashtag.filter((_, i) => i !== index))
   };
   return (
     <styles.HastagInputWrapper>
