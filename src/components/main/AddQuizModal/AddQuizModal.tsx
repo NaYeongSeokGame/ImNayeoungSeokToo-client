@@ -70,7 +70,7 @@ const AddQuizModal = ({ storeNewQuiz }: AddQuizModalProps) => {
   );
 
   return (
-    <ModalTemplate button={<SubmitQuizButton />}>
+    <ModalTemplate buttons={[<SubmitQuizButton />]}>
       <styles.Section>
         <styles.OptionBox>
           <p>이미지 추가하기</p>

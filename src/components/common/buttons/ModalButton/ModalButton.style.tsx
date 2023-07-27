@@ -4,9 +4,12 @@ export const ButtonWrapper = styled.button<{ $colorScheme: string }>`
   width: 2.75rem;
   height: 2.75rem;
 
+  word-break: keep-all;
+
   border: 0.1875rem solid;
   border-radius: 50%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'NeoDunggeunmoPro';
 
   ${({ theme, $colorScheme }) => {
     switch ($colorScheme) {

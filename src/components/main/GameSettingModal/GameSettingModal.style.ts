@@ -1,23 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-  padding: 0.9375rem;
-  gap: 0.375rem 0;
+import * as styles from '@/styles/modal';
 
-  display: flex;
-  flex-direction: column;
-
-  font-family: 'NeoDunggeunmo Pro';
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: center;
-  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  h4 {
-    font-size: 1.875rem;
-  }
-`;
+export const Wrapper = styled(styles.Wrapper)``;
 
 export const SettingBox = styled.div`
   padding: 22px 0px;

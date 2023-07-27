@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { ReactComponent as ReturnButtonSvg } from '@/assets/images/returnButton.svg';
 import ModalTemplate from '@/components/common/ModalTemplate';
+import ModalButton from '@/components/common/buttons/ModalButton/ModalButton';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './QuizHintModal.style';
@@ -15,12 +13,20 @@ const QuizHintModal = ({ answer }: QuizHintModalProps) => {
 
   return (
     <ModalTemplate
-      title="힌트"
-      button={<ReturnButtonSvg onClick={closeModal} />}
+      buttons={[
+        <ModalButton
+          title="나가기"
+          colorScheme="darkblue"
+          onClick={closeModal}
+        />,
+      ]}
     >
-      <styles.HintSection>
-        <styles.Hint>{answer}</styles.Hint>
-      </styles.HintSection>
+      <styles.Wrapper>
+        <h5>힌트</h5>
+        <styles.HintSection>
+          <styles.Hint>{answer}</styles.Hint>
+        </styles.HintSection>
+      </styles.Wrapper>
     </ModalTemplate>
   );
 };

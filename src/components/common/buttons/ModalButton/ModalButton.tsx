@@ -1,4 +1,4 @@
-import * as styles from './ ModalButton.style';
+import * as styles from './ModalButton.style';
 
 interface ModalButtonProps {
   title: string;

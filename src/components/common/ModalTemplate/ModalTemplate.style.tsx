@@ -21,20 +21,6 @@ export const Container = styled.div`
   }}
 `;
 
-export const Header = styled.span`
-  ${({ theme }) => {
-    return css`
-      margin: auto auto 0.875rem auto;
-      padding: 0.5rem 3rem;
-
-      font-size: 1.125rem;
-
-      border: 0.25rem solid ${theme.colors.black};
-      border-radius: 1rem;
-    `;
-  }}
-`;
-
 export const SectionWrapper = styled.div`
   ${({ theme }) => {
     return css`
@@ -60,6 +46,7 @@ export const Section = styled.section`
     `;
   }}
 `;
+
 export const Article = styled.article`
   ${({ theme }) => {
     return css`
@@ -81,9 +68,8 @@ export const Button = styled.div`
 export const ButtonSection = styled.div`
   ${({ theme }) => {
     return css`
-      width: 7.75rem;
       height: 3.5rem;
-      gap: 1.5rem;
+      gap: 1.2rem;
 
       display: inline-flex;
       align-self: flex-end;
@@ -92,7 +78,7 @@ export const ButtonSection = styled.div`
 
       background-color: ${theme.colors.cremewhite};
       border-radius: 50px;
-      border: 1px double ${theme.colors.black};
+      border: 0.0625rem double ${theme.colors.black};
       border-width: 0.1875rem;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
