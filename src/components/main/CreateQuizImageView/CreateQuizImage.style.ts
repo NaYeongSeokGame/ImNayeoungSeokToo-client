@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components';
 
 export const CreateQuizWrapper = styled.div<{ image: string }>`
-  ${({ theme, image }) => {
+  ${({ image }) => {
     return css`
       position: relative;
       width: 8.125rem;
@@ -14,28 +14,26 @@ export const CreateQuizWrapper = styled.div<{ image: string }>`
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
- `;
+    `;
   }}
 `;
 export const QuizModifyWrapper = styled.div`
-  ${({ theme }) => {
-    return css`
-      display: none;
-      position: absolute;
-      margin: -0.0625rem ;
-      padding: 0;
-      width: 8.125rem;
-      height: 11.25rem;  
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1.12rem;
-    
-      border-radius: 0.75rem;
-      background: rgba(20, 21, 20, 0.60);
-      ${CreateQuizWrapper}:hover &{display:flex;}
-    `;
-  }}
+  display: none;
+  position: absolute;
+  margin: -0.0625rem;
+  padding: 0;
+  width: 8.125rem;
+  height: 11.25rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.12rem;
+
+  border-radius: 0.75rem;
+  background: rgba(20, 21, 20, 0.6);
+  ${CreateQuizWrapper}:hover & {
+    display: flex;
+  }
 `;
 export const ModifyButton = styled.button`
   ${({ theme }) => {
