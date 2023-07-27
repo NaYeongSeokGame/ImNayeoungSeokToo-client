@@ -14,11 +14,7 @@ const QuizHintModal = ({ answer }: QuizHintModalProps) => {
   return (
     <ModalTemplate
       buttons={[
-        <ModalButton
-          title="나가기"
-          colorScheme="darkblue"
-          onClick={closeModal}
-        />,
+        <ModalButton title="나가기" colorScheme="pink" onClick={closeModal} />,
       ]}
     >
       <styles.Wrapper>
