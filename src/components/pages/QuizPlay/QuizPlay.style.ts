@@ -57,8 +57,6 @@ export const QuizTimerBar = styled.progress`
       &::-webkit-progress-value {
         background-color: ${colors.magenta500};
         border-radius: 0.5625rem;
-
-        transition: width 1s ease;
       }
     `;
   }}

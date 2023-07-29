@@ -18,7 +18,7 @@ const QuizPlay = () => {
   const { openModal } = useModal();
   const navigate = useNavigate();
   const [{ timeToSolveQuiz }] = useAtom(quizPlayStateAtom);
-  const { leftSecond, isRunning, start, stop } = useTimer({
+  const { leftSecond, isRunning, progressValue, start, stop } = useTimer({
     initTimeLimit: timeToSolveQuiz,
     startImmediately: true,
   });
@@ -62,10 +62,7 @@ const QuizPlay = () => {
         </styles.QuizTimerImageBox>
       </styles.QuizGuide>
 
-      <styles.QuizTimerBar
-        value={timeToSolveQuiz - leftSecond}
-        max={timeToSolveQuiz}
-      />
+      <styles.QuizTimerBar value={progressValue} max={timeToSolveQuiz} />
       <styles.QuestionImage imageUrl={imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
