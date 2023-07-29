@@ -11,6 +11,7 @@ import * as styles from './Navigator.style';
 
 const Navigator = () => {
   const matchHomeUrl = useMatch('/');
+  const matchSearchUrl= useMatch('/search');
   const matchQuizGameUrl = useMatch('/quiz/*');
   const matchCreateQuizUrl = useMatch('/create');
 
@@ -26,8 +27,8 @@ const Navigator = () => {
         </styles.Section>
       </Link>
       {/** TODO : 추후 퀴즈 목록 페이지 개설 시 추가 */}
-      <Link to="/list">
-        <styles.Section isSelected={matchQuizGameUrl !== null}>
+      <Link to="/search">
+        <styles.Section isSelected={matchSearchUrl !== null}>
           <ZoomIcon />
           <p>퀴즈 검색</p>
         </styles.Section>
