@@ -18,7 +18,7 @@ const QuizPlay = () => {
   const { openModal } = useModal();
   const navigate = useNavigate();
   const [{ timeToSolveQuiz }] = useAtom(quizPlayStateAtom);
-  const { leftSecond, isRunning, progressValue, start, stop } = useTimer({
+  const { leftSecond, isRunning, start, stop } = useTimer({
     initTimeLimit: timeToSolveQuiz,
     startImmediately: true,
   });
@@ -58,11 +58,14 @@ const QuizPlay = () => {
       <styles.QuizGuide>
         시간 내에 <span>정답</span>을 말하세요!
         <styles.QuizTimerImageBox>
-          <div>{leftSecond}</div>
+          <div>{Math.ceil(leftSecond)}</div>
         </styles.QuizTimerImageBox>
       </styles.QuizGuide>
 
-      <styles.QuizTimerBar value={progressValue} max={timeToSolveQuiz} />
+      <styles.QuizTimerBar
+        value={timeToSolveQuiz - leftSecond}
+        max={timeToSolveQuiz}
+      />
       <styles.QuestionImage imageUrl={imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
