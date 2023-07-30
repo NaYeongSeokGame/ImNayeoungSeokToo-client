@@ -6,7 +6,7 @@ export const COLORS = {
   white: '#FFFFFF',
 
   cremewhite: '#FCFBFA',
-  dark: '141514',
+  dark: '#141514',
 
   gray100: '#ECECEC',
   gray200: '#CECFCD',
