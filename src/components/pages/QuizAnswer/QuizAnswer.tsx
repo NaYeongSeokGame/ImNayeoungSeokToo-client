@@ -1,8 +1,6 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as CorrectButtonSvg } from '@/assets/images/correctButton.svg';
-import { ReactComponent as WrongButtonSvg } from '@/assets/images/wrongButton.svg';
 import { controlCurrentScoreAtom, quizPlayStateAtom } from '@/stores/quiz';
 
 import * as styles from './QuizAnswer.style';
@@ -15,12 +13,10 @@ const QuizAnswer = () => {
     controlCurrentScoreAtom,
   );
 
-  const nextRoundUrl = isTerminated
-    ? `/quiz/result`
-    : `/quiz`;
+  const nextRoundUrl = isTerminated ? `/quiz/result` : `/quiz`;
 
   const currentQuizAnswer = quizList[currentIndex].answer || '';
-
+  const currentQuizImageUrl = quizList[currentIndex].imageUrl || '';
   const submitQuizResult = (isCorrect: boolean) => {
     updateCurrentScore({ isCorrect, quizIndex: currentIndex });
     navigate(nextRoundUrl, { replace: true });
@@ -28,13 +24,30 @@ const QuizAnswer = () => {
 
   return (
     <>
-      <styles.Title />
-      <styles.QuestionAnswer>
+      <styles.TitleBox>
+        <styles.Title>
+          <span>{currentIndex + 1}</span>
+          <span>번째</span>
+          {` 퀴즈`}
+        </styles.Title>
+        <styles.Subtitle>
+          이번 문제의 <span>정답</span>은...
+        </styles.Subtitle>
+      </styles.TitleBox>
+      <styles.AnswerSection>
+        <styles.AnswerImage src={currentQuizImageUrl} />
         <styles.Answer>{currentQuizAnswer}</styles.Answer>
-      </styles.QuestionAnswer>
+      </styles.AnswerSection>
       <styles.ButtonSection>
-        <CorrectButtonSvg onClick={() => submitQuizResult(true)} />
-        <WrongButtonSvg onClick={() => submitQuizResult(false)} />
+        정답을 맞추셨나요?
+        <styles.ButtonBox>
+          <styles.AnswerButton correct onClick={() => submitQuizResult(true)}>
+            정답
+          </styles.AnswerButton>
+          <styles.AnswerButton onClick={() => submitQuizResult(false)}>
+            오답
+          </styles.AnswerButton>
+        </styles.ButtonBox>
       </styles.ButtonSection>
     </>
   );
