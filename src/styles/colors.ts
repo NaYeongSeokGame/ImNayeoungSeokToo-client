@@ -2,11 +2,10 @@ export const COLORS = {
   // FIXME : purple, red, black, white 컬러는 UI 마이그레이션이 종료된 이후 제거 예정
   purple: '#7443FF',
   red: '#FF0000',
-  darkRed: '#DB0000',
   black: '#000000',
   white: '#FFFFFF',
+
   cremewhite: '#FCFBFA',
-  lightGrey: '#D9D9D9',
   dark: '#141514',
 
   gray100: '#ECECEC',
@@ -17,6 +16,7 @@ export const COLORS = {
   gray600: '#505050',
   gray700: '#3B3D3B',
   gray800: '#242424',
+
 
   darkblue050: '#F1F0FF',
   darkblue100: '#E7E4FF',
