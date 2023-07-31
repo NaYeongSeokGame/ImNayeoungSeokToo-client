@@ -50,16 +50,28 @@ const QuizPlay = () => {
 
   return (
     <>
-      <styles.Title />
+      <styles.Title>
+        <span>{currentIndex + 1}</span>
+        <span>번째 </span>
+        퀴즈
+      </styles.Title>
+      <styles.QuizGuide>
+        시간 내에 <span>정답</span>을 말하세요!
+        <styles.QuizTimerImageBox>
+          <div>{Math.ceil(leftSecond)}</div>
+        </styles.QuizTimerImageBox>
+      </styles.QuizGuide>
+
+      <styles.QuizTimerBar
+        value={timeToSolveQuiz - leftSecond}
+        max={timeToSolveQuiz}
+      />
       <styles.QuestionImage imageUrl={imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
         <PauseButtonSvg onClick={toggleTimer} />
         <StopButtonSvg onClick={redirectAnswerPage} />
       </styles.ButtonSection>
-      <styles.Countdown currentCount={leftSecond}>
-        {leftSecond}
-      </styles.Countdown>
     </>
   );
 };
