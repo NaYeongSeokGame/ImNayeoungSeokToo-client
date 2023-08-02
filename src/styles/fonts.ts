@@ -112,7 +112,7 @@ export const FONT_STYLE_PC: Record<FontStyleName, FontStyle> = {
   },
   [FONT_STYLE_NAME.deco3]: {
     fontFamily: 'NeoDunggeunmoPro',
-    fontSize: 1.125,
+    fontSize: 0.875,
     fontWeight: 400,
     lineHeight: `${LINE_HEIGHT_RATIO * 1.125}rem`,
   },
