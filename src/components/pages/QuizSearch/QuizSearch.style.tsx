@@ -1,6 +1,7 @@
 import { css, styled } from 'styled-components';
 
 export const SearchQuizWrapper = styled.div`
+  margin-top: 3rem;
   padding: 1rem;
 `;
 

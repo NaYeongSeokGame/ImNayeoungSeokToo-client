@@ -4,6 +4,7 @@ export const CreateQuizWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;
+  padding-top: 2.88rem;
   gap: 0.5rem;
 `;
 
@@ -50,14 +51,12 @@ export const PrivateWrapper = styled.span`
   display: flex;
   justify-content: space-between;
 `;
-
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.38rem;
   padding: 0.38rem;
 `;
-
 export const NameLabelWrapper = styled.span`
   display: flex;
   flex-direction: column;
@@ -97,7 +96,6 @@ export const CountLabel = styled.span`
     `;
   }}
 `;
-
 export const NameInput = styled.input`
   ${({ theme }) => {
     return css`
