@@ -1,10 +1,15 @@
 import { atom } from 'jotai';
 
-import { quizPlayStateAtom } from '@/stores/quiz';
+import {
+  STORAGE_KEY,
+  createdQuizPresetAtom,
+  quizPlayStateAtom,
+} from '@/stores/quiz';
 import type {
   UpdateCurrentScoreType,
   UpdateQuizStartType,
 } from '@/types/atom/quiz';
+import { QuizPresetType } from '@/types/quiz';
 
 export const startQuizGameAtom = atom(
   null,
@@ -61,5 +66,19 @@ export const controlCurrentScoreAtom = atom(
       totalScore,
       currentIndex: prevAtom.currentIndex + 1,
     });
+  },
+);
+
+export const createdQuizPresetAtomWithLocalStorage = atom(
+  (get) => get(createdQuizPresetAtom),
+  (get, set, newPreset: QuizPresetType) => {
+    const prevAtom = get(createdQuizPresetAtom);
+    const newValue = {
+      ...prevAtom,
+      presetList: [...prevAtom.presetList, newPreset],
+    };
+
+    set(createdQuizPresetAtom, newValue);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue));
   },
 );
