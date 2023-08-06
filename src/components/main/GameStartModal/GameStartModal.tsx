@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AllowDownUrl from '@/assets/icons/pixil-arrow-down.png';
@@ -37,21 +36,14 @@ const GameStartModal = ({
     navigate(`/quiz/loading`);
   };
 
-  const StartQuizButton = useCallback(
-    () => (
-      <ModalButton
-        title="시작"
-        colorScheme="pink"
-        onClick={redirectToLandingPage}
-      />
-    ),
-    [timeToSolveQuiz],
-  );
-
   return (
     <ModalTemplate
       buttons={[
-        <StartQuizButton />,
+        <ModalButton
+          title="시작"
+          colorScheme="pink"
+          onClick={redirectToLandingPage}
+        />,
         <ModalButton
           title="나가기"
           colorScheme="darkblue"
