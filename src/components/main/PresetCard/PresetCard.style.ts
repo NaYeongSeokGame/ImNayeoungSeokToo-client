@@ -16,7 +16,7 @@ export const Image = styled.div<{ imageurl: string }>`
       width: 7.25rem;
       height: 8.75rem;
 
-      margin-top: 1.46rem;
+      margin-top: 1.2rem;
       margin-left: 1.25rem;
       background-image: url(${imageurl});
       background-size: cover;
