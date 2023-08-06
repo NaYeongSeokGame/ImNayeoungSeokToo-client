@@ -1,17 +1,26 @@
 import styled, { css } from 'styled-components';
 
-export const Section = styled.section`
-  ${({ theme }) => {
+export const Section = styled.section<{ $imageUrl?: string }>`
+  ${({ theme, $imageUrl }) => {
     return css`
       width: 22.5rem;
-      height: 50rem;
+      height: 100vh;
       position: relative;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       align-items: center;
       margin: auto;
       overflow-x: hidden;
       background-color: ${theme.colors.dark};
+
+      ${$imageUrl &&
+      css`
+        background-image: url(${$imageUrl});
+        background-size: auto 70%, cover;
+        background-position: 50% 0;
+        background-repeat: no-repeat;
+      `}
     `;
   }}
 `;
@@ -53,26 +62,29 @@ export const OptionBox = styled.div`
 `;
 
 export const UploadSection = styled.div`
-  ${({ theme }) => {
-    return css`
-      width: 22.5rem;
-      height: 28.13rem;
-    `;
-  }}
+  height: 60vh;
 `;
 
 export const UploadImage = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 export const UploadLinear = styled.div`
   width: 100%;
   height: 100%;
 `;
 export const AnswerSection = styled.div`
-  display: flex;
-  margin: 1.34rem;
-  flex-direction: column;
+  ${({ theme }) => {
+    return css`
+      width: 100%;
+      padding: 1.34rem;
+      display: flex;
+      flex-direction: column;
+      background-color: ${theme.colors.dark};
+      border-radius: 20px 20px 0px 0px;
+    `;
+  }}
 `;
 
 export const NormalText = styled.span`

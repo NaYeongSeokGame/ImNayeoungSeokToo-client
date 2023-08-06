@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import useModal from '@/hooks/useModal';
@@ -63,6 +63,7 @@ const AddQuizModal = ({
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
       setQuizData((prev) => ({ ...prev, image: null, imageUrl: '' }));
+      closeModal();
     }
   };
 
@@ -76,18 +77,8 @@ const AddQuizModal = ({
     closeModal();
   };
 
-  // 제출 완료용 버튼 Components
-  const SubmitQuizButton = useCallback(
-    () => (
-      <styles.SubmitButton onClick={verifySubmitQuiz}>
-        저장하기
-      </styles.SubmitButton>
-    ),
-    [quizData],
-  );
-
   return (
-    <styles.Section>
+    <styles.Section $imageUrl={quizData.imageUrl}>
       <input
         ref={fileInputRef}
         type="file"
@@ -101,13 +92,10 @@ const AddQuizModal = ({
         <styles.SettingButton onClick={removeUploadedFile}>
           삭제
         </styles.SettingButton>
+        <styles.SettingButton onClick={closeModal}>닫기</styles.SettingButton>
       </styles.ButtonWrapper>
 
-      <styles.UploadSection>
-        {quizData.imageUrl && (
-          <styles.UploadImage src={quizData.imageUrl} alt="image" />
-        )}
-      </styles.UploadSection>
+      <styles.UploadSection></styles.UploadSection>
       <styles.AnswerSection>
         <styles.NormalText>
           위 사진에 대해서 <styles.PointText>설명</styles.PointText>해주세요.
@@ -130,7 +118,9 @@ const AddQuizModal = ({
         </styles.OptionBox>
         <styles.InfoText>문제를 풀 때 힌트로 쓸 수 있어요</styles.InfoText>
       </styles.AnswerSection>
-      <SubmitQuizButton />
+      <styles.SubmitButton onClick={verifySubmitQuiz}>
+        저장하기
+      </styles.SubmitButton>
     </styles.Section>
   );
 };
