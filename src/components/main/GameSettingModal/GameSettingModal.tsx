@@ -2,8 +2,7 @@ import { useState } from 'react';
 
 import { ReactComponent as MuteIcon } from '@/assets/icons/muteIcon.svg';
 import { ReactComponent as SoundIcon } from '@/assets/icons/soundIcon.svg';
-import ModalTemplate from '@/components/common/ModalTemplate';
-import ModalButton from '@/components/common/buttons/ModalButton/ModalButton';
+import Modal from '@/components/common/modal/ModalTemplate';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './GameSettingModal.style';
@@ -11,27 +10,27 @@ import * as styles from './GameSettingModal.style';
 const GameSettingModal = () => {
   const { closeModal } = useModal();
   return (
-    <ModalTemplate
-      buttons={[
-        <ModalButton title="저장" colorScheme="pink" onClick={closeModal} />,
-        <ModalButton
-          title="나가기"
-          colorScheme="darkblue"
-          onClick={closeModal}
-        />,
-      ]}
-    >
-      <styles.Wrapper>
-        <h4>설정</h4>
-        <styles.SettingBox>
-          <h5>사운드</h5>
-          <styles.SoundOptionBox>
-            <SoundOptionBox title="배경음" value={100} />
-            <SoundOptionBox title="효과음" value={80} />
-          </styles.SoundOptionBox>
-        </styles.SettingBox>
-      </styles.Wrapper>
-    </ModalTemplate>
+    <Modal>
+      <Modal.MainContent>
+        <styles.Wrapper>
+          <h4>설정</h4>
+          <styles.SettingBox>
+            <h5>사운드</h5>
+            <styles.SoundOptionBox>
+              <SoundOptionBox title="배경음" value={100} />
+              <SoundOptionBox title="효과음" value={80} />
+            </styles.SoundOptionBox>
+          </styles.SettingBox>
+        </styles.Wrapper>
+      </Modal.MainContent>
+      <Modal.Button title="저장" colorScheme="pink" onClick={closeModal} />,
+      <Modal.Button
+        title="나가기"
+        colorScheme="darkblue"
+        onClick={closeModal}
+      />
+      ,
+    </Modal>
   );
 };
 

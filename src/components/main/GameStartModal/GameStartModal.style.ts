@@ -1,13 +1,5 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-  padding: 1.5rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem 0;
-`;
-
 export const Title = styled.span`
   ${({ theme }) => {
     return css`
@@ -47,18 +39,13 @@ export const SubSectionTitle = styled.p`
 export const StartDelayCounter = styled.div`
   ${({ theme }) => {
     return css`
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
       width: 14rem;
       padding: 0.25rem 1.25rem;
       margin: 0 auto;
 
-      border: 0.0625rem double ${theme.colors.black};
-      border-width: 0.1875rem;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       font-size: 2.625rem;
       font-family: ${theme.fonts.deco3.fontFamily};

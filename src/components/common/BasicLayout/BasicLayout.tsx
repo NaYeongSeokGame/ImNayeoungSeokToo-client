@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import ModalPortal from '@/components/common/ModalPortal';
 import Navigator from '@/components/common/Navigator';
+import ModalPortal from '@/components/common/modal/ModalPortal';
 
 import * as styles from './BasicLayout.style';
 

@@ -2,8 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import AllowDownUrl from '@/assets/icons/pixil-arrow-down.png';
 import AllowUpUrl from '@/assets/icons/pixil-arrow-up.png';
-import ModalTemplate from '@/components/common/ModalTemplate';
-import ModalButton from '@/components/common/buttons/ModalButton/ModalButton';
+import Modal from '@/components/common/modal/ModalTemplate';
 import useModal from '@/hooks/useModal';
 import usePresetSetting from '@/hooks/usePresetSetting.ts';
 import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
@@ -37,22 +36,19 @@ const GameStartModal = ({
   };
 
   return (
-    <ModalTemplate
-      buttons={[
-        <ModalButton
-          title="시작"
-          colorScheme="pink"
-          onClick={redirectToLandingPage}
-        />,
-        <ModalButton
-          title="나가기"
-          colorScheme="darkblue"
-          onClick={closeModal}
-        />,
-      ]}
-      subSection={
-        <styles.Wrapper>
-          <styles.SubSectionTitle>문제 타이머</styles.SubSectionTitle>
+    <Modal>
+      <Modal.MainContent>
+        <styles.ThumbnailSection
+          $thumbnailUrl={
+            thumbnailUrl || getCloudFrontUrl('/static/thumbnail.jpg')
+          }
+        >
+          <styles.Title>{title}</styles.Title>
+        </styles.ThumbnailSection>
+      </Modal.MainContent>
+      <Modal.SubContentWrapper>
+        <Modal.SubTitle>문제 타이머</Modal.SubTitle>
+        <Modal.SubContent>
           <styles.StartDelayCounter>
             <styles.TimerButton onClick={() => handleTimeToSolveQuiz(-1)}>
               <img
@@ -70,17 +66,20 @@ const GameStartModal = ({
               />
             </styles.TimerButton>
           </styles.StartDelayCounter>
-        </styles.Wrapper>
-      }
-    >
-      <styles.ThumbnailSection
-        $thumbnailUrl={
-          thumbnailUrl || getCloudFrontUrl('/static/thumbnail.jpg')
-        }
-      >
-        <styles.Title>{title}</styles.Title>
-      </styles.ThumbnailSection>
-    </ModalTemplate>
+        </Modal.SubContent>
+      </Modal.SubContentWrapper>
+      <Modal.Button
+        title="시작"
+        colorScheme="pink"
+        onClick={redirectToLandingPage}
+      />
+      ,
+      <Modal.Button
+        title="나가기"
+        colorScheme="darkblue"
+        onClick={closeModal}
+      />
+    </Modal>
   );
 };
 
