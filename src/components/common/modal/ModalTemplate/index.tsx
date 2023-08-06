@@ -1,3 +1,3 @@
-import Modal from './ModalTemplate';
+import ModalTemplate from './ModalTemplate';
 
-export default Modal;
+export default ModalTemplate;

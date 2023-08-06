@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ReactComponent as MuteIcon } from '@/assets/icons/muteIcon.svg';
 import { ReactComponent as SoundIcon } from '@/assets/icons/soundIcon.svg';
-import Modal from '@/components/common/modal/ModalTemplate';
+import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './GameSettingModal.style';

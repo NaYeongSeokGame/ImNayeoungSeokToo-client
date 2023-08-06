@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
-import Modal from '@/components/common/modal/ModalTemplate';
+import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './JoinPresetModal.style';

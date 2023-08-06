@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import AllowDownUrl from '@/assets/icons/pixil-arrow-down.png';
 import AllowUpUrl from '@/assets/icons/pixil-arrow-up.png';
-import Modal from '@/components/common/modal/ModalTemplate';
+import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
 import usePresetSetting from '@/hooks/usePresetSetting.ts';
 import getCloudFrontUrl from '@/utils/getCloudFrontUrl';

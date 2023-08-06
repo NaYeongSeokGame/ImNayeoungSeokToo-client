@@ -1,4 +1,4 @@
-import Modal from '@/components/common/modal/ModalTemplate';
+import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './QuizHintModal.style';
