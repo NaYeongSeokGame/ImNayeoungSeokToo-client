@@ -13,7 +13,7 @@ export const Section = styled.section`
       overflow-x: hidden;
       background-color: ${theme.colors.dark};
     `;
-  }}?
+  }}
 `;
 
 export const ButtonWrapper = styled.button`
