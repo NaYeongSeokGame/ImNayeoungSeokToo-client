@@ -10,7 +10,9 @@ export const CreateQuizWrapper = styled.div<{ image: string }>`
       border-radius: 0.75rem;
       border: 1px solid #fff;
       box-shadow: 0px 0px 4px 0px #a1db00;
-      background-image: url(${image});
+
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(${image});
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
