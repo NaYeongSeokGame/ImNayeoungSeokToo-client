@@ -9,15 +9,22 @@ export interface QuizPresetPinType {
 
 export type QuizTypeWithPin = QuizType & QuizPresetPinType;
 
+export type PlayableQuizPresetType = QuizPresetType & { quizList: QuizType[] };
+
 export interface QuizPresetType {
   isPrivate: boolean;
   title: string;
   presetPin: string;
   thumbnailUrl: string; 
-  hashtagList?: string[] ;//Fix : 추후 추가되면 ?제거
+  hashtagList?: string[] ;
 }
 
-export type QuizPresetTypeWithPin = QuizPresetType & QuizPresetPinType;
+export interface CreateQuizWithUrlType {
+  image: File | null;
+  answer: string;
+  imageUrl: string; 
+  hint: string; 
+};
 
 export interface CreatePresetType {
   images: File[];
@@ -26,24 +33,11 @@ export interface CreatePresetType {
   isPrivate: boolean;
 }
 
-export interface CreateQuizType {
-  image: File | null;
-  answer: string;
-}
-
-export type CreateQuizWithUrlType = CreateQuizType & { imageUrl: string, hint: string };
-
 export type CreatePresetWithUrlType = CreatePresetType & {
   imageUrls: string[];
   hashtagList: string[];
   hintList: string[];
 };
-
-export type GetQuizListOutput = QuizTypeWithPin & {
-  quizList: QuizType[];
-};
-
-export type PlayableQuizPresetType = QuizPresetType & { quizList: QuizType[] };
 
 export interface PaginationType {
   limit: number;
