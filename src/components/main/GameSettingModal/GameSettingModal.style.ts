@@ -1,40 +1,37 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-  ${({ theme }) => {
-    return css`
-      padding: 4rem 1.5rem;
+import * as styles from '@/styles/modal';
 
-      display: flex;
-      flex-direction: column;
-      gap: 3.75rem 0;
-
-      border-radius: 0.8rem;
-      background-color: ${theme.colors.white};
-
-      background-image: url(/src/assets/images/background.svg);
-      background-size: cover;
-    `;
-  }}
-`;
+export const Wrapper = styled(styles.Wrapper)``;
 
 export const SettingBox = styled.div`
+  padding: 22px 0px;
+  gap: 0.5625rem;
+
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: flex-start;
 
-  font-size: 2rem;
+  h5 {
+    font-size: 1.125rem;
+  }
 `;
 
 export const SoundOptionBox = styled.div`
   ${({ theme }) => {
     return css`
-      display: flex;
-      justify-content: space-between;
-      gap: 0.5rem;
       margin: 0.5rem auto 0;
+      gap: 0.5rem;
 
-      font-size: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      font-size: 0.875rem;
+
+      h6 {
+        font-size: 0.875rem;
+      }
 
       & .selected {
         color: ${theme.colors.purple};
@@ -43,26 +40,37 @@ export const SoundOptionBox = styled.div`
   }}
 `;
 
-export const QuitOptionBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  margin: 1.875rem auto 0;
+export const SoundOptionRow = styled.div`
+  ${({ theme }) => css`
+    gap: 0.5rem;
 
-  font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    input[type='range'] {
+      border-radius: 10px;
+      height: 2px;
+
+      accent-color: ${theme.colors.darkblue900};
+
+      &::-webkit-slider-thumb {
+        border-radius: 10px;
+        background: ${theme.colors.darkblue900};
+      }
+    }
+  `}
 `;
 
-export const CloseButton = styled.button`
-  ${({ theme }) => {
-    return css`
-      font-family: 'LOTTERIADDAG';
-      font-size: 1.125rem;
-      padding: 0.5rem 3rem;
-      margin: auto auto 0.875rem auto;
+export const QuitOptionBox = styled.div`
+  margin: 1.875rem auto 0;
+  gap: 2rem;
 
-      background-color: ${theme.colors.white};
-      border: 0.25rem solid ${theme.colors.black};
-      border-radius: 1rem;
-    `;
-  }}
+  display: flex;
+  justify-content: space-between;
 `;

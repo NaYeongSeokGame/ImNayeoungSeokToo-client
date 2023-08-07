@@ -17,7 +17,6 @@ export const COLORS = {
   gray700: '#3B3D3B',
   gray800: '#242424',
 
-
   darkblue050: '#F1F0FF',
   darkblue100: '#E7E4FF',
   darkblue200: '#D1CDFF',

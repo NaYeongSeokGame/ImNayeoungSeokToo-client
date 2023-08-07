@@ -1,7 +1,4 @@
-import React from 'react';
-
-import { ReactComponent as ReturnButtonSvg } from '@/assets/images/returnButton.svg';
-import ModalTemplate from '@/components/common/ModalTemplate';
+import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './QuizHintModal.style';
@@ -14,14 +11,17 @@ const QuizHintModal = ({ answer }: QuizHintModalProps) => {
   const { closeModal } = useModal();
 
   return (
-    <ModalTemplate
-      title="힌트"
-      button={<ReturnButtonSvg onClick={closeModal} />}
-    >
-      <styles.HintSection>
-        <styles.Hint>{answer}</styles.Hint>
-      </styles.HintSection>
-    </ModalTemplate>
+    <Modal>
+      <Modal.MainContent>
+        <styles.Wrapper>
+          <h5>힌트</h5>
+          <styles.HintSection>
+            <styles.Hint>{answer}</styles.Hint>
+          </styles.HintSection>
+        </styles.Wrapper>
+      </Modal.MainContent>
+      <Modal.Button title="나가기" colorScheme="pink" onClick={closeModal} />,
+    </Modal>
   );
 };
 
