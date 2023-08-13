@@ -77,13 +77,21 @@ const CreateQuiz = () => {
     }));
   };
 
-  const savePresetData = async (presetPin: string) => {
+  const savePresetDataAndGameStart = async (presetPin: string) => {
     const { isPrivate, thumbnailUrl, title } =
       await QuizRepository.getQuizByPinAsync(presetPin);
     setCreatedPreset({
       type: 'ADD',
       item: { presetPin, isPrivate, thumbnailUrl, title },
     });
+
+    openModal(
+      <GameStartModal
+        presetPin={presetPin}
+        title={title}
+        thumbnailUrl={thumbnailUrl}
+      />,
+    );
   };
 
   const submitQuizData = async () => {
@@ -120,14 +128,7 @@ const CreateQuiz = () => {
       });
       await copyClipboard(presetPin);
       toast.success('프리셋을 생성하여 PIN을 복사했습니다.');
-      savePresetData(presetPin);
-      openModal(
-        <GameStartModal
-          presetPin={presetPin}
-          title={title}
-          thumbnailUrl={'test'}
-        />,
-      );
+      savePresetDataAndGameStart(presetPin);
       navigate(`/`);
     } catch (error) {
       console.error(error);
