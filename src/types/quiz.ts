@@ -27,7 +27,7 @@ export interface CreatePresetType {
 }
 
 export interface CreateQuizType {
-  image: File | null;
+  image: File;
   answer: string;
 }
 
