@@ -112,13 +112,6 @@ const CreateQuiz = () => {
       return;
     }
 
-    const formData = new FormData();
-    images.map((image) => formData.append('images', image));
-    answers.map((answer) => formData.append('answers', answer));
-    formData.append('title', title);
-    formData.append('isPrivate', JSON.stringify(isPrivate));
-    // formData.append('hashtag', JSON.stringify(isPrivate)); //Fixme: 서버 통신방식 확인 후 추가하
-
     try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
         answers,
