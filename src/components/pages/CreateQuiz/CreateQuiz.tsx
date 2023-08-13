@@ -60,7 +60,7 @@ const CreateQuiz = () => {
   const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const title = event.target.value;
     if (title.length > 50) {
-      toast.error('프리셋 제목은 50글자 이상 지정할 수 없습니다. ');
+      toast.error('퀴즈 프리셋 제목은 50글자 이상 지정할 수 없습니다. ');
       return;
     }
     setPresetData((prev) => ({ ...prev, title: event.target.value }));
@@ -120,7 +120,7 @@ const CreateQuiz = () => {
         isPrivate,
       });
       await copyClipboard(presetPin);
-      toast.success('프리셋을 생성하여 PIN을 복사했습니다.');
+      toast.success('퀴즈 프리셋을 생성하여 PIN을 복사했습니다.');
       savePresetDataAndGameStart(presetPin);
       navigate(`/`);
     } catch (error) {
@@ -131,9 +131,11 @@ const CreateQuiz = () => {
   return (
     <styles.CreateQuizWrapper>
       <styles.Title>
-        <styles.PointTitle>새로운 퀴즈</styles.PointTitle> 만들기
+        <styles.PointTitle>새로운 퀴즈 프리셋</styles.PointTitle> 만들기
       </styles.Title>
-      <styles.GetPresetButton>기존 퀴즈 복사해서 만들기</styles.GetPresetButton>
+      <styles.GetPresetButton>
+        기존 퀴즈 프리셋 복사해서 만들기
+      </styles.GetPresetButton>
       <styles.NameLabelWrapper>
         <styles.InputWrapper>
           <styles.NameLabel>
@@ -199,7 +201,7 @@ const CreateQuiz = () => {
         )}
       </styles.QuizListWrapper>
       <styles.AddNewQuizButton onClick={submitQuizData}>
-        퀴즈 생성하기
+        퀴즈 프리셋 생성하기
       </styles.AddNewQuizButton>
     </styles.CreateQuizWrapper>
   );

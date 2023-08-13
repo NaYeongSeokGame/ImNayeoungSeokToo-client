@@ -29,10 +29,10 @@ const MyQuiz = () => {
           item: presetList[index],
         });
 
-        toast.success('해당 프리셋을 삭제하였습니다.');
+        toast.success('해당 퀴즈 프리셋을 삭제하였습니다.');
       } catch (e) {
         toast.error(
-          '해당 프리셋을 삭제하지 못했습니다. 잠시 후 다시 시도해주세요.',
+          '해당 퀴즈 프리셋을 삭제하지 못했습니다. 잠시 후 다시 시도해주세요.',
         );
       }
     }
