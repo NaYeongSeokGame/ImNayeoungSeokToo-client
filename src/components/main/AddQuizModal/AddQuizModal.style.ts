@@ -4,7 +4,7 @@ export const Section = styled.section<{ $imageUrl?: string }>`
   ${({ theme, $imageUrl }) => {
     return css`
       width: 22.5rem;
-      height: 100vh;
+      height: 100%;
       position: relative;
       display: flex;
       flex-direction: column;
