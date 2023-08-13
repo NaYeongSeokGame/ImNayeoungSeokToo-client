@@ -16,6 +16,13 @@ interface AddQuizModalProps {
   initialData?: CreateQuizWithUrlType;
 }
 
+type QuizInitType = {
+  image: null;
+  answer: string;
+  imageUrl: string;
+  hint: string;
+};
+
 const AddQuizModal = ({
   updateQuiz,
   index,
@@ -23,9 +30,9 @@ const AddQuizModal = ({
 }: AddQuizModalProps) => {
   const { closeModal } = useModal();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [quizData, setQuizData] = useState<CreateQuizWithUrlType>(
-    initialData || { image: null, answer: '', imageUrl: '', hint: '' },
-  );
+  const [quizData, setQuizData] = useState<
+    CreateQuizWithUrlType | QuizInitType
+  >(initialData || { image: null, answer: '', imageUrl: '', hint: '' });
   const openFileUploadDialog = () => fileInputRef.current?.click();
 
   useEffect(() => {
@@ -68,7 +75,7 @@ const AddQuizModal = ({
   };
 
   const verifySubmitQuiz = () => {
-    const { image, answer, imageUrl, hint } = quizData;
+    const { image, answer, imageUrl } = quizData;
     if (!image || !answer || !imageUrl) {
       toast.error('이미지, 정답 모두 업로드 해야 합니다!');
       return;
