@@ -6,6 +6,7 @@ import {
   quizPlayStateAtom,
 } from '@/stores/quiz';
 import type {
+  CreatedQuizStateType,
   UpdateCurrentScoreType,
   UpdateQuizStartType,
 } from '@/types/atom/quiz';
@@ -69,16 +70,48 @@ export const controlCurrentScoreAtom = atom(
   },
 );
 
+type ActionType = 'ADD' | 'MODIFY' | 'DELETE';
+type CreatedQuizPresetActionType = {
+  type: ActionType;
+  item: QuizPresetType;
+};
+
 export const createdQuizPresetAtomWithLocalStorage = atom(
   (get) => get(createdQuizPresetAtom),
-  (get, set, newPreset: QuizPresetType) => {
+  (get, set, newPresetAction: CreatedQuizPresetActionType) => {
     const prevAtom = get(createdQuizPresetAtom);
-    const newValue = {
-      ...prevAtom,
-      presetList: [...prevAtom.presetList, newPreset],
-    };
-
-    set(createdQuizPresetAtom, newValue);
+    const newValue = createdQuizPresetReducer(prevAtom, newPresetAction);
+    set(createdQuizPresetAtom,  newValue);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue));
   },
 );
+
+const createdQuizPresetReducer = (
+  state: CreatedQuizStateType,
+  action: CreatedQuizPresetActionType,
+): CreatedQuizStateType => {
+  switch (action.type) {
+    case 'ADD': {
+      return { ...state, presetList: [...state.presetList, action.item] };
+    }
+    case 'MODIFY': {
+      return {
+        ...state,
+        presetList: state.presetList.map((preset) =>
+          preset.presetPin === action.item.presetPin ? action.item : preset,
+        ),
+      };
+    }
+    case 'DELETE': {
+      return {
+        ...state,
+        presetList: state.presetList.filter(
+          (preset) => preset.presetPin !== action.item.presetPin,
+        ),
+      };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};

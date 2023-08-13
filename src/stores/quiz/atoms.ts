@@ -14,14 +14,22 @@ export const quizPlayStateAtom = atom<QuizPlayStateType>({
 });
 
 export const STORAGE_KEY = 'createdQuiz';
-const getInitialValue = () => {
+
+const getInitialValue = (): CreatedQuizStateType => {
   const item = localStorage.getItem(STORAGE_KEY);
   if (item !== null) {
-    return JSON.parse(item);
+    const parsed = JSON.parse(item);
+    if (isCreatedQuizStateType(parsed)) {
+      return parsed;
+    }
   }
-  return [];
+  return { presetList: [] };
 };
 
-export const createdQuizPresetAtom = atom<CreatedQuizStateType>({
-  presetList: getInitialValue(),
-});
+export const createdQuizPresetAtom = atom<CreatedQuizStateType>(
+  getInitialValue(),
+);
+
+const isCreatedQuizStateType = (obj: object): obj is CreatedQuizStateType => {
+  return 'presetList' in obj;
+};

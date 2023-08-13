@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -9,6 +10,7 @@ import GameStartModal from '@/components/main/GameStartModal';
 import HashtagInput from '@/components/main/HastagInput';
 import ToggleButton from '@/components/main/ToggleButton/ToggleButton';
 import useModal from '@/hooks/useModal';
+import { createdQuizPresetAtomWithLocalStorage } from '@/stores/quiz';
 import { theme } from '@/styles/theme';
 import { CreatePresetWithUrlType, CreateQuizWithUrlType } from '@/types/quiz';
 import copyClipboard from '@/utils/copyClipboard';
@@ -29,6 +31,7 @@ const CreateQuiz = () => {
   });
 
   const [quizList, setQuizList] = useState<CreateQuizWithUrlType[]>([]);
+  const setCreatedPreset = useSetAtom(createdQuizPresetAtomWithLocalStorage);
 
   const updateQuiz = (data: CreateQuizWithUrlType, index: number) => {
     const newQuizList = [...quizList];
@@ -74,6 +77,15 @@ const CreateQuiz = () => {
     }));
   };
 
+  const savePresetData = async (presetPin: string) => {
+    const { isPrivate, thumbnailUrl, title } =
+      await QuizRepository.getQuizByPinAsync(presetPin);
+    setCreatedPreset({
+      type: 'ADD',
+      item: { presetPin, isPrivate, thumbnailUrl, title },
+    });
+  };
+
   const submitQuizData = async () => {
     const { hashtagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
@@ -98,7 +110,6 @@ const CreateQuiz = () => {
     formData.append('title', title);
     formData.append('isPrivate', JSON.stringify(isPrivate));
     // formData.append('hashtag', JSON.stringify(isPrivate)); //Fixme: 서버 통신방식 확인 후 추가하
-    console.log(JSON.stringify(formData));
 
     try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
@@ -109,6 +120,7 @@ const CreateQuiz = () => {
       });
       await copyClipboard(presetPin);
       toast.success('프리셋을 생성하여 PIN을 복사했습니다.');
+      savePresetData(presetPin);
       openModal(
         <GameStartModal
           presetPin={presetPin}
