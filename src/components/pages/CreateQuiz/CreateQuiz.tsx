@@ -188,13 +188,15 @@ const CreateQuiz = () => {
               modifyQuiz={modifyCurrentQuiz}
             />
           ))}
-        <styles.AddQuizWrapper>
-          <styles.UploadText src="/src/assets/images/uploadQuizText.svg" />
-          <styles.ArrowIcon src="/src/assets/icons/arrowIcon.svg" />
-          <styles.UploadQuizButton onClick={openAddQuizModal}>
-            추가하기
-          </styles.UploadQuizButton>
-        </styles.AddQuizWrapper>
+        {quizList.length < 10 && (
+          <styles.AddQuizWrapper>
+            <styles.UploadText src="/src/assets/images/uploadQuizText.svg" />
+            <styles.ArrowIcon src="/src/assets/icons/arrowIcon.svg" />
+            <styles.UploadQuizButton onClick={openAddQuizModal}>
+              추가하기
+            </styles.UploadQuizButton>
+          </styles.AddQuizWrapper>
+        )}
       </styles.QuizListWrapper>
       <styles.AddNewQuizButton onClick={submitQuizData}>
         퀴즈 생성하기
