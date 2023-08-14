@@ -13,7 +13,7 @@ const Navigator = () => {
   const matchHomeUrl = useMatch('/');
   const matchSearchUrl = useMatch('/search');
   const matchQuizGameUrl = useMatch('/quiz/*');
-  const matchCreateQuizUrl = useMatch('/create');
+  const matchMyQuizUrl = useMatch('/my-quiz');
 
   const { openModal } = useModal();
   const openGameSettingModal = () => openModal(<GameSettingModal />);
@@ -35,7 +35,7 @@ const Navigator = () => {
       </Link>
       {/** TODO : 나의 퀴즈 목록 페이지 개설 시 수정 필요 */}
       <Link to="/my-quiz">
-        <styles.Section isSelected={matchCreateQuizUrl !== null}>
+        <styles.Section isSelected={matchMyQuizUrl !== null}>
           <SmileIcon />
           <p>나의 퀴즈</p>
         </styles.Section>
