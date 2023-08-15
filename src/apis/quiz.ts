@@ -33,6 +33,7 @@ class QuizRepository {
     isPrivate,
     images,
     answers,
+    hashTags
   }: CreatePresetType) {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));

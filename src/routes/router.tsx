@@ -5,6 +5,7 @@ import GameManage from '@/components/common/GameManage';
 import CreateQuiz from '@/components/pages/CreateQuiz';
 import Home from '@/components/pages/Home';
 import Landing from '@/components/pages/Landing';
+import ModifyQuiz from '@/components/pages/ModifyQuiz/ModifyQuiz';
 import MyQuiz from '@/components/pages/MyQuiz/MyQuiz';
 import QuizAnswer from '@/components/pages/QuizAnswer';
 import QuizPlay from '@/components/pages/QuizPlay';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
           {
             path: 'my-quiz',
             element: <MyQuiz />,
+          },
+          {
+            path: 'modify',
+            element: <ModifyQuiz />,
           },
         ],
       },

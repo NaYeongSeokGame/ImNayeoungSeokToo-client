@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
@@ -10,14 +11,19 @@ import { createdQuizPresetAtomWithLocalStorage } from '@/stores/quiz';
 import * as styles from './MyQuiz.style';
 
 const MyQuiz = () => {
+  const navigate = useNavigate();
+
   const { openModal } = useModal();
   const [{ presetList }, setPresetList] = useAtom(
     createdQuizPresetAtomWithLocalStorage,
   );
 
-  // TODO: 프리셋 수정 이동
   const modifyCurrentQuiz = (index: number) => {
-    console.log('update');
+    navigate('/modify', {
+      state: {
+        presetPin : presetList[index].presetPin
+      }
+    });
   };
 
   const removeCurrentQuiz = async (index: number) => {
