@@ -156,6 +156,8 @@ export const UploadQuizButton = styled.div`
       color: ${theme.colors.white};
       border-radius: 1.5rem;
       border: 1px solid #fff;
+      
+      cursor: pointer;
     `;
   }}
 `;
