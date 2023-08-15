@@ -24,6 +24,7 @@ export interface CreatePresetType {
   answers: string[];
   title: string;
   isPrivate: boolean;
+  hashTags: string[];
 }
 
 export interface CreateQuizType {
@@ -47,6 +48,7 @@ export type GetQuizListOutput = QuizTypeWithPin & {
   isPrivate: boolean;
   thumbnailUrl: string;
   title: string;
+  hashtagList: string[];
 };
 
 export type PlayableQuizPresetType = QuizPresetType & { quizList: QuizType[] };
