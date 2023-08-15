@@ -14,7 +14,7 @@ export interface QuizPresetType {
   title: string;
   presetPin: string;
   thumbnailUrl: string;
-  hashtagList?: string[]; //Fix : 추후 추가되면 ?제거
+  hashTagList?: string[]; //Fix : 추후 추가되면 ?제거
 }
 
 export type QuizPresetTypeWithPin = QuizPresetType & QuizPresetPinType;
@@ -24,7 +24,7 @@ export interface CreatePresetType {
   answers: string[];
   title: string;
   isPrivate: boolean;
-  hashTags: string[];
+  hashTagList: string[];
 }
 
 export interface CreateQuizType {
@@ -39,7 +39,7 @@ export type CreateQuizWithUrlType = CreateQuizType & {
 
 export type CreatePresetWithUrlType = CreatePresetType & {
   imageUrls: string[];
-  hashtagList: string[];
+  hashTagList: string[];
   hintList: string[];
 };
 
@@ -48,7 +48,7 @@ export type GetQuizListOutput = QuizTypeWithPin & {
   isPrivate: boolean;
   thumbnailUrl: string;
   title: string;
-  hashtagList: string[];
+  hashTagList: string[];
 };
 
 export type PlayableQuizPresetType = QuizPresetType & { quizList: QuizType[] };

@@ -10,7 +10,7 @@ const CategoryCarouselImage = ({
   thumbnailUrl,
   presetPin,
   title,
-  hashtagList,
+  hashTagList,
 }: QuizPresetType) => {
   const { openModal } = useModal();
 
@@ -37,7 +37,7 @@ const CategoryCarouselImage = ({
         />
         <styles.TitleText>{title}</styles.TitleText>
         <styles.HashtagWrapper>
-          {hashtagList?.slice(0, 2).map((hashtag) => (
+          {hashTagList?.slice(0, 2).map((hashtag) => (
             <styles.HashtagText>{hashtag}</styles.HashtagText>
           ))}
         </styles.HashtagWrapper>

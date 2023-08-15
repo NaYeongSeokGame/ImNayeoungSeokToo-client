@@ -25,7 +25,7 @@ const CreateQuiz = () => {
     imageUrls: [], //미사용
     answers: [], //미사용
     hintList: [], //미사용
-    hashtagList: [],
+    hashTagList: [],
     title: '',
     isPrivate: false,
   });
@@ -70,10 +70,10 @@ const CreateQuiz = () => {
     setPresetData((prev) => ({ ...prev, isPrivate: status }));
   };
 
-  const handleHashtag = (hashtagList: string[]) => {
+  const handleHashtag = (hashTagList: string[]) => {
     setPresetData((prev) => ({
       ...prev,
-      hashtagList,
+      hashTagList,
     }));
   };
 
@@ -95,7 +95,7 @@ const CreateQuiz = () => {
   };
 
   const submitQuizData = async () => {
-    const { hashtagList, title, isPrivate } = presetData;
+    const { hashTagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
 
@@ -118,6 +118,7 @@ const CreateQuiz = () => {
         images,
         title,
         isPrivate,
+        hashTagList: hashTagList ?? []
       });
       await copyClipboard(presetPin);
       toast.success('퀴즈 프리셋을 생성하여 PIN을 복사했습니다.');
@@ -131,7 +132,7 @@ const CreateQuiz = () => {
   return (
     <styles.CreateQuizWrapper>
       <styles.Title>
-        <styles.PointTitle>새로운 퀴즈 프리셋</styles.PointTitle> 만들기
+        <styles.PointTitle>퀴즈 프리셋</styles.PointTitle> 만들기
       </styles.Title>
       <styles.GetPresetButton>
         기존 퀴즈 프리셋 복사해서 만들기
@@ -167,7 +168,7 @@ const CreateQuiz = () => {
             (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
           </styles.InfoLabel>
           <HashtagInput
-            hashtag={presetData.hashtagList}
+            hashtag={presetData.hashTagList}
             setHashtag={handleHashtag}
           />
         </styles.InputWrapper>
@@ -201,7 +202,7 @@ const CreateQuiz = () => {
         )}
       </styles.QuizListWrapper>
       <styles.AddNewQuizButton onClick={submitQuizData}>
-        퀴즈 프리셋 생성하기
+        프리셋 생성하기
       </styles.AddNewQuizButton>
     </styles.CreateQuizWrapper>
   );

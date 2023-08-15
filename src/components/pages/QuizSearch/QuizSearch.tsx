@@ -66,7 +66,7 @@ const QuizSearch = () => {
               key={preset.presetPin}
                 title={preset.title}
                 thumbnailUrl={preset.thumbnailUrl}
-                hashtagList={preset.hashtagList}
+                hashTagList={preset.hashTagList}
                 handleClick={() => handleClick(preset)}
               />
             </styles.QuizPresetCard>

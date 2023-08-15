@@ -49,7 +49,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
       title: originData?.title ?? '',
       presetPin: originData?.presetPin ?? '',
       thumbnailUrl: originData?.thumbnailUrl ?? '',
-      hashtagList: originData?.hashtagList ?? []
+      hashTagList: originData?.hashTagList ?? []
     },
   );
 
@@ -99,10 +99,10 @@ const QuizForm = ({ originData }: QuizFormProps) => {
     setPresetData((prev) => ({ ...prev, isPrivate: status }));
   };
 
-  const handleHashtag = (hashtagList: string[]) => {
+  const handleHashtag = (hashTagList: string[]) => {
     setPresetData((prev) => ({
       ...prev,
-      hashtagList,
+      hashTagList: hashTagList,
     }));
   };
 
@@ -116,7 +116,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
   };
 
   const submitQuizData = async () => {
-    const { hashtagList, title, isPrivate } = presetData;
+    const { hashTagList: hashTagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
 
@@ -139,7 +139,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
         images,
         title,
         isPrivate,
-        hashTags: hashtagList ?? []
+        hashTagList: hashTagList ?? []
       });
 
       savePresetData(presetPin);
@@ -191,7 +191,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
             (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
           </styles.InfoLabel>
           <HashtagInput
-            hashtag={presetData.hashtagList ?? []}
+            hashtag={presetData.hashTagList ?? []}
             setHashtag={handleHashtag}
           />
         </styles.InputWrapper>

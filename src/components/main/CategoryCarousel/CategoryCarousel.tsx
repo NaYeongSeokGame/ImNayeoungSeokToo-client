@@ -28,13 +28,13 @@ const CategoryCarousel = () => {
       <styles.Carousel>
         {presetList &&
           presetList.map((preset) => {
-            const { title, thumbnailUrl, hashtagList, presetPin } = preset;
+          const { title, thumbnailUrl, hashTagList, presetPin } = preset;
             return (
               <PresetCard
                 key={presetPin}
                 title={title}
                 thumbnailUrl={thumbnailUrl}
-                hashtagList={hashtagList}
+                hashTagList={hashTagList}
                 handleClick={() => handleCardClick(preset)}
               />
             );
@@ -43,13 +43,13 @@ const CategoryCarousel = () => {
       <styles.CarouselClone>
         {presetList &&
           presetList.map((preset) => {
-            const { title, thumbnailUrl, hashtagList, presetPin } = preset;
+            const { title, thumbnailUrl, hashTagList, presetPin } = preset;
             return (
               <PresetCard
                 key={presetPin}
                 title={title}
                 thumbnailUrl={thumbnailUrl}
-                hashtagList={hashtagList}
+                hashTagList={hashTagList}
                 handleClick={() => handleCardClick(preset)}
               />
             );
