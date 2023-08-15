@@ -73,7 +73,7 @@ export const ThumbnailSection = styled.div<{ $thumbnailUrl: string }>`
 
       background-color: ${theme.colors.white};
       background: ${$thumbnailUrl
-        ? `url(${$thumbnailUrl})`
+        ? `center center url(${$thumbnailUrl})`
         : theme.colors.gray800};
       background-size: cover;
 
