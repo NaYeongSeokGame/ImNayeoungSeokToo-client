@@ -1,30 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 
-import PresetCard from '@/components/main/PresetCard';
 import GameStartModal from '@/components/main/GameStartModal';
-import useGetPresetList from '@/hooks/useGetPresetList';
+import PresetCard from '@/components/main/PresetCard';
 import useModal from '@/hooks/useModal';
+import useSearchPresetList from '@/hooks/useSearchPresetList';
 import { QuizPresetType } from '@/types/quiz';
 
 import * as styles from './QuizSearch.style';
 
-const QUIZ_COUNT_LIMIT = 6;
+const QUIZ_COUNT_LIMIT = 12;
 
 const QuizSearch = () => {
   const { openModal } = useModal();
   const [page, setPage] = useState(1);
   const observerTarget = useRef(null);
-  const presetList = useGetPresetList({ page, limit: QUIZ_COUNT_LIMIT });
-
-  //Fixme : 동작 확인 필요
+  const { data: presetList, isLoading } = useSearchPresetList({
+    page,
+    limit: QUIZ_COUNT_LIMIT,
+  });
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !isLoading) {
+          console.log(entries);
           if (presetList && QUIZ_COUNT_LIMIT > presetList.length) {
             setPage(1);
-          } else if (page > 1) {
-            setPage(page + 1);
+          } else {
+            setPage((page) => page + 1);
           }
         }
       },
@@ -60,10 +62,10 @@ const QuizSearch = () => {
       </styles.SearchForm>
       <styles.QuizPresetWrapper>
         {presetList &&
-          presetList.map((preset) => (
-            <styles.QuizPresetCard >
+          presetList.map((preset: QuizPresetType) => (
+            <styles.QuizPresetCard>
               <PresetCard
-              key={preset.presetPin}
+                key={preset.presetPin}
                 title={preset.title}
                 thumbnailUrl={preset.thumbnailUrl}
                 hashtagList={preset.hashtagList}
@@ -71,6 +73,8 @@ const QuizSearch = () => {
               />
             </styles.QuizPresetCard>
           ))}
+
+        {isLoading && <p>데이터를 불러오는 중입니다. </p>}
       </styles.QuizPresetWrapper>
       <div ref={observerTarget}></div>
     </styles.SearchQuizWrapper>
