@@ -38,6 +38,7 @@ class QuizRepository {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
+    hashtagList.map((hashtag) => formData.append('hashtagList', hashtag));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
 
