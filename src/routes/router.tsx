@@ -37,7 +37,7 @@ const router = createBrowserRouter([
             element: <MyQuiz />,
           },
           {
-            path: 'modify',
+            path: 'modify/:presetPin',
             element: <ModifyQuiz />,
           },
         ],

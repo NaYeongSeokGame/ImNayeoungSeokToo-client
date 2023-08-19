@@ -19,11 +19,7 @@ const MyQuiz = () => {
   );
 
   const modifyCurrentQuiz = (index: number) => {
-    navigate('/modify', {
-      state: {
-        presetPin : presetList[index].presetPin
-      }
-    });
+    navigate(`/modify/${presetList[index].presetPin}`);
   };
 
   const removeCurrentQuiz = async (index: number) => {
