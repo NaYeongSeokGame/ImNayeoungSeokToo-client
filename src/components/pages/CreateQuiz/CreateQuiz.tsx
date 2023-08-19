@@ -95,7 +95,7 @@ const CreateQuiz = () => {
   };
 
   const submitQuizData = async () => {
-    const { hashtagList, title, isPrivate } = presetData;
+    const { hashtagList, title, isPrivate, hintList } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
 
@@ -119,6 +119,7 @@ const CreateQuiz = () => {
         title,
         isPrivate,
         hashtagList: hashtagList ?? [],
+        hintList,
       });
       await copyClipboard(presetPin);
       toast.success('퀴즈 프리셋을 생성하여 PIN을 복사했습니다.');

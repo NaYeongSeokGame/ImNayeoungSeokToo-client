@@ -25,6 +25,7 @@ export interface CreatePresetType {
   title: string;
   isPrivate: boolean;
   hashtagList: string[];
+  hintList: string[];
 }
 
 export interface CreateQuizType {
