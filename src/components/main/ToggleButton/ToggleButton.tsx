@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import * as styles from './ToggleButton.style';
 
@@ -22,12 +22,12 @@ const ToggleButton = ({
   return (
     <styles.Label>
       <styles.Toggle
-        onColor={onColor}
+        $onColor={onColor}
         checked={checked}
         onChange={handleChange}
         type="checkbox"
       />
-      <styles.Switch offColor={offColor} circleColor={circleColor} />
+      <styles.Switch $offColor={offColor} $circleColor={circleColor} />
     </styles.Label>
   );
 };
