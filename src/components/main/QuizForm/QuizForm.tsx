@@ -39,7 +39,7 @@ const convertQuizList = (quizList: QuizType[]) => {
     quizList.map((quiz) =>
       convertURLtoFile(quiz.imageUrl).then((imageFile) => {
         return {
-          hint: '',
+          hint: quiz.hint,
           image: imageFile,
           answer: quiz.answer,
           imageUrl: quiz.imageUrl,
@@ -122,9 +122,10 @@ const QuizForm = ({ originData }: QuizFormProps) => {
   };
 
   const submitQuizData = async () => {
-    const { hashtagList: hashtagList, title, isPrivate } = presetData;
+    const { hashtagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
+    const hints = quizList.map((value) => value.hint);
 
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
@@ -140,12 +141,13 @@ const QuizForm = ({ originData }: QuizFormProps) => {
     }
 
     try {
-      const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
+      const { presetPin } = await QuizRepository.patchPresetAsync({
         answers,
         images,
         title,
         isPrivate,
         hashtagList: hashtagList ?? [],
+        hintList: hints,
       });
 
       savePresetData(presetPin);
