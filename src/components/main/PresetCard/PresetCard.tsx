@@ -5,14 +5,14 @@ import * as styles from './PresetCard.style.ts';
 export interface QuizPresetTemplateType {
   title: string;
   thumbnailUrl: string;
-  hashTagList?: string[];
+  hashtagList?: string[];
   handleClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const PresetCard = ({
   title,
   thumbnailUrl,
-  hashTagList,
+  hashtagList,
   handleClick,
 }: QuizPresetTemplateType) => {
   return (
@@ -20,7 +20,7 @@ const PresetCard = ({
       <styles.TitleText>{title}</styles.TitleText>
       <styles.Image imageurl={thumbnailUrl} />
       <styles.HashtagWrapper>
-        {hashTagList?.slice(0, 2).map((hashtag) => (
+        {hashtagList?.slice(0, 2).map((hashtag) => (
           <styles.HashtagText>{hashtag}</styles.HashtagText>
         ))}
       </styles.HashtagWrapper>

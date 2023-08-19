@@ -25,7 +25,7 @@ const CreateQuiz = () => {
     imageUrls: [], //미사용
     answers: [], //미사용
     hintList: [], //미사용
-    hashTagList: [],
+    hashtagList: [],
     title: '',
     isPrivate: false,
   });
@@ -70,10 +70,10 @@ const CreateQuiz = () => {
     setPresetData((prev) => ({ ...prev, isPrivate: status }));
   };
 
-  const handleHashtag = (hashTagList: string[]) => {
+  const handleHashtag = (hashtagList: string[]) => {
     setPresetData((prev) => ({
       ...prev,
-      hashTagList,
+      hashtagList,
     }));
   };
 
@@ -95,7 +95,7 @@ const CreateQuiz = () => {
   };
 
   const submitQuizData = async () => {
-    const { hashTagList, title, isPrivate } = presetData;
+    const { hashtagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
 
@@ -118,7 +118,7 @@ const CreateQuiz = () => {
         images,
         title,
         isPrivate,
-        hashTagList: hashTagList ?? []
+        hashtagList: hashtagList ?? [],
       });
       await copyClipboard(presetPin);
       toast.success('퀴즈 프리셋을 생성하여 PIN을 복사했습니다.');
@@ -168,7 +168,7 @@ const CreateQuiz = () => {
             (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
           </styles.InfoLabel>
           <HashtagInput
-            hashtag={presetData.hashTagList}
+            hashtag={presetData.hashtagList}
             setHashtag={handleHashtag}
           />
         </styles.InputWrapper>

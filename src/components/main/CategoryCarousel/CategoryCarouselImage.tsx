@@ -1,5 +1,3 @@
-import React from 'react';
-
 import useModal from '@/hooks/useModal';
 import { QuizPresetType } from '@/types/quiz';
 
@@ -10,7 +8,7 @@ const CategoryCarouselImage = ({
   thumbnailUrl,
   presetPin,
   title,
-  hashTagList,
+  hashtagList,
 }: QuizPresetType) => {
   const { openModal } = useModal();
 
@@ -37,7 +35,7 @@ const CategoryCarouselImage = ({
         />
         <styles.TitleText>{title}</styles.TitleText>
         <styles.HashtagWrapper>
-          {hashTagList?.slice(0, 2).map((hashtag) => (
+          {hashtagList?.slice(0, 2).map((hashtag) => (
             <styles.HashtagText>{hashtag}</styles.HashtagText>
           ))}
         </styles.HashtagWrapper>

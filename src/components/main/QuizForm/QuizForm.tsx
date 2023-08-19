@@ -11,7 +11,12 @@ import ToggleButton from '@/components/main/ToggleButton/ToggleButton';
 import useModal from '@/hooks/useModal';
 import { createdQuizPresetAtomWithLocalStorage } from '@/stores/quiz';
 import { theme } from '@/styles/theme';
-import { CreateQuizWithUrlType, GetQuizListOutput, QuizPresetType, QuizType } from '@/types/quiz';
+import {
+  CreateQuizWithUrlType,
+  GetQuizListOutput,
+  QuizPresetType,
+  QuizType,
+} from '@/types/quiz';
 
 import * as styles from './QuizForm.style';
 
@@ -23,36 +28,37 @@ interface QuizFormProps {
 const convertURLtoFile = async (url: string) => {
   const response = await fetch(url);
   const data = await response.blob();
-  const ext = url.split(".").pop(); // url 구조에 맞게 수정할 것
-  const filename = url.split("/").pop() ?? 'noname'; // url 구조에 맞게 수정할 것
+  const ext = url.split('.').pop(); // url 구조에 맞게 수정할 것
+  const filename = url.split('/').pop() ?? 'noname'; // url 구조에 맞게 수정할 것
   const metadata = { type: `image/${ext}` };
   return new File([data], filename, metadata);
 };
 
 const convertQuizList = (quizList: QuizType[]) => {
-  return Promise.all(quizList.map(quiz => convertURLtoFile(quiz.imageUrl).then(imageFile => {
-    return {
-      hint: '',
-      image: imageFile,
-      answer: quiz.answer,
-      imageUrl: quiz.imageUrl,
-    };
-  })))
-}
+  return Promise.all(
+    quizList.map((quiz) =>
+      convertURLtoFile(quiz.imageUrl).then((imageFile) => {
+        return {
+          hint: '',
+          image: imageFile,
+          answer: quiz.answer,
+          imageUrl: quiz.imageUrl,
+        };
+      }),
+    ),
+  );
+};
 
 const QuizForm = ({ originData }: QuizFormProps) => {
   const { openModal } = useModal();
   const navigate = useNavigate();
-  const [presetData, setPresetData] = useState<QuizPresetType>(
-    {
-      isPrivate: originData?.isPrivate ?? false,
-      title: originData?.title ?? '',
-      presetPin: originData?.presetPin ?? '',
-      thumbnailUrl: originData?.thumbnailUrl ?? '',
-      hashTagList: originData?.hashTagList ?? []
-    },
-  );
-
+  const [presetData, setPresetData] = useState<QuizPresetType>({
+    isPrivate: originData?.isPrivate ?? false,
+    title: originData?.title ?? '',
+    presetPin: originData?.presetPin ?? '',
+    thumbnailUrl: originData?.thumbnailUrl ?? '',
+    hashtagList: originData?.hashtagList ?? [],
+  });
 
   const [quizList, setQuizList] = useState<CreateQuizWithUrlType[]>([]);
   const setCreatedPreset = useSetAtom(createdQuizPresetAtomWithLocalStorage);
@@ -99,10 +105,10 @@ const QuizForm = ({ originData }: QuizFormProps) => {
     setPresetData((prev) => ({ ...prev, isPrivate: status }));
   };
 
-  const handleHashtag = (hashTagList: string[]) => {
+  const handleHashtag = (hashtagList: string[]) => {
     setPresetData((prev) => ({
       ...prev,
-      hashTagList: hashTagList,
+      hashtagList: hashtagList,
     }));
   };
 
@@ -116,7 +122,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
   };
 
   const submitQuizData = async () => {
-    const { hashTagList: hashTagList, title, isPrivate } = presetData;
+    const { hashtagList: hashtagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
 
@@ -139,7 +145,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
         images,
         title,
         isPrivate,
-        hashTagList: hashTagList ?? []
+        hashtagList: hashtagList ?? [],
       });
 
       savePresetData(presetPin);
@@ -150,7 +156,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
   };
 
   useEffect(() => {
-    if(originData){
+    if (originData) {
       (async () => {
         const list = await convertQuizList(originData.quizList);
         setQuizList(list);
@@ -191,7 +197,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
             (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
           </styles.InfoLabel>
           <HashtagInput
-            hashtag={presetData.hashTagList ?? []}
+            hashtag={presetData.hashtagList ?? []}
             setHashtag={handleHashtag}
           />
         </styles.InputWrapper>
