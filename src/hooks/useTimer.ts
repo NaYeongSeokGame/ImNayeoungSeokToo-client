@@ -11,8 +11,8 @@ function useTimer({ initTimeLimit = 0, startImmediately = false }) {
   const start = useCallback(() => setIsRunning(true), []);
   const stop = useCallback(() => setIsRunning(false), []);
 
-  const timer = useCallback(
-    (time: DOMHighResTimeStamp) => {
+  useEffect(() => {
+    const timer = (time: DOMHighResTimeStamp) => {
       if (!previousTimeRef.current) previousTimeRef.current = time;
       const deltaTime = time - previousTimeRef.current;
 
@@ -23,14 +23,11 @@ function useTimer({ initTimeLimit = 0, startImmediately = false }) {
       if (leftSecond > 0) {
         timerRef.current = requestAnimationFrame(timer);
       }
-    },
-    [isRunning, leftSecond],
-  );
+    };
 
-  useEffect(() => {
     timerRef.current = requestAnimationFrame(timer);
     return () => cancelAnimationFrame(timerRef.current);
-  }, []);
+  }, [isRunning, leftSecond]);
 
   return { leftSecond, isRunning, start, stop };
 }
