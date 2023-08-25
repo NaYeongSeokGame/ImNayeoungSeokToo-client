@@ -4,11 +4,14 @@ import { ReactComponent as MuteIcon } from '@/assets/icons/muteIcon.svg';
 import { ReactComponent as SoundIcon } from '@/assets/icons/soundIcon.svg';
 import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
+import useVolumeControl from '@/hooks/useVolumeControl';
 
 import * as styles from './GameSettingModal.style';
 
 const GameSettingModal = () => {
   const { closeModal } = useModal();
+  const { volume } = useVolumeControl();
+
   return (
     <Modal>
       <Modal.MainContent>
@@ -17,8 +20,16 @@ const GameSettingModal = () => {
           <styles.SettingBox>
             <h5>사운드</h5>
             <styles.SoundOptionBox>
-              <SoundOptionBox title="배경음" value={100} />
-              <SoundOptionBox title="효과음" value={80} />
+              <SoundOptionBox
+                title="배경음"
+                value={volume.backgroundVolume}
+                id="backgroundVolume"
+              />
+              <SoundOptionBox
+                title="효과음"
+                value={volume.soundEffectVolume}
+                id="soundEffectVolume"
+              />
             </styles.SoundOptionBox>
           </styles.SettingBox>
         </styles.Wrapper>
@@ -36,13 +47,23 @@ const GameSettingModal = () => {
 
 export default GameSettingModal;
 
+type SoundOptionType = 'backgroundVolume' | 'soundEffectVolume';
 interface SoundOptionBoxProps {
+  id: SoundOptionType;
   title: string;
   value: number;
 }
 
-const SoundOptionBox = ({ title, value }: SoundOptionBoxProps) => {
-  const [volume, setVolume] = useState(value);
+const SoundOptionBox = ({ id, title, value }: SoundOptionBoxProps) => {
+  const [volume, setVolume] = useState(value * 100);
+  const { onChange } = useVolumeControl();
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setVolume(Number(value));
+    onChange({ [id]: Number(value) / 100 });
+  };
+
   return (
     <styles.SoundOptionBox>
       <styles.SoundOptionRow>
@@ -56,7 +77,7 @@ const SoundOptionBox = ({ title, value }: SoundOptionBoxProps) => {
         <input
           type="range"
           defaultValue={volume}
-          onChange={(event) => setVolume(Number(event.target.value))}
+          onChange={handleChange}
           min="0"
           max="100"
         />

@@ -1,4 +1,4 @@
-import { QuizType } from '@/types/quiz';
+import { QuizPresetType, QuizType } from '@/types/quiz';
 
 export interface QuizPlayStateType {
   /** 현재 게임이 진행 중임을 나타내는 isPlaying */
@@ -29,3 +29,7 @@ export type UpdateQuizStartType = Pick<
 >;
 
 export type UpdateCurrentScoreType = { isCorrect: boolean; quizIndex: number };
+
+export interface CreatedQuizStateType {
+  presetList: QuizPresetType[];
+}

@@ -1,33 +1,63 @@
 import { useSetAtom } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
 import AddQuizModal from '@/components/main/AddQuizModal';
-import CreateQuizImage from '@/components/main/CreateQuizImageView/CreateQuizImage';
-import GameStartModal from '@/components/main/GameStartModal';
+import CreateQuizImage from '@/components/main/CreateQuizImageView';
 import HashtagInput from '@/components/main/HastagInput';
 import ToggleButton from '@/components/main/ToggleButton/ToggleButton';
 import useModal from '@/hooks/useModal';
 import { createdQuizPresetAtomWithLocalStorage } from '@/stores/quiz';
 import { theme } from '@/styles/theme';
-import { CreatePresetWithUrlType, CreateQuizWithUrlType } from '@/types/quiz';
-import copyClipboard from '@/utils/copyClipboard';
+import {
+  CreateQuizWithUrlType,
+  GetQuizListOutput,
+  QuizPresetType,
+  QuizType,
+} from '@/types/quiz';
 
-import * as styles from './CreateQuiz.style';
+import * as styles from './QuizForm.style';
 
-const CreateQuiz = () => {
-  const navigate = useNavigate();
+interface QuizFormProps {
+  presetPin?: string;
+  originData?: GetQuizListOutput;
+}
+
+const convertURLtoFile = async (url: string) => {
+  const response = await fetch(url);
+  const data = await response.blob();
+  const ext = url.split('.').pop(); // url 구조에 맞게 수정할 것
+  const filename = url.split('/').pop() ?? 'noname'; // url 구조에 맞게 수정할 것
+  const metadata = { type: `image/${ext}` };
+  return new File([data], filename, metadata);
+};
+
+const convertQuizList = (quizList: QuizType[]) => {
+  return Promise.all(
+    quizList.map((quiz) =>
+      convertURLtoFile(quiz.imageUrl).then((imageFile) => {
+        return {
+          hint: quiz.hint,
+          image: imageFile,
+          answer: quiz.answer,
+          imageUrl: quiz.imageUrl,
+        };
+      }),
+    ),
+  );
+};
+
+const QuizForm = ({ originData }: QuizFormProps) => {
   const { openModal } = useModal();
-  const [presetData, setPresetData] = useState<CreatePresetWithUrlType>({
-    images: [], //미사용
-    imageUrls: [], //미사용
-    answers: [], //미사용
-    hintList: [], //미사용
-    hashtagList: [],
-    title: '',
-    isPrivate: false,
+  const navigate = useNavigate();
+  const [presetData, setPresetData] = useState<QuizPresetType>({
+    isPrivate: originData?.isPrivate ?? false,
+    title: originData?.title ?? '',
+    presetPin: originData?.presetPin ?? '',
+    thumbnailUrl: originData?.thumbnailUrl ?? '',
+    hashtagList: originData?.hashtagList ?? [],
   });
 
   const [quizList, setQuizList] = useState<CreateQuizWithUrlType[]>([]);
@@ -54,7 +84,12 @@ const CreateQuiz = () => {
   };
 
   const removeCurrentQuiz = (index: number) => {
-    setQuizList((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      setQuizList((prev) => [
+        ...prev.slice(0, index),
+        ...prev.slice(index + 1),
+      ]);
+    }
   };
 
   const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,31 +108,24 @@ const CreateQuiz = () => {
   const handleHashtag = (hashtagList: string[]) => {
     setPresetData((prev) => ({
       ...prev,
-      hashtagList,
+      hashtagList: hashtagList,
     }));
   };
 
-  const savePresetDataAndGameStart = async (presetPin: string) => {
+  const savePresetData = async (presetPin: string) => {
     const { isPrivate, thumbnailUrl, title } =
       await QuizRepository.getQuizByPinAsync(presetPin);
     setCreatedPreset({
-      type: 'ADD',
+      type: 'MODIFY',
       item: { presetPin, isPrivate, thumbnailUrl, title },
     });
-
-    openModal(
-      <GameStartModal
-        presetPin={presetPin}
-        title={title}
-        thumbnailUrl={thumbnailUrl}
-      />,
-    );
   };
 
   const submitQuizData = async () => {
-    const { hashtagList, title, isPrivate, hintList } = presetData;
+    const { hashtagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
+    const hints = quizList.map((value) => value.hint);
 
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
@@ -113,35 +141,37 @@ const CreateQuiz = () => {
     }
 
     try {
-      const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
+      const { presetPin } = await QuizRepository.patchPresetAsync({
         answers,
         images,
         title,
         isPrivate,
         hashtagList: hashtagList ?? [],
-        hintList,
+        hintList: hints,
       });
-      await copyClipboard(presetPin);
-      toast.success('퀴즈 프리셋을 생성하여 PIN을 복사했습니다.');
-      savePresetDataAndGameStart(presetPin);
-      navigate(`/`);
+
+      savePresetData(presetPin);
+      navigate(-1);
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    if (originData) {
+      (async () => {
+        const list = await convertQuizList(originData.quizList);
+        setQuizList(list);
+      })();
+    }
+  }, [originData]);
+
   return (
-    <styles.CreateQuizWrapper>
-      <styles.Title>
-        <styles.PointTitle>퀴즈 프리셋</styles.PointTitle> 만들기
-      </styles.Title>
-      <styles.GetPresetButton>
-        기존 퀴즈 프리셋 복사해서 만들기
-      </styles.GetPresetButton>
+    <>
       <styles.NameLabelWrapper>
         <styles.InputWrapper>
           <styles.NameLabel>
-            퀴즈 이름 <styles.InfoLabel>(최대 50글자)</styles.InfoLabel>
+            퀴즈 프리셋 이름 <styles.InfoLabel>(최대 50글자)</styles.InfoLabel>
           </styles.NameLabel>
           <styles.NameInput
             onChange={handleTitle}
@@ -151,7 +181,7 @@ const CreateQuiz = () => {
 
         <styles.InputWrapper>
           <styles.PrivateWrapper>
-            <styles.NameLabel>퀴즈 비공개</styles.NameLabel>
+            <styles.NameLabel>퀴즈 프리셋 비공개</styles.NameLabel>
             <ToggleButton
               onColor={theme.colors.darkblue400}
               offColor={theme.colors.gray400}
@@ -169,7 +199,7 @@ const CreateQuiz = () => {
             (퀴즈를 나타낼 수 있는 해시태그를 만들어주세요)
           </styles.InfoLabel>
           <HashtagInput
-            hashtag={presetData.hashtagList}
+            hashtag={presetData.hashtagList ?? []}
             setHashtag={handleHashtag}
           />
         </styles.InputWrapper>
@@ -203,10 +233,10 @@ const CreateQuiz = () => {
         )}
       </styles.QuizListWrapper>
       <styles.AddNewQuizButton onClick={submitQuizData}>
-        프리셋 생성하기
+        퀴즈 수정하기
       </styles.AddNewQuizButton>
-    </styles.CreateQuizWrapper>
+    </>
   );
 };
 
-export default CreateQuiz;
+export default QuizForm;

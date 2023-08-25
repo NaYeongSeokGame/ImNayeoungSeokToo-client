@@ -17,8 +17,8 @@ export const Wrapper = styled.nav`
   }}
 `;
 
-export const Section = styled.div<{ isSelected?: boolean }>`
-  ${({ theme, isSelected }) => {
+export const Section = styled.div<{ $isSelected?: boolean }>`
+  ${({ theme, $isSelected }) => {
     const { colors, fonts } = theme;
     return css`
       display: flex;
@@ -29,8 +29,10 @@ export const Section = styled.div<{ isSelected?: boolean }>`
       width: 3.75rem;
       gap: 0.125rem 0;
 
+      cursor: pointer;
+
       & > p {
-        color: ${isSelected ? colors.darkblue800 : colors.gray700};
+        color: ${$isSelected ? colors.darkblue800 : colors.gray700};
         font-size: ${fonts.deco4.fontFamily};
         font-size: 0.625rem;
         font-weight: ${fonts.deco4.fontFamily};
@@ -38,7 +40,7 @@ export const Section = styled.div<{ isSelected?: boolean }>`
       }
 
       & > svg {
-        color: ${isSelected ? colors.darkblue800 : colors.gray700};
+        color: ${$isSelected ? colors.darkblue800 : colors.gray700};
       }
     `;
   }}

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const CreateQuizWrapper = styled.div`
+export const Wrapper = styled.div`
   margin: 1rem;
   gap: 0.5rem;
 
@@ -156,8 +156,6 @@ export const UploadQuizButton = styled.div`
       color: ${theme.colors.white};
       border-radius: 1.5rem;
       border: 1px solid #fff;
-      
-      cursor: pointer;
     `;
   }}
 `;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import PresetCard from '@/components/main/PresetCard';
 import GameStartModal from '@/components/main/GameStartModal';
+import PresetCard from '@/components/main/PresetCard';
 import useGetPresetList from '@/hooks/useGetPresetList';
 import useModal from '@/hooks/useModal';
 import { QuizPresetType } from '@/types/quiz';
@@ -61,9 +61,9 @@ const QuizSearch = () => {
       <styles.QuizPresetWrapper>
         {presetList &&
           presetList.map((preset) => (
-            <styles.QuizPresetCard >
+            <styles.QuizPresetCard>
               <PresetCard
-              key={preset.presetPin}
+                key={preset.presetPin}
                 title={preset.title}
                 thumbnailUrl={preset.thumbnailUrl}
                 hashtagList={preset.hashtagList}
