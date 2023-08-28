@@ -1,5 +1,6 @@
 import {
   CreatePresetType,
+  PaginationKeywordType,
   PaginationType,
   PlayableQuizPresetType,
   PresetPageType,
@@ -49,6 +50,27 @@ class QuizRepository {
     };
 
     return responseData;
+  }
+
+  static async getQuizListSearchAsync({
+    page = 1,
+    limit = 9,
+    type,
+    keyword,
+  }: PaginationKeywordType): Promise<QuizPresetType[]> {
+    console.log(type);
+    if (type === 'hashtag') {
+      keyword.replace('#', '');
+    }
+    const response = await getAsync<QuizPresetType[]>('/quiz/search', {
+      params: {
+        page,
+        limit,
+        type,
+        keyword,
+      },
+    });
+    return response;
   }
 
   static async postCreateNewPresetAsync({

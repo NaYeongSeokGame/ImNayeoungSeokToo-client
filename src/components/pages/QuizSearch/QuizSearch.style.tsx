@@ -25,7 +25,7 @@ export const SearchInput = styled.input`
   ${({ theme }) => {
     return css`
       color: ${theme.colors.gray500};
-
+      width : 100%;
       font-family: ${theme.fonts.deco4.fontFamily};
       font-size: ${theme.fonts.deco4.fontSize};
       font-weight: ${theme.fonts.deco4.fontWeight};

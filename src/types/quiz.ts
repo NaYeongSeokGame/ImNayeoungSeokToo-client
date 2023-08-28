@@ -57,6 +57,11 @@ export interface PaginationType {
   page: number;
 }
 
+export type PaginationKeywordType = PaginationType & {
+  type : string;
+  keyword: string;
+}
+
 export interface PresetPageType {
   results: QuizPresetType[];
   page: number;
