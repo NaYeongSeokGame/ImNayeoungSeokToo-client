@@ -75,7 +75,7 @@ const QuizResult = () => {
           메인 메뉴
         </styles.Button>
         {/*FIXME: 퀴즈 목록 url 설정하기*/}
-        <styles.Button onClick={() => redirectToUrl('')}>
+        <styles.Button onClick={() => redirectToUrl('/search')}>
           다른 문제 풀기
         </styles.Button>
       </styles.ButtonBox>
