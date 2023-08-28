@@ -1,17 +1,27 @@
-import { useQuery } from '@tanstack/react-query';
-import { error } from 'console';
+import {
+  useInfiniteQuery,
+} from '@tanstack/react-query';
 
 import QuizRepository from '@/apis/quiz';
 import QUERY_KEY from '@/constants/queryKey';
-import { PaginationType } from '@/types/quiz';
+import { PaginationType, PresetPageType} from '@/types/quiz';
 
-const useSearchPresetList = ({ page = 1, limit = 9 }: PaginationType) => {
-  const { isLoading, data } = useQuery({
-    queryKey: QUERY_KEY.page({ page, limit }),
-    queryFn: () => QuizRepository.getQuizListAsync({ page, limit }),
-    keepPreviousData: true,
-  });
+const useSearchPresetList = ({ page, limit }: PaginationType) => {
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery<PresetPageType, Error>(
+    QUERY_KEY.page({ page, limit }),
+    ({ pageParam = 1 }) =>
+      QuizRepository.getQuizListAsyncwithPagenation({ page: pageParam, limit }),
+    { getNextPageParam: (lastPage) => lastPage.nextPage },
+  );
 
-  return { isLoading, data };
+  return { data, error, fetchNextPage, hasNextPage, isFetching, status };
 };
 export default useSearchPresetList;

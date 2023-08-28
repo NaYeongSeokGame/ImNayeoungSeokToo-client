@@ -43,3 +43,9 @@ export interface PaginationType {
   limit: number;
   page: number;
 }
+
+export interface PresetPageType {
+  results: QuizPresetType[];
+  page: number;
+  nextPage: number | null;
+}
