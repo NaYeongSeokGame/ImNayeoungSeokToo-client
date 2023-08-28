@@ -34,7 +34,7 @@ const JoinPresetModal = () => {
         <styles.Wrapper>
           <h4>핀 입력</h4>
           <styles.SettingBox>
-            <span>플레이할 퀴즈 핀 번호를 입력해 주세요.</span>
+            <span>플레이할 퀴즈 프리셋 핀 번호를 입력해 주세요.</span>
             <styles.PrivatePinInput
               value={presetPin}
               onChange={handleAnswerInput}

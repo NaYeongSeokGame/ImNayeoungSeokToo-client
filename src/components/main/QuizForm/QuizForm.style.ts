@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const CreateQuizWrapper = styled.div`
   margin: 1rem;
-  padding-top: 2.88rem;
   gap: 0.5rem;
 
   display: flex;
@@ -53,12 +52,14 @@ export const PrivateWrapper = styled.span`
   display: flex;
   justify-content: space-between;
 `;
+
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.38rem;
   padding: 0.38rem;
 `;
+
 export const NameLabelWrapper = styled.span`
   display: flex;
   flex-direction: column;
@@ -98,6 +99,7 @@ export const CountLabel = styled.span`
     `;
   }}
 `;
+
 export const NameInput = styled.input`
   ${({ theme }) => {
     return css`
@@ -154,8 +156,6 @@ export const UploadQuizButton = styled.div`
       color: ${theme.colors.white};
       border-radius: 1.5rem;
       border: 1px solid #fff;
-      
-      cursor: pointer;
     `;
   }}
 `;

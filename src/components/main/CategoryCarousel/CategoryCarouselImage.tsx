@@ -1,5 +1,3 @@
-import React from 'react';
-
 import useModal from '@/hooks/useModal';
 import { QuizPresetType } from '@/types/quiz';
 

@@ -10,11 +10,13 @@ export const Title = styled.span`
 
       color: ${theme.colors.darkblue300};
       text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      text-align: center;
       font-family: ${theme.fonts.deco3.fontFamily};
       font-size: 1.875rem;
       font-style: normal;
       font-weight: 400;
-      line-height: normal;
+      line-height: 125%;
+      word-break: keep-all;
 
       background: rgba(0, 0, 0, 0.6);
     `;
@@ -71,7 +73,7 @@ export const ThumbnailSection = styled.div<{ $thumbnailUrl: string }>`
 
       background-color: ${theme.colors.white};
       background: ${$thumbnailUrl
-        ? `url(${$thumbnailUrl})`
+        ? `center center url(${$thumbnailUrl})`
         : theme.colors.gray800};
       background-size: cover;
 

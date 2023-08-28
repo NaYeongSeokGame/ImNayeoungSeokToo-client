@@ -1,6 +1,6 @@
 import { css, styled } from 'styled-components';
 
-export const CreateQuizWrapper = styled.div<{ image: string }>`
+export const ModifyPresetWrapper = styled.div<{ image: string }>`
   ${({ image }) => {
     return css`
       position: relative;
@@ -33,7 +33,7 @@ export const QuizModifyWrapper = styled.div`
 
   border-radius: 0.75rem;
   background: rgba(20, 21, 20, 0.6);
-  ${CreateQuizWrapper}:hover & {
+  ${ModifyPresetWrapper}:hover & {
     display: flex;
   }
 `;
@@ -57,7 +57,7 @@ export const ModifyButton = styled.button`
   }}
 `;
 
-export const AnswerText = styled.p`
+export const PresetNameText = styled.p`
   ${({ theme }) => {
     return css`
       margin-top: 9rem;
@@ -70,7 +70,7 @@ export const AnswerText = styled.p`
   }}
 `;
 
-export const HintText = styled.p`
+export const HashTagText = styled.p`
   ${({ theme }) => {
     return css`
       margin-left: 0.62rem;

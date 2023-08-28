@@ -1,9 +1,7 @@
-import React from 'react';
-
 import * as styles from './CreateQuizImage.style';
 
 interface CreateQuizImageType {
-  index: number
+  index: number;
   url: string;
   answer?: string;
   hint?: string;

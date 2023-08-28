@@ -11,9 +11,9 @@ import * as styles from './Navigator.style';
 
 const Navigator = () => {
   const matchHomeUrl = useMatch('/');
-  const matchSearchUrl= useMatch('/search');
+  const matchSearchUrl = useMatch('/search');
   const matchQuizGameUrl = useMatch('/quiz/*');
-  const matchCreateQuizUrl = useMatch('/create');
+  const matchMyQuizUrl = useMatch('/my-quiz');
 
   const { openModal } = useModal();
   const openGameSettingModal = () => openModal(<GameSettingModal />);
@@ -21,21 +21,21 @@ const Navigator = () => {
   return (
     <styles.Wrapper>
       <Link to="/">
-        <styles.Section isSelected={matchHomeUrl !== null}>
+        <styles.Section $isSelected={matchHomeUrl !== null}>
           <HomeIcon />
           <p>홈</p>
         </styles.Section>
       </Link>
       {/** TODO : 추후 퀴즈 목록 페이지 개설 시 추가 */}
       <Link to="/search">
-        <styles.Section isSelected={matchSearchUrl !== null}>
+        <styles.Section $isSelected={matchSearchUrl !== null}>
           <ZoomIcon />
           <p>퀴즈 검색</p>
         </styles.Section>
       </Link>
       {/** TODO : 나의 퀴즈 목록 페이지 개설 시 수정 필요 */}
-      <Link to="/create">
-        <styles.Section isSelected={matchCreateQuizUrl !== null}>
+      <Link to="/my-quiz">
+        <styles.Section $isSelected={matchMyQuizUrl !== null}>
           <SmileIcon />
           <p>나의 퀴즈</p>
         </styles.Section>
