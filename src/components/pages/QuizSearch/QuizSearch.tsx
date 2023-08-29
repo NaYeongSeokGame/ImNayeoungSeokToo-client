@@ -90,6 +90,7 @@ const QuizSearch = () => {
           allData &&
           allData.pages.map((page) =>
             page.results.map((preset) => (
+              console.log(preset),
               <styles.QuizPresetCard>
                 <PresetCard
                   key={type + preset.presetPin}
