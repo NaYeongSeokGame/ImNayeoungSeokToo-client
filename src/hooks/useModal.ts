@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import type { ReactNode } from 'react';
 
-import { handleModalAtom } from '@/stores/actions';
+import { handleModalAtom } from '@/stores/modal/actions';
 
 const useModal = () => {
   const [modalState, setModalState] = useAtom(handleModalAtom);

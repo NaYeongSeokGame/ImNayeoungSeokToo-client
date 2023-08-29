@@ -1,21 +1,34 @@
 import styled, { css } from 'styled-components';
 
-export const HintSection = styled.section`
-  ${({ theme }) => {
-    return css`
-      border-radius: 1rem;
-      background-color: ${theme.colors.white};
-      padding: 8.25rem 2.5rem;
-    `;
-  }}
+import * as styles from '@/styles/modal';
+
+export const Wrapper = styled(styles.Wrapper)`
+  h5 {
+    font-size: 1.125rem;
+  }
 `;
 
-export const Hint = styled.h5`
+export const HintSection = styled.section`
+  min-width: 8rem;
+  padding: 1.8125rem 1rem;
+  gap: 1.625rem;
+
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  align-items: flex-start;
+`;
+
+export const Hint = styled.p`
   ${({ theme }) => {
     return css`
       color: ${theme.colors.black};
       text-align: center;
-      font-size: 6rem;
+
+      font-size: 1.875rem;
+      font-family: ${theme.fonts.deco3.fontFamily};
+      font-weight: 700;
+      color: ${theme.colors.darkblue800};
     `;
   }}
 `;

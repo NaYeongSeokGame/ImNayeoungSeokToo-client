@@ -1,10 +1,10 @@
-import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as MinusIconSvg } from '@/assets/icons/minusIcon.svg';
-import { ReactComponent as PlusIconSvg } from '@/assets/icons/plusIcon.svg';
-import ModalTemplate from '@/components/common/ModalTemplate';
+import AllowDownUrl from '@/assets/icons/pixil-arrow-down.png';
+import AllowUpUrl from '@/assets/icons/pixil-arrow-up.png';
+import Modal from '@/components/common/modal';
 import useModal from '@/hooks/useModal';
+import usePresetSetting from '@/hooks/usePresetSetting.ts';
 import getCloudFrontUrl from '@/utils/getCloudFrontUrl';
 
 import * as styles from './GameStartModal.style';
@@ -22,53 +22,64 @@ const GameStartModal = ({
 }: GameStartModalProps) => {
   const navigate = useNavigate();
   const { closeModal } = useModal();
-  const [delayBeforePlay, setDelayBeforePlay] = useState(3);
 
-  const handleDelayBeforePlay = (diff: 1 | -1) => {
-    const changedResult = delayBeforePlay + diff;
-    if (changedResult < 3 || changedResult > 10) return;
-
-    setDelayBeforePlay(changedResult);
-  };
-
-  const redirectToLandingPage = () => {
-    closeModal();
-    navigate(`/quiz/${presetPin}/loading`, {
-      state: { delay: delayBeforePlay * 1000 },
+  const { timeToSolveQuiz, startQuizGame, handleTimeToSolveQuiz } =
+    usePresetSetting({
+      presetPin,
+      thumbnailUrl,
     });
-  };
 
-  const StartQuizButton = useCallback(
-    () => (
-      <styles.StartQuizButton onClick={redirectToLandingPage}>
-        완료
-      </styles.StartQuizButton>
-    ),
-    [delayBeforePlay],
-  );
+  const redirectToLandingPage = async () => {
+    await startQuizGame();
+    closeModal();
+    navigate(`/quiz/loading`);
+  };
 
   return (
-    <ModalTemplate title={title || '게임 시작'} button={<StartQuizButton />}>
-      <styles.Wrapper>
-        <div>
-          <styles.Title>메인 이미지</styles.Title>
-          <styles.ThumbnailSection>
-            <img
-              src={thumbnailUrl || getCloudFrontUrl('/static/thumbnail.jpg')}
-              alt="dwd"
-            />
-          </styles.ThumbnailSection>
-        </div>
-        <div>
-          <styles.Title>타이머 설정</styles.Title>
+    <Modal>
+      <Modal.MainContent>
+        <styles.ThumbnailSection
+          $thumbnailUrl={
+            thumbnailUrl || getCloudFrontUrl('/static/thumbnail.jpg')
+          }
+        >
+          <styles.Title>{title}</styles.Title>
+        </styles.ThumbnailSection>
+      </Modal.MainContent>
+      <Modal.SubContentWrapper>
+        <Modal.SubTitle>문제 타이머</Modal.SubTitle>
+        <Modal.SubContent>
           <styles.StartDelayCounter>
-            <PlusIconSvg onClick={() => handleDelayBeforePlay(1)} />
-            {delayBeforePlay}
-            <MinusIconSvg onClick={() => handleDelayBeforePlay(-1)} />
+            <styles.TimerButton onClick={() => handleTimeToSolveQuiz(-1)}>
+              <img
+                src={AllowDownUrl}
+                alt="button"
+                style={{ width: '1.5rem', height: '1.5rem' }}
+              />
+            </styles.TimerButton>
+            {timeToSolveQuiz}
+            <styles.TimerButton onClick={() => handleTimeToSolveQuiz(1)}>
+              <img
+                src={AllowUpUrl}
+                alt="button"
+                style={{ width: '1.5rem', height: '1.5rem' }}
+              />
+            </styles.TimerButton>
           </styles.StartDelayCounter>
-        </div>
-      </styles.Wrapper>
-    </ModalTemplate>
+        </Modal.SubContent>
+      </Modal.SubContentWrapper>
+      <Modal.Button
+        title="시작"
+        colorScheme="pink"
+        onClick={redirectToLandingPage}
+      />
+      ,
+      <Modal.Button
+        title="나가기"
+        colorScheme="darkblue"
+        onClick={closeModal}
+      />
+    </Modal>
   );
 };
 

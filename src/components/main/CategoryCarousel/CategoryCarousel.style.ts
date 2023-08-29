@@ -1,53 +1,114 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 22.5rem;
   overflow-x: auto;
-  padding-left: 0.5rem;
+  margin: 3.56rem 0 3.25rem;
+  gap: 0.875rem;
 
   display: flex;
   justify-content: start;
   align-items: center;
 
+  overflow: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
+export const slide = keyframes`
+  0% {
+    transform: translateX(00%)
+  }
+  100%{
+    transform: translateX(-100%)
+  }
+`;
+
+export const slide2 = keyframes`
+0% {
+  transform: translateX(-100%)
+}
+  100%{
+  transform: translateX(00%)
+}`;
+
 export const Carousel = styled.div`
-  width: 90rem;
+  gap: 0.875rem;
 
   display: flex;
   justify-content: center;
-  gap: 0 0.5rem;
+
+  animation: ${slide} 20s linear infinite;
+  animation-play-state: running;
 `;
 
-export const Image = styled.div<{ imageUrl: string; isSelected: boolean }>`
-  ${({ theme, imageUrl, isSelected }) => {
+//끊기지않는 화면을 위한 복제 캐러셀 스타일
+export const CarouselClone = styled.div`
+  gap: 0.875rem;
+
+  display: flex;
+  justify-content: center;
+
+  animation: ${slide2} 20s linear infinite reverse;
+  animation-play-state: running;
+`;
+
+export const ImageWrapper = styled.div`
+  ${({ theme }) => {
     return css`
-      width: 120px;
-      height: 120px;
+      width: 9.75rem;
+      height: 14.5rem;
+      flex-shrink: 0;
 
-      background-image: url(${imageUrl});
-      background-size: cover;
-      border: 0.25rem solid ${theme.colors.black};
-      border-radius: 1rem;
-      box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.15);
-
-      display: flex;
-      flex-direction: column-reverse;
+      background: url('src/assets/images/quizCardFrame.svg');
     `;
   }}
 `;
 
-export const CategoryText = styled.span`
+export const Image = styled.div<{ imageurl: string }>`
+  ${({ theme, imageurl }) => {
+    return css`
+      width: 7.5rem;
+      height: 7.5rem;
+
+      background-image: url(${imageurl});
+      background-size: cover;
+      border-radius: 1rem;
+      box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.15);
+    `;
+  }}
+`;
+
+export const TitleText = styled.span`
   ${({ theme }) => {
     return css`
       font-size: 1rem;
       color: ${theme.colors.black};
-      text-align: right;
+
+      margin: 0.5rem 0;
+    `;
+  }}
+`;
+
+export const HashtagWrapper = styled.div`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+    `;
+  }}
+`;
+
+export const HashtagText = styled.span`
+  ${({ theme }) => {
+    return css`
+      font-size: 0.5rem;
+      color: ${theme.colors.black};
 
       margin: 0 0.625rem 0.5rem 0;
+      &::before {
+        content: '#';
+      }
     `;
   }}
 `;
