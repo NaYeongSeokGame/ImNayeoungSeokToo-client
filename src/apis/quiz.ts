@@ -58,9 +58,9 @@ class QuizRepository {
     type,
     keyword,
   }: PaginationKeywordType): Promise<QuizPresetType[]> {
-    console.log(type);
+
     if (type === 'hashtag') {
-      keyword.replace('#', '');
+      keyword.slice(1);
     }
     const response = await getAsync<QuizPresetType[]>('/quiz/search', {
       params: {
@@ -81,14 +81,15 @@ class QuizRepository {
     hashtagList,
     hintList,
   }: CreatePresetType) {
+    console.log(hashtagList);
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagList', hashtag));
+    hashtagList.map((hashtag) => formData.append('hashtagContentList', hashtag));
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
-
+    
     const response = await postAsync<QuizPresetPinType, FormData>(
       '/quiz/create',
       formData,
@@ -107,7 +108,7 @@ class QuizRepository {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagList', hashtag));
+    hashtagList.map((hashtag) => formData.append('hashtagContentList', hashtag));
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
