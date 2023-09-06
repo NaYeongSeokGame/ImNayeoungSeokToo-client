@@ -1,7 +1,9 @@
 import {
   CreatePresetType,
-  GetQuizListOutput,
+  PaginationKeywordType,
   PaginationType,
+  PlayableQuizPresetType,
+  PresetPageType,
   QuizPresetPinType,
   QuizPresetType,
 } from '@/types/quiz';
@@ -10,7 +12,7 @@ import { deleteAsync, getAsync, patchAsync, postAsync } from './API';
 
 class QuizRepository {
   static async getQuizByPinAsync(presetPin: string) {
-    const quizPreset = await getAsync<GetQuizListOutput>('/quiz', {
+    const quizPreset = await getAsync<PlayableQuizPresetType>('/quiz', {
       params: {
         presetPin,
       },
@@ -28,6 +30,45 @@ class QuizRepository {
     return quizPresetList;
   }
 
+  static async getQuizListAsyncWithPagenation({
+    page = 1,
+    limit = 9,
+  }: PaginationType): Promise<PresetPageType> {
+    const response = await getAsync<QuizPresetType[]>('/quiz/list', {
+      params: {
+        page,
+        limit,
+      },
+    });
+    const responseData: PresetPageType = {
+      results: response,
+      page,
+      nextPage: response.length < limit ? 1 : page + 1,
+    };
+
+    return responseData;
+  }
+
+  static async getQuizListSearchAsync({
+    page = 1,
+    limit = 9,
+    type,
+    keyword,
+  }: PaginationKeywordType): Promise<QuizPresetType[]> {
+    if (type === 'hashtag') {
+      keyword.slice(1);
+    }
+    const response = await getAsync<QuizPresetType[]>('/quiz/search', {
+      params: {
+        page,
+        limit,
+        type,
+        keyword,
+      },
+    });
+    return response;
+  }
+
   static async postCreateNewPresetAsync({
     title,
     isPrivate,
@@ -39,7 +80,9 @@ class QuizRepository {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagList', hashtag));
+    hashtagList.map((hashtag) =>
+      formData.append('hashtagContentList', hashtag),
+    );
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
@@ -62,7 +105,9 @@ class QuizRepository {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagList', hashtag));
+    hashtagList.map((hashtag) =>
+      formData.append('hashtagContentList', hashtag),
+    );
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
