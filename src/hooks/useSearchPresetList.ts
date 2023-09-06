@@ -10,7 +10,6 @@ const useSearchPresetList = ({
   type,
   keyword,
 }: PaginationKeywordType) => {
- 
   //검색 안했을 경우
   const {
     data: allData,
@@ -23,7 +22,7 @@ const useSearchPresetList = ({
   } = useInfiniteQuery<PresetPageType, Error>(
     QUERY_KEY.page({ page, limit }),
     ({ pageParam = 1 }) =>
-      QuizRepository.getQuizListAsyncwithPagenation({
+      QuizRepository.getQuizListAsyncWithPagenation({
         page: pageParam,
         limit,
       }),

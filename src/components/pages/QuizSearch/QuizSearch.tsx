@@ -23,19 +23,18 @@ const QuizSearch = () => {
       keyword: input,
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && type === 'all') {
-          fetchNextPage(); // 다음 페이지 데이터 가져오기
-        }
-      },
-      { threshold: 1 },
-    );
-    
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && type === 'all') {
+        fetchNextPage(); // 다음 페이지 데이터 가져오기
+      }
+    },
+    { threshold: 1 },
+  );
 
+  if (observerTarget.current) {
+    observer.observe(observerTarget.current);
+  }
 
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(
@@ -78,26 +77,24 @@ const QuizSearch = () => {
         {type === 'all' &&
           allData &&
           allData.pages.map((page) =>
-            page.results.map(
-              (preset) => (
-                  <styles.QuizPresetCard>
-                    <PresetCard
-                      key={type + preset.presetPin}
-                      title={preset.title}
-                      thumbnailUrl={preset.thumbnailUrl}
-                      hashtagList={preset.hashtagList}
-                      handleClick={() => handleClick(preset)}
-                    />
-                  </styles.QuizPresetCard>
-              ),
-            ),
+            page.results.map((preset) => (
+              <styles.QuizPresetCard>
+                <PresetCard
+                  key={preset.presetPin}
+                  title={preset.title}
+                  thumbnailUrl={preset.thumbnailUrl}
+                  hashtagList={preset.hashtagList}
+                  handleClick={() => handleClick(preset)}
+                />
+              </styles.QuizPresetCard>
+            )),
           )}
         {type !== 'all' &&
           searchData &&
           searchData.map((preset: QuizPresetType) => (
             <styles.QuizPresetCard>
               <PresetCard
-                key={type + preset.presetPin}
+                key={preset.presetPin}
                 title={preset.title}
                 thumbnailUrl={preset.thumbnailUrl}
                 hashtagList={preset.hashtagList}
@@ -105,8 +102,7 @@ const QuizSearch = () => {
               />
             </styles.QuizPresetCard>
           ))}
-        <styles.ObserverTarget ref={observerTarget}>
-        </styles.ObserverTarget>
+        <styles.ObserverTarget ref={observerTarget}></styles.ObserverTarget>
       </styles.QuizPresetWrapper>
     </styles.SearchQuizWrapper>
   );

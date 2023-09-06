@@ -24,8 +24,8 @@ export const SearchForm = styled.form`
 export const SearchInput = styled.input`
   ${({ theme }) => {
     return css`
+      width: 100%;
       color: ${theme.colors.gray500};
-      width : 100%;
       font-family: ${theme.fonts.deco4.fontFamily};
       font-size: ${theme.fonts.deco4.fontSize};
       font-weight: ${theme.fonts.deco4.fontWeight};
@@ -40,19 +40,20 @@ export const SearchButton = styled.button`
 `;
 
 export const QuizPresetWrapper = styled.div`
-  display: flex;
   height: 37.25rem;
+  margin-top: 2.12rem;
+
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 2.12rem;
   overflow-y: auto;
 `;
 export const ObserverTarget = styled.div`
-  display: flex;
   height: 10rem;
+  display: flex;
 `;
 
-export const LoadingMessage= styled.p`
+export const LoadingMessage = styled.p`
   display: flex;
   justify-content: center;
   color: white;

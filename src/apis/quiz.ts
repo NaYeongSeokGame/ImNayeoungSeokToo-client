@@ -30,7 +30,7 @@ class QuizRepository {
     return quizPresetList;
   }
 
-  static async getQuizListAsyncwithPagenation({
+  static async getQuizListAsyncWithPagenation({
     page = 1,
     limit = 9,
   }: PaginationType): Promise<PresetPageType> {
@@ -43,7 +43,7 @@ class QuizRepository {
     const responseData: PresetPageType = {
       results: response,
       page,
-      nextPage: (response.length < limit) ? 1 : page + 1,
+      nextPage: response.length < limit ? 1 : page + 1,
     };
 
     return responseData;
@@ -55,7 +55,6 @@ class QuizRepository {
     type,
     keyword,
   }: PaginationKeywordType): Promise<QuizPresetType[]> {
-
     if (type === 'hashtag') {
       keyword.slice(1);
     }
@@ -78,15 +77,16 @@ class QuizRepository {
     hashtagList,
     hintList,
   }: CreatePresetType) {
-    console.log(hashtagList);
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagContentList', hashtag));
+    hashtagList.map((hashtag) =>
+      formData.append('hashtagContentList', hashtag),
+    );
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
-    
+
     const response = await postAsync<QuizPresetPinType, FormData>(
       '/quiz/create',
       formData,
@@ -105,7 +105,9 @@ class QuizRepository {
     const formData = new FormData();
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagContentList', hashtag));
+    hashtagList.map((hashtag) =>
+      formData.append('hashtagContentList', hashtag),
+    );
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
