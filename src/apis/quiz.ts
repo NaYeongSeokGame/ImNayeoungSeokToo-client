@@ -43,10 +43,7 @@ class QuizRepository {
     const responseData: PresetPageType = {
       results: response,
       page,
-      nextPage: response.length < limit ? null : page + 1,
-      //Fixme : 반복해서 새로운 데이터를 가져올 수 있도록 하면 좋을듯?
-      // nextPage : page + 1,
-      // nextPage: (response.length < limit ? 1 : page + 1)
+      nextPage: (response.length < limit) ? 1 : page + 1,
     };
 
     return responseData;

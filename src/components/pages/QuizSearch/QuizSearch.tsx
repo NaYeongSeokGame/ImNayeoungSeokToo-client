@@ -8,7 +8,7 @@ import { QuizPresetType } from '@/types/quiz';
 
 import * as styles from './QuizSearch.style';
 
-const QUIZ_COUNT_LIMIT = 4;
+const QUIZ_COUNT_LIMIT = 6;
 
 const QuizSearch = () => {
   const { openModal } = useModal();
@@ -23,30 +23,19 @@ const QuizSearch = () => {
       keyword: input,
     });
 
-  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (
-          entries[0].isIntersecting &&
-          !isFetching &&
-          hasNextPage &&
-          type === 'all'
-        ) {
+        if (entries[0].isIntersecting && type === 'all') {
           fetchNextPage(); // 다음 페이지 데이터 가져오기
         }
       },
-      { threshold: 0 },
+      { threshold: 1 },
     );
-
+    
     if (observerTarget.current) {
       observer.observe(observerTarget.current);
     }
-    return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
-      }
-    };
-  }, [observerTarget, allData]);
+
 
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(
@@ -89,18 +78,19 @@ const QuizSearch = () => {
         {type === 'all' &&
           allData &&
           allData.pages.map((page) =>
-            page.results.map((preset) => (
-              console.log(preset),
-              <styles.QuizPresetCard>
-                <PresetCard
-                  key={type + preset.presetPin}
-                  title={preset.title}
-                  thumbnailUrl={preset.thumbnailUrl}
-                  hashtagList={preset.hashtagList}
-                  handleClick={() => handleClick(preset)}
-                />
-              </styles.QuizPresetCard>
-            )),
+            page.results.map(
+              (preset) => (
+                  <styles.QuizPresetCard>
+                    <PresetCard
+                      key={type + preset.presetPin}
+                      title={preset.title}
+                      thumbnailUrl={preset.thumbnailUrl}
+                      hashtagList={preset.hashtagList}
+                      handleClick={() => handleClick(preset)}
+                    />
+                  </styles.QuizPresetCard>
+              ),
+            ),
           )}
         {type !== 'all' &&
           searchData &&
@@ -115,9 +105,9 @@ const QuizSearch = () => {
               />
             </styles.QuizPresetCard>
           ))}
-        {isFetching && <p>데이터를 불러오는 중입니다. </p>}
+        <styles.ObserverTarget ref={observerTarget}>
+        </styles.ObserverTarget>
       </styles.QuizPresetWrapper>
-      <div ref={observerTarget}></div>
     </styles.SearchQuizWrapper>
   );
 };

@@ -47,6 +47,16 @@ export const QuizPresetWrapper = styled.div`
   margin-top: 2.12rem;
   overflow-y: auto;
 `;
+export const ObserverTarget = styled.div`
+  display: flex;
+  height: 10rem;
+`;
+
+export const LoadingMessage= styled.p`
+  display: flex;
+  justify-content: center;
+  color: white;
+`;
 export const QuizPresetCard = styled.div`
   margin-bottom: 1rem;
 `;
