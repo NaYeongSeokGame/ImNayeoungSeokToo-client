@@ -3,6 +3,7 @@ import { css, styled } from 'styled-components';
 export const SearchQuizWrapper = styled.div`
   margin-top: 3rem;
   padding: 1rem;
+  flex: 1;
 `;
 
 export const SearchForm = styled.form`
@@ -40,7 +41,6 @@ export const SearchButton = styled.button`
 `;
 
 export const QuizPresetWrapper = styled.div`
-  height: 37.25rem;
   margin-top: 2.12rem;
 
   display: flex;
