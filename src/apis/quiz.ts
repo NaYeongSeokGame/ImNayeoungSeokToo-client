@@ -81,7 +81,7 @@ class QuizRepository {
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
     hashtagList.map((hashtag) =>
-      formData.append('hashtagContentList', hashtag),
+      formData.append('hashtagList', hashtag),
     );
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
@@ -106,7 +106,7 @@ class QuizRepository {
     images.map((image) => formData.append('images', image));
     answers.map((answer) => formData.append('answers', answer));
     hashtagList.map((hashtag) =>
-      formData.append('hashtagContentList', hashtag),
+      formData.append('hashtagList', hashtag),
     );
     hintList.map((hint) => formData.append('hints', hint));
     formData.append('title', title);
