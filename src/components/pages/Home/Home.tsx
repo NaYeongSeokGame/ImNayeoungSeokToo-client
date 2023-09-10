@@ -13,6 +13,19 @@ const Home = () => {
   const openJoinPresetModal = () => openModal(<JoinPresetModal />);
   const openCreateQuiz = () => navigate('/create');
   const openSearchQuiz = () => navigate('/search');
+  const HomeButton = ({
+    children,
+    onClick,
+  }: {
+    children: string;
+    onClick: () => void;
+  }) => {
+    return (
+      <styles.ButtonWrapper>
+        <styles.OptionButton onClick={onClick}>{children}</styles.OptionButton>
+      </styles.ButtonWrapper>
+    );
+  };
 
   return (
     <>
@@ -21,23 +34,11 @@ const Home = () => {
       </styles.Section>
       <styles.Section>
         <styles.ButtonSection>
-          <styles.ButtonWrapper>
-            <styles.OptionButton onClick={openCreateQuiz}>
-              직접 퀴즈 만들기
-            </styles.OptionButton>
-          </styles.ButtonWrapper>
-
-          <styles.ButtonWrapper>
-            <styles.OptionButton onClick={openJoinPresetModal}>
-              비공개 PIN 입력하기
-            </styles.OptionButton>
-          </styles.ButtonWrapper>
-
-          <styles.ButtonWrapper>
-            <styles.OptionButton onClick={openSearchQuiz}>
-              퀴즈목록 보러가기
-            </styles.OptionButton>
-          </styles.ButtonWrapper>
+          <HomeButton onClick={openCreateQuiz}>직접 퀴즈 만들기</HomeButton>
+          <HomeButton onClick={openJoinPresetModal}>
+            비공개 PIN 입력하기
+          </HomeButton>
+          <HomeButton onClick={openSearchQuiz}>퀴즈목록 보러가기</HomeButton>
         </styles.ButtonSection>
       </styles.Section>
       <styles.Section>
