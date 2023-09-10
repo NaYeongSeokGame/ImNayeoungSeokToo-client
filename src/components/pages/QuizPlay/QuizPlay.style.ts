@@ -100,7 +100,9 @@ export const QuestionImage = styled.section<{ imageUrl: string }>`
 
       margin: 0 auto 1.69rem auto;
 
-      background: url(${imageUrl}), lightgray 50% / cover no-repeat;
+      background: url(${imageUrl}) ${colors.white};
+      background-size: contain;
+      background-repeat: no-repeat;
       border: 10px solid ${colors.white};
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     `;
