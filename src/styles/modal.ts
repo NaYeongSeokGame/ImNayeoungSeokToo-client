@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   font-weight: 400;
   line-height: normal;
   text-align: center;
-  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   h4 {
     font-size: 1.875rem;

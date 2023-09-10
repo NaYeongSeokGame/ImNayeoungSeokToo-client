@@ -8,7 +8,7 @@ export const Title = styled.h1`
 
       color: ${colors.white};
       font-size: 1.875rem;
-      text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
       > span:first-of-type {
         font-size: 2.625rem;
@@ -50,7 +50,7 @@ export const QuizTimerBar = styled.progress`
       &::-webkit-progress-bar {
         overflow: hidden;
 
-        background-color: ${colors.lightGrey};
+        background-color: ${colors.gray400};
         border-radius: 0.5625rem;
       }
 
@@ -82,7 +82,6 @@ export const QuizTimerImageBox = styled.div`
         right: 0.44rem;
         bottom: 0;
 
-        color: ${colors.darkRed};
         font-size: 1rem;
 
         background-image: url('/src/assets/images/timerImage.png');
@@ -90,7 +89,6 @@ export const QuizTimerImageBox = styled.div`
         background-repeat: no-repeat;
     `;
   }}
-  }
 `;
 
 export const QuestionImage = styled.section<{ imageUrl: string }>`
@@ -102,7 +100,9 @@ export const QuestionImage = styled.section<{ imageUrl: string }>`
 
       margin: 0 auto 1.69rem auto;
 
-      background: url(${imageUrl}), lightgray 50% / cover no-repeat;
+      background: url(${imageUrl}) ${colors.white};
+      background-size: contain;
+      background-repeat: no-repeat;
       border: 10px solid ${colors.white};
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     `;

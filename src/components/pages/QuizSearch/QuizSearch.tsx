@@ -15,7 +15,7 @@ const QuizSearch = () => {
   const observerTarget = useRef(null);
   const [input, setInput] = useState('');
   const [type, setType] = useState('all');
-  const { allData, searchData, fetchNextPage, isFetching, hasNextPage } =
+  const { allData, searchData, status, fetchNextPage, isFetching, hasNextPage } =
     useSearchPresetList({
       page: 1,
       limit: QUIZ_COUNT_LIMIT,
@@ -23,18 +23,22 @@ const QuizSearch = () => {
       keyword: input,
     });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting && type === 'all') {
-        fetchNextPage(); // 다음 페이지 데이터 가져오기
-      }
-    },
-    { threshold: 1 },
-  );
+  useEffect(() => {
+    if(allData && allData.pages[0].results.length > 0){
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && type === 'all' && hasNextPage) {
+            fetchNextPage(); // 다음 페이지 데이터 가져오기
+          }
+        },
+        { threshold: 1 },
+      );
 
-  if (observerTarget.current) {
-    observer.observe(observerTarget.current);
-  }
+      if (observerTarget.current) {
+        observer.observe(observerTarget.current);
+      }
+    }
+  }, [allData]);
 
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(

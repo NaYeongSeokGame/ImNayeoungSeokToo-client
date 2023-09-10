@@ -95,9 +95,10 @@ const CreateQuiz = () => {
   };
 
   const submitQuizData = async () => {
-    const { hashtagList, title, isPrivate, hintList } = presetData;
+    const { hashtagList, title, isPrivate } = presetData;
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
+    const hintList = quizList.map((value) => value.hint);
 
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
@@ -156,6 +157,7 @@ const CreateQuiz = () => {
               onColor={theme.colors.darkblue400}
               offColor={theme.colors.gray400}
               toggleState={handleToggle}
+              defaultValue={presetData.isPrivate}
             />
           </styles.PrivateWrapper>
           <styles.InfoLabel>

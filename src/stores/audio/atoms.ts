@@ -6,12 +6,12 @@ export const audioStateAtom = atom<AudioStateType>({
   isMute: false,
   soundEffect: {
     src: '',
-    volume: 1,
+    volume: 100,
     isLoop: false,
   },
   backgroundSound: {
     src: '',
-    volume: 1,
+    volume: 100,
     isLoop: true,
   },
 });
