@@ -26,24 +26,54 @@ export const ButtonSection = styled.div`
   justify-content: flex-end;
 `;
 
+export const ButtonWrapper = styled.div`
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      width: 12.875rem;
+      height: 3.25rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: ${colors.gray100};
+      border: 1px solid ${colors.darkblue950};
+      border-radius: 0.5rem;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+      &:active {
+        text-decoration: none;
+      }
+
+      &:hover {
+        transform: translateY(0.0625rem);
+      }
+    `;
+  }}
+`;
+
 export const OptionButton = styled.button`
   ${({ theme }) => {
     const { colors } = theme;
     return css`
-      width: 12.625rem;
-      height: 3rem;
+      width: 202px;
+      height: 48px;
 
       color: ${colors.darkblue950};
       font-size: 1rem;
       text-align: center;
 
       background-color: ${colors.gray100};
-      border: 2px double ${colors.darkblue950};
+      border: 1px solid ${colors.darkblue950};
       border-radius: 0.375rem;
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
       &:active {
         text-decoration: none;
+      }
+      &:hover {
+        background-color: ${colors.gray200};
       }
     `;
   }}
