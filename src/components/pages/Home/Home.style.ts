@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import pdImageUrl from '@/assets/images/napd.png';
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,12 +9,21 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const ButtonSection = styled.div`
+export const Section = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`;
+
+export const ButtonSection = styled.div`
   gap: 1.125rem;
 
-  margin: 0 auto 8.25rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const OptionButton = styled.button`
@@ -37,10 +48,19 @@ export const OptionButton = styled.button`
     `;
   }}
 `;
+export const TitleSection = styled(Section)`
+  width: 100%;
+  padding: 0.625rem;
+
+  justify-content: flex-end;
+
+  background: transparent url(${pdImageUrl});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+`;
 
 export const Title = styled.h1`
-  margin: 0 auto auto;
-
   font-size: 3rem;
   font-family: 'Galmuri11';
   font-weight: 700;
