@@ -18,7 +18,14 @@ const useModal = () => {
     setModalState({ isOpen: false, content: [...modalState.content.slice(1)] });
   };
 
-  return { openModal, closeModal };
+  const changeModal = (newContent: ReactNode) => {
+    setModalState({
+      isOpen: true,
+      content: [...modalState.content.slice(1), newContent],
+    });
+  };
+
+  return { openModal, changeModal, closeModal };
 };
 
 export default useModal;

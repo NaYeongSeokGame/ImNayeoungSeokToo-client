@@ -3,17 +3,19 @@ import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
 import Modal from '@/components/common/modal';
+import GameStartModal from '@/components/main/GameStartModal';
 import useModal from '@/hooks/useModal';
 
 import * as styles from './JoinPresetModal.style';
 
 const JoinPresetModal = () => {
-  const { closeModal } = useModal();
+  const { changeModal, closeModal } = useModal();
   const [presetPin, setPresetPin] = useState('');
 
   const handleAnswerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPresetPin(e.target.value);
   };
+
   const joinPresetQuiz = async () => {
     if (!presetPin) {
       toast.error('플레이하려는 프리셋 PIN을 입력해주세요.');
@@ -22,7 +24,13 @@ const JoinPresetModal = () => {
 
     try {
       const presetData = await QuizRepository.getQuizByPinAsync(presetPin);
-      return presetData;
+      return changeModal(
+        <GameStartModal
+          presetPin={presetData.presetPin}
+          title={presetData.title}
+          thumbnailUrl={presetData.thumbnailUrl}
+        />,
+      );
     } catch (error) {
       toast.error('프리셋을 불러올 수 없습니다.');
     }
