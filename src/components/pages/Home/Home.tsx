@@ -21,15 +21,23 @@ const Home = () => {
       </styles.Section>
       <styles.Section>
         <styles.ButtonSection>
-          <styles.OptionButton onClick={openCreateQuiz}>
-            직접 퀴즈 만들기
-          </styles.OptionButton>
-          <styles.OptionButton onClick={openJoinPresetModal}>
-            비공개 PIN 입력하기
-          </styles.OptionButton>
-          <styles.OptionButton onClick={openSearchQuiz}>
-            퀴즈목록 보러가기
-          </styles.OptionButton>
+          <styles.ButtonWrapper>
+            <styles.OptionButton onClick={openCreateQuiz}>
+              직접 퀴즈 만들기
+            </styles.OptionButton>
+          </styles.ButtonWrapper>
+
+          <styles.ButtonWrapper>
+            <styles.OptionButton onClick={openJoinPresetModal}>
+              비공개 PIN 입력하기
+            </styles.OptionButton>
+          </styles.ButtonWrapper>
+
+          <styles.ButtonWrapper>
+            <styles.OptionButton onClick={openSearchQuiz}>
+              퀴즈목록 보러가기
+            </styles.OptionButton>
+          </styles.ButtonWrapper>
         </styles.ButtonSection>
       </styles.Section>
       <styles.Section>
