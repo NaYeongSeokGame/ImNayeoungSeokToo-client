@@ -9,15 +9,15 @@ const useVolumeControl = () => {
     backgroundVolume,
     soundEffectVolume,
   }: {
-    backgroundVolume?: number;
-    soundEffectVolume?: number;
+    backgroundVolume: number;
+    soundEffectVolume: number;
   }) => {
     setVolume({
       backgroundSound: {
-        volume: backgroundVolume || volume.backgroundVolume,
+        volume: backgroundVolume,
       },
       soundEffect: {
-        volume: soundEffectVolume || volume.soundEffectVolume,
+        volume: soundEffectVolume,
       },
       isMute: false,
     });
@@ -26,10 +26,10 @@ const useVolumeControl = () => {
   const onMute = (mute: boolean) => {
     setVolume({
       backgroundSound: {
-        volume: volume.backgroundVolume
+        volume: mute ? 0 : volume.backgroundVolume,
       },
       soundEffect: {
-        volume: volume.soundEffectVolume
+        volume: mute ? 0 : volume.soundEffectVolume,
       },
       isMute: mute,
     });
