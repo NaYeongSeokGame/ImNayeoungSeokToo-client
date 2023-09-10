@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import * as styles from './HastagInput.style';
@@ -21,8 +21,8 @@ const HashtagInput = ({ hashtag, setHashtag }: HashtagInputType) => {
         toast.error('해시태그는 세 개 이상 설정할 수 없습니다. ');
         return;
       }
-      if (input.length > 10) {
-        toast.error('해시태그는 10글자 이하로 입력해주세요.');
+      if (input.length < 3 || input.length > 10) {
+        toast.error('해시태그는 3글자 이상, 10글자 이하로 입력해주세요.');
         return;
       }
       setHashtag([...hashtag, input]);
@@ -31,7 +31,7 @@ const HashtagInput = ({ hashtag, setHashtag }: HashtagInputType) => {
   };
 
   const hashtagRemove = (index: number) => {
-    setHashtag(hashtag.filter((_, i) => i !== index))
+    setHashtag(hashtag.filter((_, i) => i !== index));
   };
   return (
     <styles.HastagInputWrapper>
