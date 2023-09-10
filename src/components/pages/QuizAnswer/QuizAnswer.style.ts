@@ -78,7 +78,8 @@ export const Answer = styled.h5`
     return css`
       color: ${theme.colors.magenta500};
       font-size: 3.75rem;
-      text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      word-break: keep-all;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     `;
   }}
 `;

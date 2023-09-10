@@ -44,7 +44,7 @@ export const Title = styled.h1`
   font-size: 3rem;
   font-family: 'Galmuri11';
   font-weight: 700;
-  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   background: linear-gradient(
     180deg,

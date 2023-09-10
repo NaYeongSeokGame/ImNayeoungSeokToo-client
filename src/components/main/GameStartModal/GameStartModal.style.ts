@@ -9,7 +9,7 @@ export const Title = styled.span`
       padding: 0.375rem 0rem;
 
       color: ${theme.colors.darkblue300};
-      text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       text-align: center;
       font-family: ${theme.fonts.deco3.fontFamily};
       font-size: 1.875rem;
@@ -149,7 +149,7 @@ export const Article = styled.article`
       width: 100%;
 
       color: ${theme.colors.darkblue900};
-      text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
       background-color: ${theme.colors.gray100};
       overflow: hidden;
