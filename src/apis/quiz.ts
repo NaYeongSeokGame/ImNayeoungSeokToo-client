@@ -43,7 +43,7 @@ class QuizRepository {
     const responseData: PresetPageType = {
       results: response,
       page,
-      nextPage: response.length < limit ? 1 : page + 1,
+      nextPage: response.length < limit ? null : page + 1,
     };
 
     return responseData;
