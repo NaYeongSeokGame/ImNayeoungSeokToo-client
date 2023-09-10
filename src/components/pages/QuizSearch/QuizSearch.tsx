@@ -13,18 +13,25 @@ const QUIZ_COUNT_LIMIT = 6;
 const QuizSearch = () => {
   const { openModal } = useModal();
   const observerTarget = useRef(null);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState<string>('');
+  const [keyword, setKeyword] = useState('');
   const [type, setType] = useState('all');
-  const { allData, searchData, status, fetchNextPage, isFetching, hasNextPage } =
-    useSearchPresetList({
-      page: 1,
-      limit: QUIZ_COUNT_LIMIT,
-      type,
-      keyword: input,
-    });
+  const {
+    allData,
+    searchData,
+    status,
+    fetchNextPage,
+    isFetching,
+    hasNextPage,
+  } = useSearchPresetList({
+    page: 1,
+    limit: QUIZ_COUNT_LIMIT,
+    type,
+    keyword,
+  });
 
   useEffect(() => {
-    if(allData && allData.pages[0].results.length > 0){
+    if (allData && allData.pages[0].results.length > 0){
       const observer = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting && type === 'all' && hasNextPage) {
@@ -59,10 +66,13 @@ const QuizSearch = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (input.slice(0, 1) === '#') {
-      setType('hashtag');
-    } else {
-      setType('title');
+    if (input.length > 0) {
+      setKeyword(input);
+      if (input.slice(0, 1) === '#') {
+        setType('hashtag');
+      } else {
+        setType('title');
+      }
     }
   };
 
