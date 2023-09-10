@@ -186,6 +186,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
               onColor={theme.colors.darkblue400}
               offColor={theme.colors.gray400}
               toggleState={handleToggle}
+              defaultValue={presetData.isPrivate}
             />
           </styles.PrivateWrapper>
           <styles.InfoLabel>
