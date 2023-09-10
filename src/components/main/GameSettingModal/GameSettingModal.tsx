@@ -60,8 +60,8 @@ const SoundOptionBox = ({ id, title, value }: SoundOptionBoxProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setVolume(Number(value));
-    onChange({ [id]: Number(value) / 100 });
+    setVolume(Math.floor(Number(value)));
+    onChange({ [id]: Math.floor(Number(value) / 100) });
   };
 
   return (
