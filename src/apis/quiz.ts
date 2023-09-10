@@ -56,7 +56,7 @@ class QuizRepository {
     keyword,
   }: PaginationKeywordType): Promise<QuizPresetType[]> {
     if (type === 'hashtag') {
-      keyword.slice(1);
+      keyword = keyword.substring(1);
     }
     const response = await getAsync<QuizPresetType[]>('/quiz/search', {
       params: {
