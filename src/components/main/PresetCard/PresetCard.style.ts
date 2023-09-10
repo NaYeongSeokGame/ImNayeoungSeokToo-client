@@ -48,7 +48,7 @@ export const HashtagText = styled.p`
     return css`
       min-width: 4rem;
       height: 1rem;
-      margin: 1rem auto;
+      margin: auto auto;
       padding: 0 0.75rem;
 
       color: ${theme.colors.gray700};

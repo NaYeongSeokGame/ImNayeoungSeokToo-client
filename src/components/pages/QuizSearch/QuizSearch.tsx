@@ -27,7 +27,6 @@ const QuizSearch = () => {
     if(allData && allData.pages[0].results.length > 0){
       const observer = new IntersectionObserver(
         (entries) => {
-          console.log(isFetching, hasNextPage, status, entries[0], allData);
           if (entries[0].isIntersecting && type === 'all' && hasNextPage) {
             fetchNextPage(); // 다음 페이지 데이터 가져오기
           }
