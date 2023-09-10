@@ -6,15 +6,17 @@ interface ToggleButton {
   onColor?: string;
   offColor?: string;
   circleColor?: string;
+  defaultValue?: boolean;
   toggleState: (status: boolean) => void;
 }
 const ToggleButton = ({
+  toggleState,
   onColor = 'green',
   offColor = 'grey',
   circleColor = 'white',
-  toggleState,
+  defaultValue = false,
 }: ToggleButton) => {
-  const [checked, setChecked] = useState(false); // store value
+  const [checked, setChecked] = useState(defaultValue);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked), toggleState(e.target.checked);
   };

@@ -1,6 +1,7 @@
 export interface QuizType {
   imageUrl: string;
   answer: string;
+  hint: string;
 }
 
 export interface QuizPresetPinType {
@@ -14,10 +15,8 @@ export interface QuizPresetType {
   title: string;
   presetPin: string;
   thumbnailUrl: string;
-  hashtagList?: string[]; //Fix : 추후 추가되면 ?제거
+  hashtagList?: string[];
 }
-
-export type QuizPresetTypeWithPin = QuizPresetType & QuizPresetPinType;
 
 export interface CreatePresetType {
   images: File[];
@@ -31,11 +30,11 @@ export interface CreatePresetType {
 export interface CreateQuizType {
   image: File;
   answer: string;
+  hint: string;
 }
 
 export type CreateQuizWithUrlType = CreateQuizType & {
   imageUrl: string;
-  hint: string;
 };
 
 export type CreatePresetWithUrlType = CreatePresetType & {
@@ -57,4 +56,15 @@ export type PlayableQuizPresetType = QuizPresetType & { quizList: QuizType[] };
 export interface PaginationType {
   limit: number;
   page: number;
+}
+
+export type PaginationKeywordType = PaginationType & {
+  type: string;
+  keyword: string;
+};
+
+export interface PresetPageType {
+  results: QuizPresetType[];
+  page: number;
+  nextPage: number | null;
 }

@@ -1,7 +1,9 @@
 import {
   CreatePresetType,
-  GetQuizListOutput,
+  PaginationKeywordType,
   PaginationType,
+  PlayableQuizPresetType,
+  PresetPageType,
   QuizPresetPinType,
   QuizPresetType,
 } from '@/types/quiz';
@@ -10,7 +12,7 @@ import { deleteAsync, getAsync, patchAsync, postAsync } from './API';
 
 class QuizRepository {
   static async getQuizByPinAsync(presetPin: string) {
-    const quizPreset = await getAsync<GetQuizListOutput>('/quiz', {
+    const quizPreset = await getAsync<PlayableQuizPresetType>('/quiz', {
       params: {
         presetPin,
       },
@@ -26,6 +28,45 @@ class QuizRepository {
       },
     });
     return quizPresetList;
+  }
+
+  static async getQuizListAsyncWithPagenation({
+    page = 1,
+    limit = 9,
+  }: PaginationType): Promise<PresetPageType> {
+    const response = await getAsync<QuizPresetType[]>('/quiz/list', {
+      params: {
+        page,
+        limit,
+      },
+    });
+    const responseData: PresetPageType = {
+      results: response,
+      page,
+      nextPage: response.length < limit ? null : page + 1,
+    };
+
+    return responseData;
+  }
+
+  static async getQuizListSearchAsync({
+    page = 1,
+    limit = 9,
+    type,
+    keyword,
+  }: PaginationKeywordType): Promise<QuizPresetType[]> {
+    if (type === 'hashtag') {
+      keyword = keyword.substring(1);
+    }
+    const response = await getAsync<QuizPresetType[]>('/quiz/search', {
+      params: {
+        page,
+        limit,
+        type,
+        keyword,
+      },
+    });
+    return response;
   }
 
   static async postCreateNewPresetAsync({

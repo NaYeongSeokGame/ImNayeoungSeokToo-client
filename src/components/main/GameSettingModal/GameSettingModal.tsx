@@ -10,7 +10,22 @@ import * as styles from './GameSettingModal.style';
 
 const GameSettingModal = () => {
   const { closeModal } = useModal();
-  const { volume } = useVolumeControl();
+  const { volume, onChange } = useVolumeControl();
+  const [volumeState, setVolumeState] = useState(volume);
+
+  const onSave = () => {
+    onChange({ ...volumeState });
+    closeModal();
+  };
+
+  const handleChange = (id: SoundOptionType, optionVolume: number) => {
+    setVolumeState((prev) => {
+      return {
+        ...prev,
+        [id]: optionVolume,
+      };
+    });
+  };
 
   return (
     <Modal>
@@ -24,17 +39,19 @@ const GameSettingModal = () => {
                 title="배경음"
                 value={volume.backgroundVolume}
                 id="backgroundVolume"
+                handleChange={handleChange}
               />
               <SoundOptionBox
                 title="효과음"
                 value={volume.soundEffectVolume}
                 id="soundEffectVolume"
+                handleChange={handleChange}
               />
             </styles.SoundOptionBox>
           </styles.SettingBox>
         </styles.Wrapper>
       </Modal.MainContent>
-      <Modal.Button title="저장" colorScheme="pink" onClick={closeModal} />,
+      <Modal.Button title="저장" colorScheme="pink" onClick={onSave} />,
       <Modal.Button
         title="나가기"
         colorScheme="darkblue"
@@ -52,16 +69,21 @@ interface SoundOptionBoxProps {
   id: SoundOptionType;
   title: string;
   value: number;
+  handleChange: (id: SoundOptionType, optionVolume: number) => void;
 }
 
-const SoundOptionBox = ({ id, title, value }: SoundOptionBoxProps) => {
-  const [volume, setVolume] = useState(value * 100);
-  const { onChange } = useVolumeControl();
+const SoundOptionBox = ({
+  id,
+  title,
+  value,
+  handleChange,
+}: SoundOptionBoxProps) => {
+  const [optionVolume, setOptionVolume] = useState(value);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setVolume(Number(value));
-    onChange({ [id]: Number(value) / 100 });
+    setOptionVolume(Number(value));
+    handleChange(id, Number(value));
   };
 
   return (
@@ -69,15 +91,15 @@ const SoundOptionBox = ({ id, title, value }: SoundOptionBoxProps) => {
       <styles.SoundOptionRow>
         <span>
           <h6>{title}</h6>
-          {volume === 0 ? <MuteIcon /> : <SoundIcon />}
+          {optionVolume === 0 ? <MuteIcon /> : <SoundIcon />}
         </span>
-        <p>{volume} %</p>
+        <p>{optionVolume} %</p>
       </styles.SoundOptionRow>
       <styles.SoundOptionRow>
         <input
           type="range"
-          defaultValue={volume}
-          onChange={handleChange}
+          defaultValue={optionVolume}
+          onChange={onChange}
           min="0"
           max="100"
         />

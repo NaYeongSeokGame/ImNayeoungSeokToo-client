@@ -1,6 +1,6 @@
-const playAudioFile = (soundFileUrl: string) => {
+const playAudioFile = (soundFileUrl: string, volume: number) => {
   const audio = new Audio(soundFileUrl);
-  audio.volume = 0.2;
+  audio.volume = Math.round((volume / 100) * 100) / 100;
   audio.play();
 };
 

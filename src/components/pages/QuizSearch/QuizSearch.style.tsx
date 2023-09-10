@@ -1,7 +1,9 @@
 import { css, styled } from 'styled-components';
 
 export const SearchQuizWrapper = styled.div`
+  margin-top: 3rem;
   padding: 1rem;
+  flex: 1;
 `;
 
 export const SearchForm = styled.form`
@@ -23,8 +25,8 @@ export const SearchForm = styled.form`
 export const SearchInput = styled.input`
   ${({ theme }) => {
     return css`
+      width: 100%;
       color: ${theme.colors.gray500};
-
       font-family: ${theme.fonts.deco4.fontFamily};
       font-size: ${theme.fonts.deco4.fontSize};
       font-weight: ${theme.fonts.deco4.fontWeight};
@@ -39,12 +41,22 @@ export const SearchButton = styled.button`
 `;
 
 export const QuizPresetWrapper = styled.div`
+  margin-top: 2.12rem;
+
   display: flex;
-  height: 37.25rem;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 2.12rem;
   overflow-y: auto;
+`;
+export const ObserverTarget = styled.div`
+  height: 10rem;
+  display: flex;
+`;
+
+export const LoadingMessage = styled.p`
+  display: flex;
+  justify-content: center;
+  color: white;
 `;
 export const QuizPresetCard = styled.div`
   margin-bottom: 1rem;

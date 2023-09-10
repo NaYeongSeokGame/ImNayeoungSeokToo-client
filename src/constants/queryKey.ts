@@ -8,6 +8,7 @@ const QUERY_KEY = {
     page,
     limit,
   ],
+  search :(keyword : string)=> [...QUERY_KEY.preset, 'search', keyword], 
   presetPin: (presetPin: string) => [...QUERY_KEY.preset, 'pin', presetPin],
 };
 
