@@ -10,16 +10,17 @@ export const PresetWrapper = styled.div`
   background-image: url(/src/assets/images/PresetCard.svg);
 `;
 
-export const Image = styled.div<{ imageurl: string }>`
-  ${({ imageurl }) => {
+export const Image = styled.div<{ $imageUrl: string }>`
+  ${({ $imageUrl }) => {
     return css`
       width: 7.25rem;
       height: 8.75rem;
 
       margin-top: 1.2rem;
       margin-left: 1.25rem;
-      background-image: url(${imageurl});
+      background-image: url(${$imageUrl});
       background-size: cover;
+      background-position: center;
     `;
   }}
 `;
@@ -47,7 +48,7 @@ export const HashtagText = styled.p`
   ${({ theme }) => {
     return css`
       min-width: 4rem;
-      height: 1rem;
+      min-height: 1rem;
       margin: auto auto;
       padding: 0 0.75rem;
 
@@ -56,7 +57,7 @@ export const HashtagText = styled.p`
       font-size: ${theme.fonts.deco4.fontSize}rem;
       font-family: ${theme.fonts.deco4.fontFamily};
       font-weight: ${theme.fonts.deco4.fontWeight};
-      line-height: ${theme.fonts.deco4.lineHeight};
+      line-height: 1rem;
       background-size: cover;
       background-position: center;
       background-image: url(/src/assets/images/PresetHashtag.svg);

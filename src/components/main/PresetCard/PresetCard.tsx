@@ -18,7 +18,7 @@ const PresetCard = ({
   return (
     <styles.PresetWrapper onClick={handleClick}>
       <styles.TitleText>{title}</styles.TitleText>
-      <styles.Image imageurl={thumbnailUrl} />
+      <styles.Image $imageUrl={thumbnailUrl} />
       <styles.HashtagWrapper>
         {hashtagList?.slice(0, 2).map((hashtag) => (
           <styles.HashtagText>{hashtag}</styles.HashtagText>
