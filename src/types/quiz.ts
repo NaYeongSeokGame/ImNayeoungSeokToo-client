@@ -1,6 +1,7 @@
 export interface QuizType {
   imageUrl: string;
   answer: string;
+  hint: string;
 }
 
 export interface QuizPresetPinType {
@@ -13,8 +14,8 @@ export interface QuizPresetType {
   isPrivate: boolean;
   title: string;
   presetPin: string;
-  thumbnailUrl: string; 
-  hashtagList?: string[] ;
+  thumbnailUrl: string;
+  hashtagList?: string[];
 }
 
 export interface CreatePresetType {
@@ -29,11 +30,11 @@ export interface CreatePresetType {
 export interface CreateQuizType {
   image: File;
   answer: string;
+  hint: string;
 }
 
 export type CreateQuizWithUrlType = CreateQuizType & {
   imageUrl: string;
-  hint: string;
 };
 
 export type CreatePresetWithUrlType = CreatePresetType & {
@@ -58,9 +59,9 @@ export interface PaginationType {
 }
 
 export type PaginationKeywordType = PaginationType & {
-  type : string;
+  type: string;
   keyword: string;
-}
+};
 
 export interface PresetPageType {
   results: QuizPresetType[];
