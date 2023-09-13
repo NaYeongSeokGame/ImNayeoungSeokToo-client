@@ -4,10 +4,10 @@ import useModal from '@/hooks/useModal';
 import * as styles from './QuizHintModal.style';
 
 interface QuizHintModalProps {
-  answer: string;
+  hint: string;
 }
 
-const QuizHintModal = ({ answer }: QuizHintModalProps) => {
+const QuizHintModal = ({ hint }: QuizHintModalProps) => {
   const { closeModal } = useModal();
 
   return (
@@ -16,7 +16,7 @@ const QuizHintModal = ({ answer }: QuizHintModalProps) => {
         <styles.Wrapper>
           <h5>힌트</h5>
           <styles.HintSection>
-            <styles.Hint>{answer}</styles.Hint>
+            <styles.Hint>{hint}</styles.Hint>
           </styles.HintSection>
         </styles.Wrapper>
       </Modal.MainContent>
