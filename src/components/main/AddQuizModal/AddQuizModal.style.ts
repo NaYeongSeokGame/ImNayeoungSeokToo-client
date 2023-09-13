@@ -44,7 +44,7 @@ export const SettingButton = styled.button`
       padding: 0.625rem 1rem;
       border-radius: 1.5625rem;
       border: 1px solid #fff;
-      box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.25);
+      box-shadow: 0px 0px 2px 0px white;
       font-family: ${theme.fonts.body2R.fontFamily};
       font-size: ${theme.fonts.body2R.fontSize}rem;
       font-weight: ${theme.fonts.body2R.fontWeight};

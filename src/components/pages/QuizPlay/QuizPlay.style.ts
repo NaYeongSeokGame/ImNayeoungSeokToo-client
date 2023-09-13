@@ -64,35 +64,30 @@ export const QuizTimerBar = styled.progress`
 
 // FIXME: 이미지가 figma 스펙과 다르게 나타나는 것 같아서 추후 수정 필요.
 export const QuizTimerImageBox = styled.div`
-  ${({ theme }) => {
-    const { colors } = theme;
-    return css`
-      position: relative;
+  position: relative;
 
-      > div {
-        width: 5.96144rem;
-        height: 5.72225rem;
-        transform: rotate(-5deg);
-        padding-top: 1rem;
+  > div {
+    width: 5.96144rem;
+    height: 5.72225rem;
+    padding-top: 1rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        right: 0.44rem;
-        bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0.44rem;
+    bottom: 0;
 
-        font-size: 1rem;
+    font-size: 2rem;
 
-        background-image: url('/src/assets/images/timerImage.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-    `;
-  }}
+    background-image: url('/src/assets/images/timerImage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 `;
 
-export const QuestionImage = styled.section<{ imageUrl: string }>`
-  ${({ theme, imageUrl }) => {
+export const QuestionImage = styled.section<{ $imageUrl: string }>`
+  ${({ theme, $imageUrl: imageUrl }) => {
     const { colors } = theme;
     return css`
       width: 18.75rem;
@@ -101,8 +96,9 @@ export const QuestionImage = styled.section<{ imageUrl: string }>`
       margin: 0 auto 1.69rem auto;
 
       background: url(${imageUrl}) ${colors.white};
-      background-size: contain;
+      background-size: cover;
       background-repeat: no-repeat;
+      background-position: center center;
       border: 10px solid ${colors.white};
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     `;
@@ -115,11 +111,13 @@ export const ButtonSection = styled.div`
   margin: 0 auto;
 `;
 
-export const Countdown = styled.h5<{ currentCount: number }>`
+export const Countdown = styled.div<{ currentCount: number }>`
   ${({ theme, currentCount }) => {
+    const { colors, fonts } = theme;
     return css`
-      font-size: 6rem;
-      color: ${currentCount < 2 ? theme.colors.red : theme.colors.purple};
+      font-size: ${fonts.deco4.fontSize};
+      font-family: ${fonts.deco4.fontFamily};
+      color: ${currentCount < 2 ? colors.red : colors.purple};
       margin: 0 auto auto;
     `;
   }}

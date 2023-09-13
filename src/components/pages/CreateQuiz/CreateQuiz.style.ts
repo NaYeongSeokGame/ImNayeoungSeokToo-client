@@ -1,15 +1,33 @@
 import styled, { css } from 'styled-components';
 
 export const CreateQuizWrapper = styled.div`
-  margin: 1rem;
-  padding-top: 2.88rem;
-  gap: 0.5rem;
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      margin: 0.25rem;
+      padding: 2.88rem 0.75rem 0.75rem;
+      gap: 0.5rem;
 
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: ${colors.darkblue500};
+        border-radius: 20px;
+      }
+    `;
+  }}
 `;
-
 export const Title = styled.h1`
   ${({ theme }) => {
     return css`
@@ -40,6 +58,7 @@ export const GetPresetButton = styled.button`
 
       border-radius: 1.5625rem;
       border: 1px solid ${theme.colors.white};
+      box-shadow: 0px 0px 2px 0px white;
 
       color: ${theme.colors.white};
       font-family: ${theme.fonts.body2R.fontFamily};
@@ -105,6 +124,7 @@ export const NameInput = styled.input`
       padding: 0.5rem;
       border: 1px solid ${theme.colors.white};
       border-radius: 0.5rem;
+      box-shadow: 0px 0px 2px 0px white;
 
       font-family: ${theme.fonts.body3.fontFamily};
       font-size: ${theme.fonts.body3.fontSize}rem;
@@ -154,7 +174,7 @@ export const UploadQuizButton = styled.div`
       color: ${theme.colors.white};
       border-radius: 1.5rem;
       border: 1px solid #fff;
-      
+
       cursor: pointer;
     `;
   }}
@@ -170,6 +190,7 @@ export const AddNewQuizButton = styled.button`
       border-radius: 1.5rem;
       border: 1px solid ${theme.colors.darkblue400};
       text-align: center;
+      box-shadow: 0px 0px 2px 0px ${theme.colors.darkblue100};
 
       font-family: ${theme.fonts.body2B.fontFamily};
       font-size: ${theme.fonts.body2B.fontSize}rem;

@@ -26,13 +26,10 @@ const QuizPlay = () => {
   const { isOpen } = useAtomValue(modalStateAtom);
   const { quizList, currentIndex } = useAtomValue(quizPlayStateAtom);
 
-  // FIXME : 추후 업데이트 시 정답이 아닌 "힌트" 를 제공하도록 해야 함.
-  const { imageUrl, answer: currentQuizAnswer = '' } = quizList[currentIndex];
+  const { imageUrl, hint } = quizList[currentIndex];
   const quizAnswerUrl = `/quiz/answer`;
 
-  // FIXME : 추후 업데이트 시 정답이 아닌 "힌트" 를 제공하도록 해야 함.
-  const openHintModal = () =>
-    openModal(<QuizHintModal answer={currentQuizAnswer} />);
+  const openHintModal = () => openModal(<QuizHintModal hint={hint} />);
 
   const redirectAnswerPage = () => navigate(quizAnswerUrl, { replace: true });
 
@@ -58,7 +55,9 @@ const QuizPlay = () => {
       <styles.QuizGuide>
         시간 내에 <span>정답</span>을 말하세요!
         <styles.QuizTimerImageBox>
-          <div>{Math.ceil(leftSecond)}</div>
+          <styles.Countdown currentCount={Math.ceil(leftSecond)}>
+            {Math.ceil(leftSecond)}
+          </styles.Countdown>
         </styles.QuizTimerImageBox>
       </styles.QuizGuide>
 
@@ -66,7 +65,7 @@ const QuizPlay = () => {
         value={timeToSolveQuiz - leftSecond}
         max={timeToSolveQuiz}
       />
-      <styles.QuestionImage imageUrl={imageUrl} />
+      <styles.QuestionImage $imageUrl={imageUrl} />
       <styles.ButtonSection>
         <QuestionButtonSvg onClick={openHintModal} />
         <PauseButtonSvg onClick={toggleTimer} />

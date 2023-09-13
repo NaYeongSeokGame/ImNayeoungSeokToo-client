@@ -99,20 +99,23 @@ const CreateQuiz = () => {
     const images = quizList.map((value) => value.image);
     const answers = quizList.map((value) => value.answer);
     const hintList = quizList.map((value) => value.hint);
-
     const isEmpty = !answers.length || !images.length;
-    const isNotSame = answers.length !== images.length;
 
-    if (!isEmpty && isNotSame) {
+    if (isEmpty) {
       toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
       return;
     }
-
+    
     if (!title) {
       toast.error('퀴즈 프리셋 이름은 반드시 등록해야 합니다.');
       return;
     }
 
+    if(title.length < 3 ){
+      toast.error('퀴즈 프리셋 이름은 3글자 이상 입력해야 합니다. ');
+      return;
+    }
+    
     try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
         answers,

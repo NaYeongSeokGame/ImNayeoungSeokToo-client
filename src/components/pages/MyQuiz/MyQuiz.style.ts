@@ -1,14 +1,33 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin: 1rem;
-  gap: 0.5rem;
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      margin: 0.25rem;
+      padding: 0.75rem;
+      gap: 0.5rem;
 
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: ${colors.darkblue500};
+        border-radius: 20px;
+      }
+    `;
+  }}
 `;
-
 export const Title = styled.h1`
   ${({ theme }) => {
     return css`
