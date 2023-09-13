@@ -103,7 +103,7 @@ const CreateQuiz = () => {
     const isEmpty = !answers.length || !images.length;
     const isNotSame = answers.length !== images.length;
 
-    if (!isEmpty && isNotSame) {
+    if (!isEmpty || !isNotSame) {
       toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
       return;
     }
@@ -113,6 +113,11 @@ const CreateQuiz = () => {
       return;
     }
 
+    if(title.length < 3 ){
+      toast.error('퀴즈 프리셋 이름은 3글자 이상 입력해야 합니다. ');
+      return;
+    }
+    
     try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
         answers,
