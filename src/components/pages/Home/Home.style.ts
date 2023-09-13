@@ -95,8 +95,6 @@ export const Title = styled.h1`
   ${({ theme }) => {
     const { fonts } = theme;
     return css`
-      margin: 0 auto auto;
-
       font-size: 3rem;
       font-family: ${fonts.deco1.fontFamily};
       font-weight: 700;
