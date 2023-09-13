@@ -100,7 +100,6 @@ const CreateQuiz = () => {
     const answers = quizList.map((value) => value.answer);
     const hintList = quizList.map((value) => value.hint);
     const isEmpty = !answers.length || !images.length;
-    const isNotSame = answers.length !== images.length;
 
     if (isEmpty) {
       toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
