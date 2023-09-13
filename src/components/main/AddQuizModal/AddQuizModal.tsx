@@ -45,13 +45,21 @@ const AddQuizModal = ({
     const [uploadedFile] = e.target.files ?? [];
     if (!uploadedFile) return;
 
-    const imageUrl = await previewImage(uploadedFile);
-
-    setQuizData((prev) => ({
-      ...prev,
-      image: uploadedFile,
-      imageUrl: imageUrl || '',
-    }));
+    const file = uploadedFile;
+    const maxSizeInBytes = 10 * 1024 * 1024; // 10MB 제한
+    
+    if (file.size > maxSizeInBytes) {
+      toast.error(
+        '파일 사이즈가 너무 큽니다. 10MB 이하의 이미지를 업로드해주세요.',
+      );
+    }else{
+      const imageUrl = await previewImage(uploadedFile);
+      setQuizData((prev) => ({
+        ...prev,
+        image: uploadedFile,
+        imageUrl: imageUrl || '',
+      }));
+    }
   };
   const handleAnswerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuizData((prev) => ({
@@ -87,6 +95,7 @@ const AddQuizModal = ({
   return (
     <styles.Section $imageUrl={quizData.imageUrl}>
       <input
+        accept=".jpeg, .jpg, .png, .webp, .avif, .tiff"
         ref={fileInputRef}
         type="file"
         style={{ display: 'none' }}
