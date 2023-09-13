@@ -105,6 +105,7 @@ const CreateQuiz = () => {
       toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
       return;
     }
+    
     if (!title) {
       toast.error('퀴즈 프리셋 이름은 반드시 등록해야 합니다.');
       return;
