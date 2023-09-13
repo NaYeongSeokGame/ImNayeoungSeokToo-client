@@ -94,6 +94,7 @@ export const QuizCommentBox = styled.div`
       flex-direction: column;
 
       font-size: ${fonts.deco3.fontSize}rem;
+      font-family: ${fonts.deco3.fontFamily};
 
       background-color: ${colors.cremewhite};
       border: 2px solid #000;
@@ -111,6 +112,7 @@ export const QuizCommentBox = styled.div`
         font-size: ${fonts.deco3.fontSize}rem;
         font-weight: ${fonts.deco3.fontWeight};
         line-height: ${fonts.deco3.lineHeight};
+        white-space: pre-wrap;
       }
     `;
   }}
@@ -118,7 +120,7 @@ export const QuizCommentBox = styled.div`
 
 export const ShareBox = styled.div`
   ${({ theme }) => {
-    const { colors } = theme;
+    const { colors, fonts } = theme;
     return css`
       display: flex;
       width: 17.625rem;
@@ -129,7 +131,7 @@ export const ShareBox = styled.div`
 
       > p {
         color: #fff;
-        font-family: Gmarket Sans TTF;
+        font-family: ${fonts.body1B.fontFamily};
         font-size: 0.875rem;
         font-weight: 300;
 
@@ -169,6 +171,7 @@ export const Button = styled.button`
 
       font-size: 0.875rem;
       font-weight: 400;
+      font-family: ${theme.fonts.deco1.fontFamily};
 
       background-color: ${theme.colors.white};
       border: 2px solid ${theme.colors.black};

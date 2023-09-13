@@ -1,9 +1,28 @@
 import { css, styled } from 'styled-components';
 
 export const SearchQuizWrapper = styled.div`
-  margin-top: 3rem;
-  padding: 1rem;
-  flex: 1;
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      margin: 3rem 0.25rem 0.25rem;
+      padding: 0.75rem;
+      flex: 1;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: ${colors.darkblue500};
+        border-radius: 20px;
+      }
+    `;
+  }}
 `;
 
 export const SearchForm = styled.form`

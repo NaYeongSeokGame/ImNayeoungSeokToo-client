@@ -55,12 +55,13 @@ export const ButtonWrapper = styled.div`
 
 export const OptionButton = styled.button`
   ${({ theme }) => {
-    const { colors } = theme;
+    const { colors, fonts } = theme;
     return css`
       width: 202px;
       height: 48px;
 
       color: ${colors.darkblue950};
+      font-family: ${fonts.deco1.fontFamily};
       font-size: 1rem;
       text-align: center;
 
@@ -91,18 +92,25 @@ export const TitleSection = styled(Section)`
 `;
 
 export const Title = styled.h1`
-  font-size: 3rem;
-  font-family: 'Galmuri11';
-  font-weight: 700;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  ${({ theme }) => {
+    const { fonts } = theme;
+    return css`
+      margin: 0 auto auto;
 
-  background: linear-gradient(
-    180deg,
-    #ff5912 16.67%,
-    #ffa012 48.96%,
-    #ffe812 84.9%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+      font-size: 3rem;
+      font-family: ${fonts.deco1.fontFamily};
+      font-weight: 700;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+      background: linear-gradient(
+        180deg,
+        #ff5912 16.67%,
+        #ffa012 48.96%,
+        #ffe812 84.9%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    `;
+  }}
 `;

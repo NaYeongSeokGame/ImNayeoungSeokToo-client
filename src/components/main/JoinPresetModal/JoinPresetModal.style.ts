@@ -27,6 +27,10 @@ export const PrivatePinInput = styled.input`
       &::placeholder {
         color: ${theme.colors.darkblue900};
       }
+
+      &:focus {
+        border-bottom: 0.0625rem solid ${theme.colors.darkblue300};
+      }
     `;
   }}
 `;

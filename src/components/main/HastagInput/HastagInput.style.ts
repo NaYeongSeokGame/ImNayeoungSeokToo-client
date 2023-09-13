@@ -4,11 +4,11 @@ export const HastagInputWrapper = styled.div`
   ${({ theme }) => {
     return css`
       display: flex;
-      height: 2rem;
       padding: 0.5rem;
       align-items: center;
       gap: 0.5rem;
       overflow-x: auto;
+      flex-wrap: wrap;
 
       font-family: ${theme.fonts.caption.fontFamily};
       font-size: ${theme.fonts.caption.fontSize}rem;
@@ -44,6 +44,7 @@ export const HashtagInner = styled.p`
       background-color: ${theme.colors.darkblue400};
       padding: 0.25rem;
       border-radius: 0.25rem;
+
       &:after {
         content: 'x';
         color: ${theme.colors.black};
@@ -55,6 +56,7 @@ export const HastagInput = styled.input`
   ${({ theme }) => {
     return css`
       flex-shrink: 0;
+      width: 100%;
 
       border: none;
       font-family: ${theme.fonts.caption.fontFamily};

@@ -26,4 +26,8 @@ export const Background = styled.main`
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
