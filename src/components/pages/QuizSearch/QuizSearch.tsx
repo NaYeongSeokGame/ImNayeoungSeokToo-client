@@ -16,6 +16,7 @@ const QuizSearch = () => {
   const [input, setInput] = useState<string>('');
   const [keyword, setKeyword] = useState('');
   const [type, setType] = useState('all');
+
   const {
     allData,
     searchData,
@@ -44,8 +45,9 @@ const QuizSearch = () => {
       if (observerTarget.current) {
         observer.observe(observerTarget.current);
       }
+      return () => observer.disconnect();
     }
-  }, [allData]);
+  }, [type, hasNextPage]);
 
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(
