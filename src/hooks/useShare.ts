@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const useShare = ({ title, text, url, option }: shareDataType) => {
   const shareToTwitter = () => {
@@ -35,24 +36,17 @@ const useShare = ({ title, text, url, option }: shareDataType) => {
   };
 
   const shareToNavigator = async () => {
-    const sharedData = {
-      text: text,
-      url: url,
-    };
-
     try {
-      if (navigator.canShare && navigator.canShare(sharedData)) {
-        navigator
-          .share(sharedData)
-          .then(() => {
-            console.log('성공');
-          })
-          .catch(() => {
-            console.log('취소');
-          });
+      if (!url) {
+        throw new Error('복사할 주소가 없습니다.');
       }
+
+      await navigator.clipboard.writeText(url);
+      toast.success('링크가 복사되었습니다.');
     } catch (e) {
-      console.log('실패');
+      if (e instanceof Error) {
+        toast.error(e.message);
+      }
     }
   };
 

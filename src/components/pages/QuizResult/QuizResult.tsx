@@ -13,6 +13,7 @@ import * as styles from './QuizResult.style';
 
 const QuizResult = () => {
   const navigate = useNavigate();
+  const { totalScore, quizList } = useAtomValue(quizPlayStateAtom);
   const {
     shareToTwitter,
     shareToFacebook,
@@ -23,7 +24,6 @@ const QuizResult = () => {
     title: '나도 나영석',
     text: '나도 나영석 게임 사이트입니다.',
   });
-  const { totalScore, quizList } = useAtomValue(quizPlayStateAtom);
 
   const totalQuizAmount = quizList.length;
   const scoreRate = (totalScore / totalQuizAmount) * 100;
