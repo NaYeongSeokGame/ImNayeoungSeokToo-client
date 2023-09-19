@@ -130,7 +130,7 @@ class QuizRepository {
   static async deletePresetAsync(presetId: string) {
     const response = deleteAsync<undefined>('/quiz/remove', {
       params: {
-        presetId,
+        presetPin : presetId
       },
     });
     return response;

@@ -81,7 +81,7 @@ export async function deleteAsync<T>(
   url: string,
   config?: AxiosRequestConfig,
 ): Promise<T> {
-  const response = await API.patch<T, AxiosResponse<T, unknown>, unknown>(url, {
+  const response = await API.delete<T, AxiosResponse<T, unknown>, unknown>(url, {
     ...config,
   });
   return response.data;
