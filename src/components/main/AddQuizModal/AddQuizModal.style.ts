@@ -16,7 +16,9 @@ export const Section = styled.section<{ $imageUrl?: string }>`
 
       ${$imageUrl &&
       css`
-        background-image: url(${$imageUrl});
+        background-image: url(${$imageUrl.startsWith('http')
+          ? `"${$imageUrl}"`
+          : $imageUrl});
         background-size: auto 70%, cover;
         background-position: 50% 0;
         background-repeat: no-repeat;

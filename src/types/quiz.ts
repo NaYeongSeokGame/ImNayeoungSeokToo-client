@@ -68,3 +68,15 @@ export interface PresetPageType {
   page: number;
   nextPage: number | null;
 }
+
+export interface ModifyPresetType {
+  presetPin: string;
+  title: string;
+  isPrivate: boolean;
+  addQuizAnswers: string[];
+  addQuizHints: string[];
+  addQuizImages: File[];
+  addHashtagList: string[];
+  removedHashtagList: string[];
+  removedQuizIndexList: number[];
+}

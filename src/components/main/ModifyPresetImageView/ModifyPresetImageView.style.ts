@@ -12,7 +12,7 @@ export const ModifyPresetWrapper = styled.div<{ image: string }>`
       box-shadow: 0px 0px 4px 0px #a1db00;
 
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(${image});
+        url(${image.startsWith('http') ? `"${image}"` : image});
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;

@@ -1,5 +1,6 @@
 import {
   CreatePresetType,
+  ModifyPresetType,
   PaginationKeywordType,
   PaginationType,
   PlayableQuizPresetType,
@@ -93,20 +94,31 @@ class QuizRepository {
   }
 
   static async patchPresetAsync({
+    presetPin,
     title,
     isPrivate,
-    images,
-    answers,
-    hashtagList,
-    hintList,
-  }: CreatePresetType) {
+    addQuizAnswers,
+    addQuizHints,
+    addQuizImages,
+    addHashtagList,
+    removedHashtagList,
+    removedQuizIndexList,
+  }: ModifyPresetType) {
     const formData = new FormData();
-    images.map((image) => formData.append('images', image));
-    answers.map((answer) => formData.append('answers', answer));
-    hashtagList.map((hashtag) => formData.append('hashtagList', hashtag));
-    hintList.map((hint) => formData.append('hints', hint));
+    formData.append('presetPin', presetPin);
     formData.append('title', title);
     formData.append('isPrivate', `${isPrivate}`);
+
+    addQuizAnswers.map((answer) => formData.append('addQuizAnswers', answer));
+    addQuizHints.map((hint) => formData.append('addQuizHints', hint));
+    addQuizImages.map((image) => formData.append('addQuizImages', image));
+    addHashtagList.map((hashtag) => formData.append('addHashtagList', hashtag));
+    removedHashtagList.map((hashtag) =>
+      formData.append('removedHashtagList', hashtag),
+    );
+    removedQuizIndexList.map((index) =>
+      formData.append('removedQuizIndexList', index.toString()),
+    );
 
     const response = await patchAsync<QuizPresetPinType, FormData>(
       '/quiz/modify',

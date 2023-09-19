@@ -13,7 +13,7 @@ import { createdQuizPresetAtomWithLocalStorage } from '@/stores/quiz';
 import { theme } from '@/styles/theme';
 import {
   CreateQuizWithUrlType,
-  GetQuizListOutput,
+  PlayableQuizPresetType,
   QuizPresetType,
   QuizType,
 } from '@/types/quiz';
@@ -22,7 +22,7 @@ import * as styles from './QuizForm.style';
 
 interface QuizFormProps {
   presetPin?: string;
-  originData?: GetQuizListOutput;
+  originData?: PlayableQuizPresetType;
 }
 
 const convertURLtoFile = async (url: string) => {
@@ -52,6 +52,7 @@ const convertQuizList = (quizList: QuizType[]) => {
 const QuizForm = ({ originData }: QuizFormProps) => {
   const { openModal } = useModal();
   const navigate = useNavigate();
+
   const [presetData, setPresetData] = useState<QuizPresetType>({
     isPrivate: originData?.isPrivate ?? false,
     title: originData?.title ?? '',
@@ -122,34 +123,61 @@ const QuizForm = ({ originData }: QuizFormProps) => {
   };
 
   const submitQuizData = async () => {
-    const { hashtagList, title, isPrivate } = presetData;
-    const images = quizList.map((value) => value.image);
-    const answers = quizList.map((value) => value.answer);
-    const hints = quizList.map((value) => value.hint);
-
-    const isEmpty = !answers.length || !images.length;
-    const isNotSame = answers.length !== images.length;
-
-    if (!isEmpty && isNotSame) {
-      toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
-      return;
-    }
+    const { hashtagList, title, isPrivate, presetPin } = presetData;
 
     if (!title) {
       toast.error('퀴즈 프리셋 이름은 반드시 등록해야 합니다.');
       return;
     }
 
+    if (quizList.length === 0) {
+      toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
+      return;
+    }
+
     try {
-      const { presetPin } = await QuizRepository.patchPresetAsync({
-        answers,
-        images,
+      // 추가되는 해시태그 목록
+      const addHashtagList = (hashtagList ?? []).filter(
+        (hashTag) =>
+          originData?.hashtagList && !originData?.hashtagList.includes(hashTag),
+      );
+
+      // 삭제하려는 해시태그 목록
+      const removedHashtagList = (originData?.hashtagList ?? []).filter(
+        (hashTag) => !(hashtagList ?? []).includes(hashTag),
+      );
+
+      // 추가된 퀴즈 확인
+      const addedQuizzes = quizList.filter((quiz) =>
+        quiz.imageUrl.startsWith('data:'),
+      );
+
+      const addQuizImages = addedQuizzes.map((value) => value.image);
+      const addQuizAnswers = addedQuizzes.map((value) => value.answer);
+      const addQuizHints = addedQuizzes.map((value) => value.hint);
+
+      // 삭제된 퀴즈 확인
+      const initAcc: number[] = [];
+      const removedQuizIndexList =
+        originData?.quizList.reduce((acc, curr, idx) => {
+          if (quizList[idx].imageUrl.startsWith('data:')) {
+            acc.push(idx);
+          }
+
+          return acc;
+        }, initAcc) ?? initAcc;
+
+      await QuizRepository.patchPresetAsync({
+        presetPin,
         title,
         isPrivate,
-        hashtagList: hashtagList ?? [],
-        hintList: hints,
+        addQuizAnswers,
+        addQuizHints,
+        addQuizImages,
+        addHashtagList,
+        removedHashtagList,
+        removedQuizIndexList,
       });
-
       savePresetData(presetPin);
       navigate(-1);
     } catch (error) {
@@ -160,8 +188,7 @@ const QuizForm = ({ originData }: QuizFormProps) => {
   useEffect(() => {
     if (originData) {
       (async () => {
-        const list = await convertQuizList(originData.quizList);
-        setQuizList(list);
+        setQuizList(await convertQuizList(originData.quizList));
       })();
     }
   }, [originData]);

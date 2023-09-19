@@ -95,7 +95,10 @@ export const QuestionImage = styled.section<{ $imageUrl: string }>`
 
       margin: 0 auto 1.69rem auto;
 
-      background: url(${imageUrl}) ${colors.white};
+      background: url(${imageUrl.startsWith('http')
+          ? `"${imageUrl}"`
+          : imageUrl})
+        ${colors.white};
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
