@@ -1,5 +1,7 @@
 import { css, styled } from 'styled-components';
 
+import PresetSearchIconUrl from '@/assets/icons/PresetSearchIcon.svg';
+
 export const SearchQuizWrapper = styled.div`
   ${({ theme }) => {
     const { colors } = theme;
@@ -56,7 +58,7 @@ export const SearchInput = styled.input`
 export const SearchButton = styled.button`
   width: 1.125rem;
   height: 1.125rem;
-  background: url(/src/assets/icons/PresetSearchIcon.svg);
+  background: url(${PresetSearchIconUrl});
 `;
 
 export const QuizPresetWrapper = styled.div`

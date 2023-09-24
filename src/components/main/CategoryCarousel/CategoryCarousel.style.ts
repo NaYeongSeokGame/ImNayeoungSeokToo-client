@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
+import QuizCardFrameUrl from '@/assets/images/quizCardFrame.svg';
+
 export const Wrapper = styled.div`
   width: 22.5rem;
   overflow-x: auto;
@@ -61,7 +63,7 @@ export const ImageWrapper = styled.div`
       height: 14.5rem;
       flex-shrink: 0;
 
-      background: url('src/assets/images/quizCardFrame.svg');
+      background: url(${QuizCardFrameUrl});
     `;
   }}
 `;

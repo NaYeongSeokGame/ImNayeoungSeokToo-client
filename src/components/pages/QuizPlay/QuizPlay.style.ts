@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import TimerImageUrl from '@/assets/images/timerImage.png';
+
 export const Title = styled.h1`
   ${({ theme }) => {
     const { colors } = theme;
@@ -80,7 +82,7 @@ export const QuizTimerImageBox = styled.div`
 
     font-size: 2rem;
 
-    background-image: url('/src/assets/images/timerImage.png');
+    background-image: url(${TimerImageUrl});
     background-size: cover;
     background-repeat: no-repeat;
   }

@@ -1,5 +1,8 @@
 import { css, styled } from 'styled-components';
 
+import PresetCardUrl from '@/assets/images/PresetCard.svg';
+import PresetHashtagUrl from '@/assets/images/PresetHashtag.svg';
+
 export const PresetWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,7 +10,7 @@ export const PresetWrapper = styled.div`
   width: 9.75rem;
   height: 14.5rem;
 
-  background-image: url(/src/assets/images/PresetCard.svg);
+  background-image: url(${PresetCardUrl});
 `;
 
 export const Image = styled.div<{ $imageUrl: string }>`
@@ -60,7 +63,7 @@ export const HashtagText = styled.p`
       line-height: 1rem;
       background-size: cover;
       background-position: center;
-      background-image: url(/src/assets/images/PresetHashtag.svg);
+      background-image: url(${PresetHashtagUrl});
 
       &::before {
         content: '#';
