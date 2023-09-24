@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-const useShare = ({ title, text, url, option }: shareDataType) => {
+
+const useShare = ({ title, url, presetPin, option }: shareDataType) => {
   const shareToTwitter = () => {
     const sharedLink =
       'text=' + encodeURIComponent(title + ' \n ') + encodeURIComponent(url);
@@ -36,18 +37,12 @@ const useShare = ({ title, text, url, option }: shareDataType) => {
   };
 
   const shareToNavigator = async () => {
-    try {
-      if (!url) {
-        throw new Error('복사할 주소가 없습니다.');
-      }
-
-      await navigator.clipboard.writeText(url);
-      toast.success('링크가 복사되었습니다.');
-    } catch (e) {
-      if (e instanceof Error) {
-        toast.error(e.message);
-      }
+    if (!url) {
+      toast.error('복사할 주소가 없습니다.');
     }
+
+    await navigator.clipboard.writeText(`${url}search?pin=${presetPin}`);
+    toast.success('링크가 복사되었습니다.');
   };
 
   const openWindow = (url: string) => {
@@ -78,6 +73,7 @@ interface shareDataType {
   title?: string;
   url: string;
   text?: string;
+  presetPin: string | null;
   option?: {
     windowOpenTarget: '_black' | '_parent' | '_self' | '_top';
   };

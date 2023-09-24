@@ -11,17 +11,13 @@ export const QuizResultWrapper = styled.section`
 `;
 
 export const QuestionResult = styled.div`
-  ${({ theme }) => {
-    return css`
-      margin: 0 auto;
-      gap: 3.375rem;
+  margin: 0 auto;
+  gap: 3.375rem;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    `;
-  }}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Title = styled.h1`
@@ -60,6 +56,7 @@ export const Result = styled.h5`
       font-size: ${theme.fonts.deco1.fontSize}rem;
       font-weight: ${theme.fonts.deco1.fontWeight};
       line-height: ${theme.fonts.deco1.lineHeight};
+      font-family: ${theme.fonts.deco1.fontFamily};
     `;
   }}
 `;
@@ -149,6 +146,8 @@ export const ShareBox = styled.div`
         > svg {
           width: 2.75rem;
           height: 2.75rem;
+
+          cursor: pointer;
         }
       }
     `;
@@ -176,7 +175,7 @@ export const Button = styled.button`
       background-color: ${theme.colors.white};
       border: 2px solid ${theme.colors.black};
       border-radius: 0.5rem;
-      box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.1);
     `;
   }}
 `;

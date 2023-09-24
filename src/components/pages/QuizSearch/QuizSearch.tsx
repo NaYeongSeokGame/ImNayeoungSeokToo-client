@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 
 import GameStartModal from '@/components/main/GameStartModal';
 import PresetCard from '@/components/main/PresetCard';
+import useGetPresetByPin from '@/hooks/useGetPresetByPin.ts';
 import useModal from '@/hooks/useModal';
 import useSearchPresetList from '@/hooks/useSearchPresetList';
 import { QuizPresetType } from '@/types/quiz';
 
 import * as styles from './QuizSearch.style';
+
 
 const QUIZ_COUNT_LIMIT = 6;
 
@@ -16,6 +18,13 @@ const QuizSearch = () => {
   const [input, setInput] = useState<string>('');
   const [keyword, setKeyword] = useState('');
   const [type, setType] = useState('all');
+  const search = new URL(location.href).search;
+  const quizPin = new URLSearchParams(search).get('pin');
+
+  let presetByPin: ReturnType<typeof useGetPresetByPin>;
+  if (quizPin) {
+    presetByPin = useGetPresetByPin(quizPin);
+  }
 
   const {
     allData,
@@ -32,7 +41,7 @@ const QuizSearch = () => {
   });
 
   useEffect(() => {
-    if (allData && allData.pages[0].results.length > 0){
+    if (allData && allData.pages[0].results.length > 0) {
       const observer = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting && type === 'all' && hasNextPage) {
@@ -48,6 +57,11 @@ const QuizSearch = () => {
       return () => observer.disconnect();
     }
   }, [type, hasNextPage]);
+
+  useEffect(() => {
+    if (!presetByPin) return;
+    openModal(<GameStartModal {...presetByPin} />);
+  }, [presetByPin]);
 
   const handleClick = ({ presetPin, thumbnailUrl, title }: QuizPresetType) => {
     openModal(

@@ -2,6 +2,7 @@ import { css, styled } from 'styled-components';
 
 import PresetSearchIconUrl from '@/assets/icons/PresetSearchIcon.svg';
 
+
 export const SearchQuizWrapper = styled.div`
   ${({ theme }) => {
     const { colors } = theme;
@@ -20,7 +21,7 @@ export const SearchQuizWrapper = styled.div`
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: ${colors.darkblue500};
+        background-color: rgba(255, 255, 255, 0.25);
         border-radius: 20px;
       }
     `;

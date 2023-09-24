@@ -11,9 +11,10 @@ import { quizPlayStateAtom } from '@/stores/quiz';
 
 import * as styles from './QuizResult.style';
 
+
 const QuizResult = () => {
   const navigate = useNavigate();
-  const { totalScore, quizList } = useAtomValue(quizPlayStateAtom);
+  const { totalScore, quizList, presetPin } = useAtomValue(quizPlayStateAtom);
   const {
     shareToTwitter,
     shareToFacebook,
@@ -23,6 +24,7 @@ const QuizResult = () => {
     url: 'http://nayeongseokgame.site/',
     title: '나도 나영석',
     text: '나도 나영석 게임 사이트입니다.',
+    presetPin
   });
 
   const totalQuizAmount = quizList.length;
