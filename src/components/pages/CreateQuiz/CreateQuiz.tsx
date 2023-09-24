@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
+import ArrowIconUrl from '@/assets/icons/arrowIcon.svg';
+import UploadTextUrl from '@/assets/images/uploadQuizText.svg';
 import AddQuizModal from '@/components/main/AddQuizModal';
 import CreateQuizImage from '@/components/main/CreateQuizImageView/CreateQuizImage';
 import GameStartModal from '@/components/main/GameStartModal';
@@ -105,17 +107,17 @@ const CreateQuiz = () => {
       toast.error('최소 1개 이상의 퀴즈를 등록해야 합니다.');
       return;
     }
-    
+
     if (!title) {
       toast.error('퀴즈 프리셋 이름은 반드시 등록해야 합니다.');
       return;
     }
 
-    if(title.length < 3 ){
+    if (title.length < 3) {
       toast.error('퀴즈 프리셋 이름은 3글자 이상 입력해야 합니다. ');
       return;
     }
-    
+
     try {
       const { presetPin } = await QuizRepository.postCreateNewPresetAsync({
         answers,
@@ -199,8 +201,8 @@ const CreateQuiz = () => {
           ))}
         {quizList.length < 10 && (
           <styles.AddQuizWrapper>
-            <styles.UploadText src="/src/assets/images/uploadQuizText.svg" />
-            <styles.ArrowIcon src="/src/assets/icons/arrowIcon.svg" />
+            <styles.UploadText src={UploadTextUrl} />
+            <styles.ArrowIcon src={ArrowIconUrl} />
             <styles.UploadQuizButton onClick={openAddQuizModal}>
               추가하기
             </styles.UploadQuizButton>
