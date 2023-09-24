@@ -1,6 +1,6 @@
 declare module '*.svg' {
-  const content: React.FC<React.SVGProps<SVGElement>>;
-  export default content;
+  export const content: React.FC<React.SVGProps<SVGElement>>;
+  export default string;
 }
 
 declare interface Window {

@@ -60,8 +60,6 @@ export const ImageWrapper = styled.div`
       width: 9.75rem;
       height: 14.5rem;
       flex-shrink: 0;
-
-      background: url('src/assets/images/quizCardFrame.svg');
     `;
   }}
 `;

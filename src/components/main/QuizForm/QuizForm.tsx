@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import QuizRepository from '@/apis/quiz';
+import ArrowIconUrl from '@/assets/icons/arrowIcon.svg';
+import UploadTextUrl from '@/assets/images/uploadQuizText.svg';
 import AddQuizModal from '@/components/main/AddQuizModal';
 import CreateQuizImage from '@/components/main/CreateQuizImageView';
 import HashtagInput from '@/components/main/HastagInput';
@@ -252,8 +254,8 @@ const QuizForm = ({ originData }: QuizFormProps) => {
           ))}
         {quizList.length < 10 && (
           <styles.AddQuizWrapper>
-            <styles.UploadText src="/src/assets/images/uploadQuizText.svg" />
-            <styles.ArrowIcon src="/src/assets/icons/arrowIcon.svg" />
+            <styles.UploadText src={UploadTextUrl} />
+            <styles.ArrowIcon src={ArrowIconUrl} />
             <styles.UploadQuizButton onClick={openAddQuizModal}>
               추가하기
             </styles.UploadQuizButton>
