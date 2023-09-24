@@ -55,7 +55,7 @@ const QuizPlay = () => {
       <styles.QuizGuide>
         시간 내에 <span>정답</span>을 말하세요!
         <styles.QuizTimerImageBox>
-          <styles.Countdown currentCount={Math.ceil(leftSecond)}>
+          <styles.Countdown $currentCount={Math.ceil(leftSecond)}>
             {Math.ceil(leftSecond)}
           </styles.Countdown>
         </styles.QuizTimerImageBox>

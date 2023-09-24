@@ -36,7 +36,9 @@ const QuizAnswer = () => {
       </styles.TitleBox>
       <styles.AnswerSection>
         <styles.AnswerImage src={currentQuizImageUrl} />
-        <styles.Answer>{currentQuizAnswer}</styles.Answer>
+        <styles.Answer small={currentQuizAnswer.length >= 5 ? true : false}>
+          {currentQuizAnswer}
+        </styles.Answer>
       </styles.AnswerSection>
       <styles.ButtonSection>
         정답을 맞추셨나요?

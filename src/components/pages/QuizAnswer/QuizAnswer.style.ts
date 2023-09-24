@@ -73,12 +73,19 @@ export const AnswerImage = styled.img`
   object-position: center;
 `;
 
-export const Answer = styled.h5`
-  ${({ theme }) => {
+export const Answer = styled.h5<{ small?: boolean }>`
+  ${({ theme, small }) => {
     return css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+
       color: ${theme.colors.magenta500};
-      font-size: 3.75rem;
+      font-size: ${small ? '1.5rem' : '3.75rem'};
       word-break: keep-all;
+      overflow-wrap: anywhere;
+      text-align: center;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     `;
   }}

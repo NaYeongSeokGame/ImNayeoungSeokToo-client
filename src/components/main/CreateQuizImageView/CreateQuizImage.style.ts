@@ -62,10 +62,14 @@ export const AnswerText = styled.p`
     return css`
       margin-top: 9rem;
       margin-left: 0.62rem;
+
       color: ${theme.colors.white};
       font-family: ${theme.fonts.body2R.fontFamily};
       font-size: 0.75rem;
       font-weight: ${theme.fonts.body2R.fontWeight};
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     `;
   }}
 `;
@@ -74,10 +78,14 @@ export const HintText = styled.p`
   ${({ theme }) => {
     return css`
       margin-left: 0.62rem;
+
       color: ${theme.colors.white};
       font-family: ${theme.fonts.caption.fontFamily};
       font-size: 0.625rem;
       font-weight: ${theme.fonts.caption.fontWeight};
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     `;
   }}
 `;

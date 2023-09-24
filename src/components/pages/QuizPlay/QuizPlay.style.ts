@@ -114,13 +114,13 @@ export const ButtonSection = styled.div`
   margin: 0 auto;
 `;
 
-export const Countdown = styled.div<{ currentCount: number }>`
-  ${({ theme, currentCount }) => {
+export const Countdown = styled.div<{ $currentCount: number }>`
+  ${({ theme, $currentCount }) => {
     const { colors, fonts } = theme;
     return css`
       font-size: ${fonts.deco4.fontSize};
       font-family: ${fonts.deco4.fontFamily};
-      color: ${currentCount < 2 ? colors.red : colors.purple};
+      color: ${$currentCount < 2 ? colors.red : colors.purple};
       margin: 0 auto auto;
     `;
   }}

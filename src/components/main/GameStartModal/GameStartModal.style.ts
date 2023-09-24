@@ -17,6 +17,7 @@ export const Title = styled.span`
       font-weight: 400;
       line-height: 125%;
       word-break: keep-all;
+      overflow-wrap: anywhere;
 
       background: rgba(0, 0, 0, 0.6);
     `;
